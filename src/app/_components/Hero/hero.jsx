@@ -1,12 +1,13 @@
 "use client"
 
 import React from 'react'
+import "./hero.css"
 
 import HeroAbstract from "./abstract.jsx"
 
 const hero = () => {
   return (
-    <div>
+    <div className="wave1">
         <HeroAbstract></HeroAbstract>
     </div>
   )

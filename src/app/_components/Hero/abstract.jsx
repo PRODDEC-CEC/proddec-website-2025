@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
+import "./hero.css"
+import WaveEffect from './waveEffect';
 
-
-const abstract = () => {
+const HeroDistortion = () => {
   return (
     <div>
-      
+      <WaveEffect />
     </div>
-  )
-}
+  );
+};
 
-export default abstract
+export default HeroDistortion;
