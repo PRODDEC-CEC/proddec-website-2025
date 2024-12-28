@@ -18,8 +18,8 @@ const WaveCanvas = () => {
     const colors = ["#000000", "#0f0f0f", "#666666", "#FFFFFF"];
     const numWaves = 4; // Number of wave layers
     const waveHeight = 70; // Height of the wave
-    const waveSpeed = 0.015; // Speed of the wave
-    let offsetX = 5; // Offset for wave animation (X direction)
+    const waveSpeed = 0.01; // Speed of the wave
+    let offsetX = 20; // Offset for wave animation (X direction)
     let offsetY = 20; // Offset for wave animation (Y direction)
 
     // Distortion radius around the pointer
