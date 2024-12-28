@@ -8,8 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'orangepeel' : '#FFA200',
+        'richblack': '#11151c',
+        'honeydew': '#F0F8EA',
       },
     },
   },
