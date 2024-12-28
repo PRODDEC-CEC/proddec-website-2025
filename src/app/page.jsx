@@ -1,9 +1,17 @@
-import Image from "next/image";
+import react from "react";
+import Hero from "./_components/Hero/hero"
+import Add1 from "./_components/add1"
+import Navbar from "./_components/navbar";
 
 export default function Home() {
   return (
     <>
-    <div>Home</div>
+    <div>
+    <Hero></Hero>
+    <Add1></Add1>
+
+
+    </div>
     </>
   );
 }
