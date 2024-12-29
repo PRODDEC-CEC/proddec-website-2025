@@ -19,8 +19,8 @@ const WaveCanvas = () => {
     const numWaves = 4; // Number of wave layers
     const waveHeight = 70; // Height of the wave
     const waveSpeed = 0.01; // Speed of the wave
-    let offsetX = 20; // Offset for wave animation (X direction)
-    let offsetY = 20; // Offset for wave animation (Y direction)
+    let offsetX = 0; // Offset for wave animation (X direction)
+    let offsetY = 0; // Offset for wave animation (Y direction)
 
     // Distortion radius around the pointer
     const DISTORTION_RADIUS = 250;

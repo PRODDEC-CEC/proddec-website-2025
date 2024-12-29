@@ -5,9 +5,29 @@ import "./hero.css"
 import gsap from "gsap"
 import HeroAbstract from "./abstract.jsx"
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 
 const hero = () => {
+
+
+  useGSAP(() => {
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to (".mainHeader", {
+      y: 350,
+      duration: 0.2,
+      delay: 0.5,
+      scrollTrigger:{
+        trigger : "top",
+        start: "top 20%",
+        end: "bottom 40%",
+        scrub: 2,
+        markers: true,
+      }
+  })
+  })
 
 
   useGSAP(() => {
