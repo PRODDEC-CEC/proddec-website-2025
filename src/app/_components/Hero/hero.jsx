@@ -21,10 +21,10 @@ const hero = () => {
       delay: 0.5,
       scrollTrigger:{
         trigger : "top",
-        start: "top 20%",
+        start: "top 30%",
         end: "bottom 40%",
         scrub: 2,
-        markers: true,
+        // markers: true,
       }
   })
   })
