@@ -10,8 +10,9 @@ const NotFound = () => {
         width={300}
         height={300}
         priority
-        className="rounded-full shadow-2xl"
+         
       />
+      
       <p className="text-xl mt-4 italic">
         "404, but I'm a chill guy, so we'll find it eventually"
       </p>
