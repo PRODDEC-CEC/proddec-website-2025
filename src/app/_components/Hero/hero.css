@@ -4,20 +4,28 @@
     filter:blur(2);
 }
 
+.wavemain{
+    height: 100vh;
+    width : 100vw;
+    overflow: hidden;
+    background-color: #111111;
+}
   
 .mainhero {
     position : relative;
     height: 100vh;
     width : 100%;    
     overflow: hidden;
+    color: black;
 }
 
 .mainHeader{
     position : absolute;
     text-align : center;
-    top: 35%;
-    left: 50%;
+    top: 33%;
+    left: 41.5%;
     transform: translate(-50%, -50%);
+    scale : 1.6;
 
     z-index : 20;
 }
@@ -26,4 +34,17 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 7rem;
     color: #ECB526;
+}
+
+.mainText{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    position : absolute;
+    text-align : center;
+    top: 42%;
+    left: 19.8%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    z-index : 20;
 }

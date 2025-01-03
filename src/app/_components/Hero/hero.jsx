@@ -15,7 +15,7 @@ const hero = () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to (".mainHeader", {
+    gsap.to (".mainHeader",{
       y: 350,
       duration: 0.2,
       delay: 0.5,
@@ -26,6 +26,27 @@ const hero = () => {
         scrub: 2,
         // markers: true,
       }
+    }),
+
+      gsap.to (".mainText",{
+        y: 420,
+        duration: 0.2,
+        delay: 0.5,
+        opacity : 40,
+        scrollTrigger:{
+          trigger : "top",
+          start: "top 30%",
+          end: "bottom 40%",
+          scrub: 2,
+          // markers: true,
+        }
+      }),
+
+      gsap.to (".mainnText",{
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.inOut'
   })
   })
 
@@ -36,13 +57,14 @@ const hero = () => {
   return (
     <div className='mainhero'>
         <div className="wave1">
-        <HeroAbstract></HeroAbstract>
+        {/* <HeroAbstract></HeroAbstract> */}
         </div>
         <div className="forBlur">
 
         </div>
         <div className='textmain'>
         <h1 className='mainHeader'>PRODDEC</h1>
+        <p className='mainText'>Hello, How are You!!!</p>
         </div>
     </div>
   )

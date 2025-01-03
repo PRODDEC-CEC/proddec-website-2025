@@ -4,8 +4,8 @@ import WaveEffect from './waveEffect';
 
 const HeroDistortion = () => {
   return (
-    <div>
-      <WaveEffect/>
+    <div className='wavemain'>
+      
     </div>
   );
 };
