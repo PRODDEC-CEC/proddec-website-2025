@@ -25,6 +25,18 @@ const hero = () => {
         end: "bottom 40%",
         scrub: 2,
         // markers: true,
+      },
+    }),
+
+    gsap.to (".forBlur",{
+      opacity: 0,
+      duration: 0.5,
+      scrollTrigger:{
+        trigger : "top",
+        start: "top 30%",
+        end: "bottom 40%",
+        scrub: 2,
+        // markers: true,
       }
     }),
 
@@ -57,7 +69,7 @@ const hero = () => {
   return (
     <div className='mainhero'>
         <div className="wave1">
-        {/* <HeroAbstract></HeroAbstract> */}
+        <HeroAbstract></HeroAbstract>
         </div>
         <div className="forBlur">
 
