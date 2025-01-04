@@ -11,10 +11,10 @@ export default function Home() {
   return (
     <>
     {/* <div className="bg-[#444444] py-10 px-4"> */}
-    <div>
+    <div className="overflow-x-hidden">
     <Navbar></Navbar>
     <Hero></Hero>
-    <Add1></Add1>
+    {/* <Add1></Add1> */}
     </div>
     </>
   );

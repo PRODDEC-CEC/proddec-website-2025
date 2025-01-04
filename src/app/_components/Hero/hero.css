@@ -2,6 +2,14 @@
     opacity: 100%;
     position: relative;
     filter:blur(0);
+    overflow: hidden;
+}
+
+.heroSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .wavemain{
@@ -9,19 +17,21 @@
     width : 100vw;
     overflow: hidden;
     background-color: #111111;
+
 }
   
-.mainhero {
+.hero1 {
     position : relative;
     height: 100vh; /*96vh if taking the design of cutthecode.com*/
-    width : 100%;    
+    width : 100vw;    
     overflow: hidden;
-    color: black;
+    background-color: black;
     /* border-top-right-radius: 25px;
     border-top-left-radius: 25px; */
 }
 
 .mainHeader{
+    overflow: hidden;
     position : absolute;
     text-align : center;
     top: 33%;
@@ -49,4 +59,102 @@
     opacity: 1;
     transform: translate(-50%, -50%);
     z-index : 20;
+}
+
+.hero2 {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(51, 51, 51, 0.79);
+}
+
+#imgrig{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+ background-color: brown;
+ position: relative;
+ height: auto;
+ width: 60%;
+ padding: 0;
+ margin-bottom: 30vh;
+ margin-left: 6vw;
+}
+
+#imgrig .imgcntr{
+    position: absolute;
+    width: 25vw;
+    height: 40vw;
+    border-radius: 1vw;
+    background-color: rgb(242, 11, 11);
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    filter: grayscale();
+
+}
+
+#imgrig .imgcntr:hover{
+    filter: grayscale(0);
+}
+
+#imgrig .imgcntr:nth-child(1){
+    transform: translate(-40%, -8%) rotate(-20deg);
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://images.unsplash.com/photo-1623682536859-1f87582d8cb2?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG90cmFpdHMlMjBhZXN0aGV0Y2l8ZW58MHx8MHx8fDA%3D");
+}
+
+#imgrig .imgcntr:nth-child(2){
+    transform: translate(-15%, 0%) rotate(-15deg);
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://plus.unsplash.com/premium_photo-1674639437824-771a65f1738b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fHBvdHJhaXR8ZW58MHx8MHx8fDA%3D");
+}
+
+#imgrig .imgcntr:nth-child(3){
+    transform: translate(20%, 10%) rotate(-5deg);
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://images.unsplash.com/photo-1588768987479-bcebeefb8a5c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fHBvdHJhaXR8ZW58MHx8MHx8fDA%3D");
+    
+}
+
+#imglft{
+    height : 30vw;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding-left: 11vw;
+    margin-bottom: 10vw;
+    
+}
+
+#imglft h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    display: flex;
+    font-weight: bold;
+    font-size: 2vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+#imglft span{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ECB526;
+    display: inline;
+    font-weight: bolder;
+    font-style: bold;
+
+}
+
+#imglft p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    color: #fff;
+    
 }
