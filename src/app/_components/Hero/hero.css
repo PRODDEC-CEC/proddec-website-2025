@@ -13,10 +13,12 @@
   
 .mainhero {
     position : relative;
-    height: 100vh;
+    height: 100vh; /*96vh if taking the design of cutthecode.com*/
     width : 100%;    
     overflow: hidden;
     color: black;
+    /* border-top-right-radius: 25px;
+    border-top-left-radius: 25px; */
 }
 
 .mainHeader{

@@ -76,7 +76,7 @@ const Navbar = () => {
             className={` bg-transparent text-orangepeel shadow-md fixed top-0 left-0 right-0 mx-auto z-50 transition-[width, top, box-shadow] duration-500 ease-in-out ${
                 isScrolled
                     ? 'w-3/4 rounded-xl top-7 backdrop-blur'
-                    : 'w-full top-0 bg-transparent'
+                    : 'w-full top-0 bg-transparent' // top-16 if taking the design of cutthecode.com
             } h-20 flex items-center`}
 
             style={
