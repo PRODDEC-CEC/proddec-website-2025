@@ -1,6 +1,6 @@
 import react from "react";
 import Hero from "./_components/Hero/hero"
-import Add1 from "./_components/events"
+import Events from "./_components/Events/events"
 import Navbar from "./_components/navbar";
 import "./globals.css"
 
@@ -14,7 +14,8 @@ export default function Home() {
     <div className="overflow-x-hidden">
     <Navbar></Navbar>
     <Hero></Hero>
-    <Add1></Add1>
+    <Events></Events>
+
     </div>
     </>
   );

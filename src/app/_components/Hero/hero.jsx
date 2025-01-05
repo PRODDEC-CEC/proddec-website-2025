@@ -6,12 +6,15 @@ import gsap from "gsap"
 import HeroAbstract from "./abstract.jsx"
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Btn1 from "../Button/button1.jsx"
 
 
 const hero = () => {
 
 
   useGSAP(() => {
+
+
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -122,13 +125,11 @@ const hero = () => {
     <div className="wave1">
     <HeroAbstract></HeroAbstract>
     </div>
-    <div className="forBlur">
-
-    </div>
     <div className='textmain'>
     <h1 className='mainHeader'>PRODDEC</h1>
     <p className='mainText'>Design and Develop</p>
-    <button className='mainnText'>Join Us</button>
+    <Btn1 id='btn1'></Btn1>
+    
     </div>
     </div>
 
@@ -145,6 +146,7 @@ const hero = () => {
       </div>
       
     </div>
+ 
 
     </div>
 </div>
