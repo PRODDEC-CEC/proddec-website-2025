@@ -3,8 +3,8 @@ import "../globals.css"
 
 const add1 = () => {
   return (
-    <div className='h-[100vh] bg-blue-900'>
-      
+    <div className="bg-[#000000] h-[100vh] w-[100vw]">
+
     </div>
   )
 }
