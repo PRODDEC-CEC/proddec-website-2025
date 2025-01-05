@@ -16,26 +16,29 @@ const hero = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to (".mainHeader",{
-      y: 350,
+      y: 150,
+      filter: "blur(2px)",
+      opacity: 0,
       duration: 0.2,
       delay: 0.5,
       scrollTrigger:{
         trigger : "top",
-        start: "top 30%",
-        end: "bottom 40%",
+        start: "top 0%",
+        end: "bottom 80%",
         scrub: 2,
-        // markers: true,
+        // markers: true
       },
     }),
       gsap.to (".mainText",{
-        y: 420,
+        y: 220,
+        filter: "blur(2px)",
+        opacity: 0,
         duration: 0.2,
         delay: 0.5,
-        opacity : 40,
         scrollTrigger:{
           trigger : "top",
-          start: "top 30%",
-          end: "bottom 40%",
+          start: "top 0%",
+          end: "bottom 90%",
           scrub: 2,
           // markers: true,
         }
@@ -47,11 +50,69 @@ const hero = () => {
         duration: 1,
         delay: 0.5,
         ease: 'power2.inOut'
-  })
-  })
+  }),
 
+      gsap.to (".imgcntr:nth-child(1)",{
+        rotate: 4,
+        duration: 1,
+        delay: 0.5,
+        transformOrigin: "bottom, left",
+        ease: 'power2.inOut',
+        scrollTrigger:{
+          trigger : "top",
+          start: "top 76%",
+          end: "bottom 90%",
+          scrub: 2,
+          // markers: true,
+        }
+      }),
 
-  useGSAP(() => {
+      gsap.to(".imgcntr:nth-child(2)",{
+        rotate : 3,
+        duration: 1,
+        delay: 0.5,
+        ease: 'power2.inOut',
+        transformOrigin: "bottom, left",
+        scrollTrigger:{
+          trigger : "top",
+          start: "top 78%",
+          end: "bottom 92%",
+          scrub: 2,
+          // markers: true,
+        }
+
+      })
+
+      gsap.to(".imgcntr:nth-child(3)",{
+        rotate : 2,
+        duration: 1,
+        delay: 0.5,
+        ease: 'power2.inOut',
+        transformOrigin: "bottom, left",
+        scrollTrigger:{
+          trigger : "top",
+          start: "top 80%",
+          end: "bottom 94%",
+          scrub: 2,
+          // markers: true,
+        }
+
+      }),
+
+      gsap.to("#heroSection",{
+        opacity: 0,
+        duration: 1,
+        delay: 0.5,
+        ease: 'power2.inOut',
+        scrollTrigger:{
+          trigger : "#heroSection",
+          start: "top -30%",
+          end: "bottom -32%",
+          scrub: 2,
+          // markers: true,
+        }
+
+  })
     
   })
   return (

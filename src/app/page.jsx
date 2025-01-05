@@ -14,7 +14,7 @@ export default function Home() {
     <div className="overflow-x-hidden">
     <Navbar></Navbar>
     <Hero></Hero>
-    {/* <Add1></Add1> */}
+    <Add1></Add1>
     </div>
     </>
   );

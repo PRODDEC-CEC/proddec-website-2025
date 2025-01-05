@@ -34,10 +34,10 @@
     overflow: hidden;
     position : absolute;
     text-align : center;
-    top: 33%;
-    left: 41.5%;
+    top: 45%;
+    left: 35.7%;
     transform: translate(-50%, -50%);
-    scale : 1.6;
+    scale : 1.4;
 
     z-index : 20;
 }
@@ -54,7 +54,7 @@
     color: #fff;
     position : absolute;
     text-align : center;
-    top: 42%;
+    top: 53%;
     left: 19.8%;
     opacity: 1;
     transform: translate(-50%, -50%);
@@ -72,7 +72,6 @@
     display : flex;
     justify-content: center;
     align-items: center;
- background-color: brown;
  position: relative;
  height: auto;
  width: 60%;
