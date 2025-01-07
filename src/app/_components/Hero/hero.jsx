@@ -128,7 +128,6 @@ const hero = () => {
     <div className='textmain'>
     <h1 className='mainHeader'>PRODDEC</h1>
     <p className='mainText'>Design and Develop</p>
-    <Btn1 id='btn1'></Btn1>
     
     </div>
     </div>
