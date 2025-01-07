@@ -3,7 +3,7 @@ import "./events.css"
 
 const add1 = () => {
   return (
-    <div className="bg-[#111111] h-[100vh] pt-24 w-[100vw] overflow-hidden">
+    <div className="bg-[#111111] h-[120vh] pt-36 w-[100vw] overflow-hidden">
       
       <div id='evntcrd'>
         <div className='evntcrds evntimg1'></div>
