@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        urbanist: ['Urbanist', 'sans-serif'],
+      },
       colors: {
         'orangepeel' : '#FFA200',
         'richblack': '#11151c',
