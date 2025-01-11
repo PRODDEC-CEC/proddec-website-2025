@@ -85,7 +85,7 @@ const add1 = () => {
   })
   
   return (
-    <div className="bg-[#111111] h-[120vh] pt-36 w-[100vw] overflow-hidden">
+    <div className="bg-[#222222] h-[120vh] pt-36 w-[100vw] overflow-hidden">
       
       <div id='evntcrd'>
         <div className='evntcrds evntimg1'></div>
