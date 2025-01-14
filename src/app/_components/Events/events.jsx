@@ -25,21 +25,9 @@ const add1 = () => {
       })
     }),
 
-    gsap.to(".evntimg1:hover",{
-      hoverClass: "evntimg1hover",
-      duration: 1,
-      delay: 0.5,
-      scrollTrigger :({
-        trigger : "#evntcrd",
-        start: "top 100%",
-        end: "bottom 50%",
-        scrub: 3,
-        // markers: true
-      })
-    }),
-
 
     gsap.from(".evntimg2",{
+
       x: -100,
       duration: 1,
       delay: 0.5,
@@ -54,6 +42,7 @@ const add1 = () => {
     }),
 
     gsap.from(".evntimg3",{
+
       y: 300,
       duration: 1,
       delay: 0.5,
@@ -106,7 +95,7 @@ const add1 = () => {
   })
   
   return (
-    <div className=" evn h-[120vh] pt-48 w-[100vw]  pb-44 z-40">
+    <div className=" evn h-[120vh] pt-48 w-[100vw] flex flex-col items-center pb-44 z-40">
       
       <div id='evntcrd'>
         <div className='evntcrds evntimg1'></div>

@@ -19,13 +19,12 @@ const hero = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to (".mainHeader",{
-      y: 150,
+      y:20,
       filter: "blur(2px)",
       opacity: 0,
       duration: 0.2,
-      delay: 0.5,
       scrollTrigger:{
-        trigger : "top",
+        trigger : ".mainText2",
         start: "top 0%",
         end: "bottom 80%",
         scrub: 2,
@@ -33,15 +32,42 @@ const hero = () => {
       },
     }),
       gsap.to (".mainText",{
-        y: 220,
+        y: 120,
+        filter: "blur(2px)",
+        opacity: 0,
+        duration: 0.2,
+        scrollTrigger:{
+          trigger : ".mainText2",
+          start: "top 0%",
+          end: "bottom 70%",
+          scrub: 2,
+          markers: true,
+        }
+      }),
+
+      gsap.to (".mainText2",{
+        y: 150,
         filter: "blur(2px)",
         opacity: 0,
         duration: 0.2,
         delay: 0.5,
         scrollTrigger:{
-          trigger : "top",
+          trigger : ".mainText2",
           start: "top 0%",
-          end: "bottom 90%",
+          end: "bottom 70%",
+          scrub: 2,
+          // markers: true,
+        }
+      }),
+
+      gsap.to (".btn1",{
+        y: 40,
+        opacity: -0.5,
+        duration: 0.2,
+        scrollTrigger:{
+          trigger : ".btn1",
+          start: "top 0%",
+          end: "bottom 70%",
           scrub: 2,
           // markers: true,
         }
@@ -122,7 +148,12 @@ const hero = () => {
     </div>
     <div className='textmain'>
     <h1 className='mainHeader'>PRODDEC</h1>
-    <p className='mainText'>Design and Develop</p>
+    <p className='mainText'>Product Design and Development Center </p>
+    <p className='mainText2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+    <div className='btn1'>
+    <Btn1></Btn1>
+    </div>
+
     
     </div>
     </div>

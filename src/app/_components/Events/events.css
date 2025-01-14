@@ -24,6 +24,9 @@
     width: 26vw;
     height: 13vw;
     transform: translate(-15%, 30%);
+    background-size: cover;
+    background-position: center;
+    background-image: url("./assets/imgcntr3.jpg");
     
 }
 
@@ -31,6 +34,9 @@
     width: 25vw;
     height: 42vw;
     transform: translate(92%, 43.5%);
+    background-size: cover;
+    background-position: center;
+    background-image: url("./assets/imgcntr1.jpg");
     
 }
 
