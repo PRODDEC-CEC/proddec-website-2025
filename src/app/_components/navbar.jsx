@@ -29,7 +29,7 @@ const Navbar = () => {
                 setIsVisible(true);
             }
 
-            // Debounced update to `lastY` to smooth scroll detection
+            // Debounced update to lastY to smooth scroll detection
             clearTimeout(timeoutId);
             timeoutId = setTimeout(() => setLastY(currentY), 100);
         };
@@ -82,9 +82,10 @@ const Navbar = () => {
             className={`text-orangepeel shadow-md fixed top-0 left-0 right-0 mx-auto z-50 transition-[width, top, box-shadow, opacity] duration-500 ease-in-out ${
                 isScrolled
                     ? 'w-3/4 rounded-xl top-7 backdrop-blur'
-                    : 'w-full top-0 bg-transparent overflow-hidden' // top-16 if taking the design of cutthecode.com
-            } h-20 flex items-center`}
-
+                    : 'w-full top-0 bg-transparent'
+            } h-20 flex items-center ${
+                isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
             style={
                 isScrolled
                     ? {
