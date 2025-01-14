@@ -71,7 +71,7 @@
     display: flex;
     align-items: center;
     height: 100vh;
-    background-color: rgba(51, 51, 51, 0.79);
+    background-color: rgba(34, 34, 34, .7);
 }
 
 #imgrig{
@@ -94,8 +94,7 @@
     background-color: rgb(242, 11, 11);
     transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
     filter: grayscale();
-    box-shadow:  -12px -12px 24px #333333,
-             12px 12px 24px #333333;
+    box-shadow:  -12px -12px 24px #111111, 12px 12px 24px #111111;
 
 }
 
@@ -111,7 +110,7 @@
 }
 
 #imgrig .imgcntr:nth-child(2){
-    transform: translate(-15%, 0%) rotate(-15deg);
+    transform: translate(-11%, 0%) rotate(-15deg);
     background-size: cover;
     background-position: center;
     background-image: url("./assets/imgcntr2.jpg");

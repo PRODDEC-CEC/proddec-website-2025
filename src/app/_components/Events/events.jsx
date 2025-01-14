@@ -13,13 +13,13 @@ const add1 = () => {
     gsap.registerPlugin(ScrollTrigger);
   
     gsap.from(".evntimg1",{
-      y: -100,
+      y: -120,
       duration: 1,
       delay: 0.5,
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
-        end: "bottom 20%",
+        end: "bottom 50%",
         scrub: 3,
         // markers: true
       })
@@ -33,7 +33,7 @@ const add1 = () => {
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
-        end: "bottom 20%",
+        end: "bottom 50%",
         scrub: 3,
         // markers: true
       })
@@ -46,11 +46,22 @@ const add1 = () => {
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
-        end: "bottom 20%",
+        end: "bottom 50%",
         scrub: 3,
         // markers: true
       })
     }),
+
+    // gsap.from(".evn",{
+    //   backgroundColor: "rgba(51, 51, 51, 0.79);",
+    //   scrollTrigger :({
+    //     trigger : ".evntimg6",
+    //     start: "top 100%",
+    //     end: "bottom 50%",
+    //     scrub: 3,
+    //     // markers: true
+    //   })
+    // }),
 
     gsap.from(".evntimg4",{
       x: 500,
@@ -59,7 +70,7 @@ const add1 = () => {
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
-        end: "bottom 20%",
+        end: "bottom 50%",
         scrub: 3,
         // markers: true
       })
@@ -72,20 +83,16 @@ const add1 = () => {
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
-        end: "bottom 20%",
+        end: "bottom 50%",
         scrub: 3,
         // markers: true
       })
     })
-  
-  
-  
-  
-  
+
   })
   
   return (
-    <div className="bg-[#222222] h-[120vh] pt-36 w-[100vw] overflow-hidden">
+    <div className=" evn h-[120vh] pt-48 w-[100vw]  pb-44 z-40">
       
       <div id='evntcrd'>
         <div className='evntcrds evntimg1'></div>
@@ -93,7 +100,7 @@ const add1 = () => {
         <div className='evntcrds evntimg3'></div>
         <div className='evntcrds evntimg4'></div>
         <div className='evntcrds evntimg5'></div>
-        <div className='evntcrds evntimg6'><h1 className="text-5xl font-bold text-white font-urbanist px-4 py-12">OUR LATEST <br /> <span className='font-bold text-[#ECB526]'>EVENTS</span></h1></div>
+        <div className='evntcrds evntimg6'><h1 className="text-4xl font-bold text-white font-urbanist px-4 mt-4 py-12">LATEST <br />FROM <br /> <span className='font-bold text-[#ECB526] text-5xl'>PRODDEC</span></h1></div>
         
       </div>
 

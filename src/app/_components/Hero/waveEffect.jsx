@@ -22,7 +22,7 @@ const WaveCanvas = () => {
 
     // Define five colors for the waves
     
-    const colors = ["#000000", "#0f0f0f", "#222222", "#333333"   ]; // Black, dark gray, gray, white, gold
+    const colors = ["#000000", "#0f0f0f", "#121313", "#222222"   ]; // Black, dark gray, gray, white, gold
     const numWaves = 4; // Number of wave layers (constant)
     const waveHeight = 60; // Height of the wave
     const waveSpeed = 0.01; // Speed of wave animation

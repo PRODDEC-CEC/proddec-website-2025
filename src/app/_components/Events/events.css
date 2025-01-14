@@ -14,8 +14,8 @@
     border-radius: 1vw;
     background-color: rgb(67, 55, 55);
     transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
-    box-shadow:  -12px -12px 24px #222222,
-             12px 12px 24px #111111;
+    box-shadow:  -12px -12px 24px #111111,
+             12px 12px 24px #111111; 
    
 
 }
@@ -64,4 +64,8 @@
     transform: translate(20%, 140%);
     
    
+}
+
+.evn{
+    background-color: rgba(34, 34, 34, 0.7);
 }
