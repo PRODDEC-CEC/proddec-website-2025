@@ -25,6 +25,20 @@ const add1 = () => {
       })
     }),
 
+    gsap.to(".evntimg1:hover",{
+      hoverClass: "evntimg1hover",
+      duration: 1,
+      delay: 0.5,
+      scrollTrigger :({
+        trigger : "#evntcrd",
+        start: "top 100%",
+        end: "bottom 50%",
+        scrub: 3,
+        // markers: true
+      })
+    }),
+
+
     gsap.from(".evntimg2",{
       x: -100,
       duration: 1,
