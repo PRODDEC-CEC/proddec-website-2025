@@ -2,9 +2,9 @@ import React from 'react'
 
 const testimonial = () => {
   return (
-    <div className="bg-[#efeded] h-[50vh] overflow-hidden flex flex-col items-center">
+    <div className="bg-[#232323] h-[50vh] overflow-hidden flex flex-col items-center">
       <div >
-        <h1 className='text-[#111111] text-5xl font-urbanist font-bold text-center py-12 px-12'>TESTIMONIALS</h1>
+        <h1 className='text-[#a9a7a7] text-5xl font-urbanist font-bold text-center py-12 px-12'>TESTIMONIALS</h1>
       </div>
     </div>
   )
