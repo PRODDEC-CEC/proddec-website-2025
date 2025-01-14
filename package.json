@@ -14,7 +14,8 @@
     "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-three-fiber": "^6.0.13"
+    "react-three-fiber": "^6.0.13",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
