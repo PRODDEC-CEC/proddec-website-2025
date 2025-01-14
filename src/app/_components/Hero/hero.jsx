@@ -56,68 +56,63 @@ const hero = () => {
   }),
 
       gsap.to (".imgcntr:nth-child(1)",{
-        rotate: 4,
+        rotate: -7,
         duration: 1,
-        delay: 0.5,
+        // delay: 0.5,
         transformOrigin: "bottom, left",
         ease: 'power2.inOut',
         scrollTrigger:{
-          trigger : "top",
-          start: "top 76%",
+          trigger : ".imgcntr:nth-child(1)",
+          start: "top 90%",
           end: "bottom 90%",
-          scrub: 2,
+          scrub: 1,
           // markers: true,
         }
       }),
 
       gsap.to(".imgcntr:nth-child(2)",{
-        rotate : 3,
+        rotate : -5,
         duration: 1,
-        delay: 0.5,
+        // delay: 0.5,
         ease: 'power2.inOut',
         transformOrigin: "bottom, left",
         scrollTrigger:{
-          trigger : "top",
-          start: "top 78%",
-          end: "bottom 92%",
-          scrub: 2,
+          trigger : ".imgcntr:nth-child(2)",
+          start: "top 94%",
+          end: "bottom 94%",
+          scrub: 1,
           // markers: true,
         }
 
       })
 
       gsap.to(".imgcntr:nth-child(3)",{
-        rotate : 2,
+        rotate : -1,
         duration: 1,
-        delay: 0.5,
         ease: 'power2.inOut',
         transformOrigin: "bottom, left",
         scrollTrigger:{
-          trigger : "top",
-          start: "top 80%",
-          end: "bottom 94%",
-          scrub: 2,
+          trigger : ".imgcntr:nth-child(3)",
+          start: "top 98%",
+          end: "bottom 98%",
+          scrub: 1,
           // markers: true,
         }
 
-      }),
+      })
 
-      gsap.to("#heroSection",{
-        opacity: 0,
-        duration: 1,
-        delay: 0.5,
-        ease: 'power2.inOut',
-        scrollTrigger:{
-          trigger : "#heroSection",
-          start: "top -30%",
-          end: "bottom -32%",
-          scrub: 2,
-          // markers: true,
-        }
-
-  })
-    
-  })
+      // gsap.to(".hero2",{
+      //   opacity: 0,
+      //   ease: 'power2.inOut',
+      //   scrollTrigger:{
+      //     trigger : ".hero2",
+      //     start: "top 10%",
+      //     end: "bottom 20%",
+      //     scrub: 4,
+      //     markers: true,
+      //   }
+      // })
+})
   return (
     <div id='heroSection'> 
     <div id="hero-wave1">
@@ -131,7 +126,7 @@ const hero = () => {
     
     </div>
     </div>
-
+    {/* The About Section */}
     <div className='hero2'>
       <div id='imglft'>
           <h1>ABOUT <span> PRODDEC</span></h1>
@@ -141,7 +136,7 @@ const hero = () => {
         <div className="imgcntr"></div>
         <div className="imgcntr"></div>
         <div className="imgcntr"></div>
-
++
       </div>
       
     </div>
