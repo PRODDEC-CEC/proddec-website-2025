@@ -41,7 +41,7 @@ const hero = () => {
           start: "top 0%",
           end: "bottom 70%",
           scrub: 2,
-          markers: true,
+          // markers: true,
         }
       }),
 
