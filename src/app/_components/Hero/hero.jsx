@@ -74,12 +74,26 @@ const hero = () => {
         }
       }),
 
-      gsap.to (".mainnText",{
+      gsap.to (".mainText",{
         opacity: 1,
         y: 0,
         duration: 1,
         delay: 0.5,
         ease: 'power2.inOut'
+  }),
+
+      gsap.from ("#imglft h1",{
+         opacity: 0,
+         x: 200,
+         duration: 0.5,
+        ease: 'power2.inOut',
+        scrollTrigger:{
+          trigger : "#imglft h1",
+          start: "top 90%",
+          end: "bottom 90%",
+          scrub: 1,
+          // markers: true,
+        }
   }),
 
       gsap.to (".imgcntr:nth-child(1)",{
