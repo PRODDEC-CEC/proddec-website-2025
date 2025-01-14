@@ -21,11 +21,12 @@ const WaveCanvas = () => {
     canvas.height = window.innerHeight;
 
     // Define five colors for the waves
-    const colors = ["#000000", "#0f0f0f", "#666666", "#ffffff", "000001"]; // Black, dark gray, gray, white, gold
+    
+    const colors = ["#000000", "#0f0f0f", "#121313", "#222222"   ]; // Black, dark gray, gray, white, gold
     const numWaves = 4; // Number of wave layers (constant)
-    const waveHeight = 70; // Height of the wave
+    const waveHeight = 60; // Height of the wave
     const waveSpeed = 0.01; // Speed of wave animation
-    const DISTORTION_RADIUS = 250;
+    const DISTORTION_RADIUS = 200;
 
     const drawWave = (yOffset, xOffset, color, amplitude, frequency, offset) => {
       ctx.beginPath();

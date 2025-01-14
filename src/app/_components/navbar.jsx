@@ -83,9 +83,8 @@ const Navbar = () => {
                 isScrolled
                     ? 'w-3/4 rounded-xl top-7 backdrop-blur'
                     : 'w-full top-0 bg-transparent'
-            } h-20 flex items-center ${
-                isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-            }`}
+            } h-20 flex items-center`}
+
             style={
                 isScrolled
                     ? {

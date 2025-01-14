@@ -6,6 +6,7 @@ import gsap from "gsap"
 import HeroAbstract from "./abstract.jsx"
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Btn1 from "../Button/button1.jsx"
 
 
 const hero = () => {
@@ -13,38 +14,137 @@ const hero = () => {
 
   useGSAP(() => {
 
+
+
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to (".mainHeader", {
-      y: 350,
+    gsap.to (".mainHeader",{
+      y: 150,
+      filter: "blur(2px)",
+      opacity: 0,
       duration: 0.2,
       delay: 0.5,
       scrollTrigger:{
         trigger : "top",
-        start: "top 30%",
-        end: "bottom 40%",
+        start: "top 0%",
+        end: "bottom 80%",
         scrub: 2,
-        // markers: true,
-      }
-  })
-  })
+        // markers: true
+      },
+    }),
+      gsap.to (".mainText",{
+        y: 220,
+        filter: "blur(2px)",
+        opacity: 0,
+        duration: 0.2,
+        delay: 0.5,
+        scrollTrigger:{
+          trigger : "top",
+          start: "top 0%",
+          end: "bottom 90%",
+          scrub: 2,
+          // markers: true,
+        }
+      }),
 
+      gsap.to (".mainnText",{
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.5,
+        ease: 'power2.inOut'
+  }),
 
-  useGSAP(() => {
-    
-  })
+      gsap.to (".imgcntr:nth-child(1)",{
+        rotate: -7,
+        duration: 1,
+        // delay: 0.5,
+        transformOrigin: "bottom, left",
+        ease: 'power2.inOut',
+        scrollTrigger:{
+          trigger : ".imgcntr:nth-child(1)",
+          start: "top 90%",
+          end: "bottom 90%",
+          scrub: 1,
+          // markers: true,
+        }
+      }),
+
+      gsap.to(".imgcntr:nth-child(2)",{
+        rotate : -5,
+        duration: 1,
+        // delay: 0.5,
+        ease: 'power2.inOut',
+        transformOrigin: "bottom, left",
+        scrollTrigger:{
+          trigger : ".imgcntr:nth-child(2)",
+          start: "top 94%",
+          end: "bottom 94%",
+          scrub: 1,
+          // markers: true,
+        }
+
+      })
+
+      gsap.to(".imgcntr:nth-child(3)",{
+        rotate : -1,
+        duration: 1,
+        ease: 'power2.inOut',
+        transformOrigin: "bottom, left",
+        scrollTrigger:{
+          trigger : ".imgcntr:nth-child(3)",
+          start: "top 98%",
+          end: "bottom 98%",
+          scrub: 1,
+          // markers: true,
+        }
+
+      })
+
+      // gsap.to(".hero2",{
+      //   opacity: 0,
+      //   ease: 'power2.inOut',
+      //   scrollTrigger:{
+      //     trigger : ".hero2",
+      //     start: "top 10%",
+      //     end: "bottom 20%",
+      //     scrub: 4,
+      //     markers: true,
+      //   }
+      // })
+})
   return (
-    <div className='mainhero'>
-        <div className="wave1">
-        <HeroAbstract></HeroAbstract>
-        </div>
-        <div className="forBlur">
-
-        </div>
-        <div className='textmain'>
-        <h1 className='mainHeader'>PRODDEC</h1>
-        </div>
+    <div id='heroSection'> 
+    <div id="hero-wave1">
+    <div className='hero1'>
+    <div className="wave1">
+    <HeroAbstract></HeroAbstract>
     </div>
+    <div className='textmain'>
+    <h1 className='mainHeader'>PRODDEC</h1>
+    <p className='mainText'>Design and Develop</p>
+    
+    </div>
+    </div>
+    {/* The About Section */}
+    <div className='hero2'>
+      <div id='imglft'>
+          <h1>ABOUT <span> PRODDEC</span></h1>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      </div>
+      <div id='imgrig'>
+        <div className="imgcntr"></div>
+        <div className="imgcntr"></div>
+        <div className="imgcntr"></div>
++
+      </div>
+      
+    </div>
+ 
+
+    </div>
+</div>
+   
   )
 }
 
