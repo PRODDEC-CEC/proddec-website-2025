@@ -119,7 +119,7 @@ const WaveCanvas = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ display: "block" }} />;
+  return <canvas ref={canvasRef} style={{ display: "block", width: "100%", height: "100%"}} />;
 };
 
 export default WaveCanvas;
