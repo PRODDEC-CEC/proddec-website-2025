@@ -42,11 +42,7 @@
     overflow: hidden;
     position : absolute;
     text-align : center;
-    top: 46.2%;
-    left: 32.2%;
-    transform: translate(-50%, -50%);
     scale : 1.4;
-
     z-index : 20;
 }
 
@@ -54,20 +50,22 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 6rem;
     color: #ECB526;
+    padding-top: 8px;
+    left: 6.5%;
+    top: 10%;
+
 }
 
 .mainText{
     font-family: 'Urbanist', sans-serif;
     font-size: 1.79rem;
     color: #fff;
+   
     position : absolute;
     text-transform: uppercase;
     text-align : center;
-    top: 52%;
-    left: 27.8%;
     opacity: 1;
-    transform: translate(-50%, -50%);
-    z-index : 20;
+   top: 36%;
 }
 
 .mainText2{
@@ -76,12 +74,11 @@
     color: #e1e1e1;
     position : absolute;
     text-align : left;
-    top: 57%;
-    left: 42.1%;
-    padding-right: 30%;
+    padding-right: 37%;
     opacity: 1;
-    transform: translate(-50%, -50%);
-    z-index : 20;
+    padding-top: 8px;
+    top: 42.5%;
+
 }
 
 .hero2 {
@@ -168,7 +165,17 @@
 }
 
 .textmain{
-    position: none;
+    gap: 10px;
+    position: absolute;
+    top: 55%;
+    left : 44.5%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 60vw;
+    height: 50vh;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
 }
 
 #imglft span {
@@ -185,34 +192,15 @@
     font-family: 'Urbanist', sans-serif;
 }
 
-#btn1 {
-    all: unset;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: red;
-    width: 200px;
-    height: 50px;
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    z-index: 1000;
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-
 .btn1{
     position: absolute;
     top: 65%;
-    left: 15.5%;
     transform: translate(-50%, -70%);
     padding-left: 24px;
     padding-right: 24px;
     z-index: 40;
-    
+    left: 4.1%;
+
 }
 
 .btn2{
