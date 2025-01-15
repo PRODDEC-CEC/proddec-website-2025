@@ -7,9 +7,11 @@ const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [lastY, setLastY] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
-
+    const [isMobileView,setMobileView]=useState(false)
     useEffect(() => {
         let timeoutId;
+
+        window.screen.width>1000?setMobileView(false): setMobileView(true)
 
         const handleScroll = () => {
             const currentY = window.scrollY;
@@ -80,13 +82,14 @@ const Navbar = () => {
         <div
             id="navbar"
             className={`text-orangepeel shadow-md fixed top-0 left-0 right-0 mx-auto z-50 transition-[width, top, box-shadow, opacity] duration-500 ease-in-out ${
-                isScrolled
-                    ? 'w-3/4 rounded-xl top-7 backdrop-blur'
-                    : 'w-full top-0 bg-transparent'
-            } h-20 flex items-center`}
-
+                isScrolled && !isMobileView
+                    ? 'md:w-3/4 md:rounded-xl md:top-7 md:backdrop-blur md:bg-black md:bg-opacity-30'
+                    : 'w-full top-0 bg-[rgba(34,34,34,0.4)]'
+            } h-20 flex items-center ${
+                isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
             style={
-                isScrolled
+                isScrolled && !isMobileView
                     ? {
                           boxShadow:
                               '0 0 10px rgba(240, 248, 234, 0.3), 0 0 15px rgba(240, 248, 234, 0.3), inset 0 0 10px rgba(240, 248, 234, 0.3)',
