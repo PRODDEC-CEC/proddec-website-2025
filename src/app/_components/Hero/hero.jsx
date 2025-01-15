@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import { useEffect } from 'react'
 import "./hero.css"
 import gsap from "gsap"
 import HeroAbstract from "./abstract.jsx"
@@ -12,10 +13,11 @@ import Btn2 from "../Button/button2.jsx"
 
 const hero = () => {
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-  useGSAP(() => {
-
-
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 769px)", () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -84,17 +86,48 @@ const hero = () => {
 
       gsap.from ("#imglft h1",{
          opacity: 0,
-         x: 200,
-         duration: 0.5,
+         x: -200,
+         delay: 0.5,
+         duration: 1,
         ease: 'power2.inOut',
         scrollTrigger:{
           trigger : "#imglft h1",
           start: "top 90%",
           end: "bottom 90%",
-          scrub: 1,
+          scrub: 2,
           // markers: true,
         }
   }),
+
+  gsap.from ("#imglft p",{
+    opacity: 0,
+    x:-200,
+    delay: 2,
+    duration: 1,
+   ease: 'power2.inOut',
+   scrollTrigger:{
+     trigger : "#imglft p",
+     start: "top 90%",
+     end: "bottom 90%",
+     scrub: 2,
+     // markers: true,
+   }
+}),
+
+gsap.from ("#imglft .btn2",{
+  opacity: 0,
+  x:-200,
+  delay: 4,
+  duration: 1,
+ ease: 'power2.inOut',
+ scrollTrigger:{
+   trigger : "#imglft p",
+   start: "top 90%",
+   end: "bottom 90%",
+   scrub: 2,
+   // markers: true,
+ }
+}),
 
       gsap.to (".imgcntr:nth-child(1)",{
         rotate: -7,
@@ -154,6 +187,7 @@ const hero = () => {
       //   }
       // })
 })
+  }, []);
   return (
     <div id='heroSection'> 
     <div id="hero-wave1">
@@ -197,5 +231,4 @@ const hero = () => {
    
   )
 }
-
 export default hero
