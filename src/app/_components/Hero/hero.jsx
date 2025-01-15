@@ -17,6 +17,60 @@ const hero = () => {
     if (typeof window === "undefined") return;
 
   const mm = gsap.matchMedia();
+
+    
+    mm.add("(max-width: 768px)", () => {
+
+      gsap.to (".imgcntr:nth-child(1)",{
+        rotate: -7,
+        duration: 1,
+        // delay: 0.5,
+        transformOrigin: "bottom, left",
+        ease: 'power2.inOut',
+        scrollTrigger:{
+          trigger : ".imgcntr:nth-child(1)",
+          start: "top 90%",
+          end: "bottom 90%",
+          scrub: 3,
+          // markers: true,
+        }
+      }),
+
+      gsap.to(".imgcntr:nth-child(2)",{
+        rotate : -5,
+        duration: 1,
+        // delay: 0.5,
+        ease: 'power2.inOut',
+        transformOrigin: "bottom, left",
+        scrollTrigger:{
+          trigger : ".imgcntr:nth-child(2)",
+          start: "top 94%",
+          end: "bottom 94%",
+          scrub: 3,
+          // markers: true,
+        }
+
+      })
+
+      gsap.to(".imgcntr:nth-child(3)",{
+        rotate : -1,
+        duration: 1,
+        // delay: 1.5,
+        ease: 'power2.inOut',
+        transformOrigin: "bottom, left",
+        scrollTrigger:{
+          trigger : ".imgcntr:nth-child(3)",
+          start: "top 98%",
+          end: "bottom 98%",
+          scrub: 3,
+          // markers: true,
+        }
+
+      })
+
+
+    });
+
   mm.add("(min-width: 769px)", () => {
 
     gsap.registerPlugin(ScrollTrigger);

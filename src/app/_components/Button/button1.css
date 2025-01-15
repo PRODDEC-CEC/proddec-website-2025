@@ -1,7 +1,8 @@
-/* From Uiverse.io by levxyca */ 
+
 button {
   font-size: 1rem;
   color: #fafafa;
+  font-family: 'Urbanist', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   padding: 8px 20px;

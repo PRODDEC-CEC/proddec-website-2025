@@ -11,7 +11,8 @@
         margin-bottom: 0px;
     }
     
-    .heroSection{
+    #heroSection{
+        overflow-x: hidden;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -227,7 +228,8 @@
     
     
     
-    .heroSection{
+    #heroSection{
+        overflow-x: hidden;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -422,7 +424,7 @@
     
     .btn2{
         position: absolute;
-        top: 165%;
+        top: 155%;
         padding-left: 24px;
         padding-right: 24px;
         z-index: 40;

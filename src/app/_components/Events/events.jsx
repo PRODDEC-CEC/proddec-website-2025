@@ -97,7 +97,111 @@ const add1 = () => {
         // markers: true
       })
     })
+
+  
     return () => mm.revert()
+
+  })
+
+  mm.add("(max-width: 768px)", () => {
+
+    gsap.registerPlugin(ScrollTrigger);
+  
+    gsap.from(".evntimg1",{
+      x: -820,
+      duration: 1,
+      // delay: 0.5,
+      ease: "power4.inOut",
+      scrollTrigger:({
+        target: ".evntimg1",
+        start: "top 70%",
+        end: "bottom 150%",
+        scrub: 2,
+        markers: true
+      })
+    }),
+
+
+    gsap.from(".evntimg2",{
+
+      x: -800,
+      duration: 1,
+      // delay: 0.5,
+      ease: "power2.inOut",
+      scrollTrigger :({
+        trigger : ".evntimg2",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+    gsap.from(".evntimg3",{
+
+    x: 900,
+      duration: 1,
+      // delay: 0.5,
+      scrollTrigger :({
+        trigger : ".evntimg3",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+    // gsap.from(".evn",{
+    //   backgroundColor: "rgba(51, 51, 51, 0.79);",
+    //   scrollTrigger :({
+    //     trigger : ".evntimg6",
+    //     start: "top 100%",
+    //     end: "bottom 50%",
+    //     scrub: 3,
+    //     // markers: true
+    //   })
+    // }),
+
+    gsap.from(".evntimg4",{
+      x: 800,
+      duration: 1,
+      // delay: 0.5,
+      scrollTrigger :({
+        trigger : ".evntimg4",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+    gsap.from(".evntimg5",{
+      x: -900,
+      duration: 1,
+      // delay: 0.5,
+      scrollTrigger :({
+        trigger : ".evntimg5",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    })
+
+    gsap.from(".evntimg6",{
+
+      x: -900,
+      duration: 1,
+      // delay: 0.5,
+      ease: "power2.inOut",
+      scrollTrigger :({
+        trigger : ".evntimg6",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    })  
 
   })}, [])
   
