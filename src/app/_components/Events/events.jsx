@@ -117,7 +117,7 @@ const add1 = () => {
         start: "top 70%",
         end: "bottom 150%",
         scrub: 2,
-        markers: true
+        // markers: true
       })
     }),
 
