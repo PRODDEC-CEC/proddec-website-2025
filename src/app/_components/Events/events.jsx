@@ -2,13 +2,19 @@
 
 import React from 'react'
 import "./events.css"
+import { useEffect } from 'react'
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from '@gsap/react'
 
 const add1 = () => {
 
-  useGSAP(() => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 769px)", () => {
 
     gsap.registerPlugin(ScrollTrigger);
   
@@ -91,8 +97,9 @@ const add1 = () => {
         // markers: true
       })
     })
+    return () => mm.revert()
 
-  })
+  })}, [])
   
   return (
     <div className=" evn h-[120vh] pt-48 w-[100vw] flex flex-col items-center pb-44 z-40">
