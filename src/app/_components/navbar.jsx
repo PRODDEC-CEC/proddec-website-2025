@@ -31,7 +31,7 @@ const Navbar = () => {
                 setIsVisible(true);
             }
 
-            // Debounced update to `lastY` to smooth scroll detection
+            // Debounced update to lastY to smooth scroll detection
             clearTimeout(timeoutId);
             timeoutId = setTimeout(() => setLastY(currentY), 100);
         };
