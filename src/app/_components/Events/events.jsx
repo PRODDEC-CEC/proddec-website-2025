@@ -206,7 +206,7 @@ const add1 = () => {
   })}, [])
   
   return (
-    <div className=" evn h-[120vh] pt-48 w-[100vw] flex flex-col items-center pb-44 z-40">
+    <div className=" h-[100vh] evn flex flex-col items-center z-40">
       
       <div id='evntcrd'>
         <div className='evntcrds evntimg1'></div>
