@@ -5,13 +5,12 @@ button {
   font-family: 'Urbanist', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-  padding: 8px 20px;
   border-radius: 10px;
   border: 2px solid #ecb526;
   background: transparent;
   box-shadow: 3px 3px #ecb526;
   cursor: pointer;
-  margin: 35px 0;
+  
 }
 
 button:active {

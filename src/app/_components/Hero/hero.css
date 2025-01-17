@@ -70,7 +70,7 @@
     .mainText2{
         font-family: 'Urbanist', sans-serif;
         font-size: 0.9rem;
-        color: #e1e1e1;
+        color: #a0a0a0;
         position : absolute;
         text-align : left;
         padding-right: 37%;
@@ -147,11 +147,12 @@
         align-items: start;
         padding-left: 11vw;
         margin-bottom: 25vw;
+
         
     }
     
     #imglft h1 {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'Urbanist', sans-serif;
         font-size: 2rem;
         color: #fff;
         display: flex;
@@ -159,7 +160,7 @@
         font-size: 2vw;
         justify-content: center;
         align-items: center;
-        text-align: center;
+        text-align: left;
         padding-bottom: 5%;
     }
     
@@ -177,38 +178,24 @@
         align-items: start;
     }
     
-    #imglft span {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color: #ECB526;
-        display: inline;
-        font-weight: bolder;
-        font-style: bold;
-    }
-    
     #imglft p{
         font-size: 1rem;
-        color: #fff;
+        color: #a0a0a0;
         font-family: 'Urbanist', sans-serif;
     }
     
     .btn1{
         position: absolute;
-        top: 65%;
-        transform: translate(-50%, -70%);
-        padding-left: 24px;
-        padding-right: 24px;
+        top: 58%;
+        width: 5vw;
+        height: 2vh;
         z-index: 40;
-        left: 4.1%;
     
     }
     
     .btn2{
-        position: absolute;
-        top: 141%;
-        left: 14.4%;
-        transform: translate(-50%, -70%);
-        padding-left: 24px;
-        padding-right: 24px;
+        position: relative;
+        top: 4%;
         z-index: 40;
         
     }
@@ -377,7 +364,7 @@
     }
     
     #imglft h1 {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'Urbanist', sans-serif;
         font-size: 2rem;
         color: #fff;
         font-weight: bold;

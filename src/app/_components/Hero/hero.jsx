@@ -76,7 +76,7 @@ const hero = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to (".mainHeader",{
-      y:20,
+      y:100,
       filter: "blur(2px)",
       opacity: 0,
       duration: 0.2,
@@ -118,9 +118,10 @@ const hero = () => {
       }),
 
       gsap.to (".btn1",{
-        y: 40,
-        opacity: -0.5,
-        duration: 0.2,
+        y: 150,
+        opacity: 0,
+        duration: 0.5,
+        filter: "blur(2px)",
         scrollTrigger:{
           trigger : ".btn1",
           start: "top 0%",
@@ -263,7 +264,7 @@ gsap.from ("#imglft .btn2",{
     {/* The About Section */}
     <div className='hero2'>
       <div id='imglft'>
-          <h1>ABOUT <span>PRODDEC</span></h1>
+        <h1>ABOUT PRODDEC</h1>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
           <div className='btn2'>
         <Btn2></Btn2>
