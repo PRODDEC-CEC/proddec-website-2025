@@ -1,9 +1,11 @@
 import React from 'react'
 import "./footer.css"
+import Mousehover from "../mouseHover/mouseHover"
 
 const footer = () => {
   return (
     <div className='h-[75vh] w-[100vw] bg-[#121212] pt-8 flex flex-col'>
+      <Mousehover></Mousehover>
         <h1 className='text-[#e8e8e8] text-4xl font-light font-NMontreal text-left py-12 px-28'>Contact Us</h1>
       <div className='Footer h-[90%] w-[100%]'>
       </div>

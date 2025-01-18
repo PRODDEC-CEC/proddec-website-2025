@@ -42,7 +42,7 @@ const App = () => {
 
   return (
     <div className="flex">
-      <div className="left-text">Check on Updates</div>
+      <div className="left-text ">Check on Updates</div>
       <div className="ribbon-container">
         <div className="ribbon" ref={ribbonRef}>
           <p>Lorem ipsum dolor sit amet</p>

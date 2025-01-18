@@ -26,7 +26,7 @@ const WaveCanvas = () => {
     const numWaves = 4; // Number of wave layers (constant)
     const waveHeight = 60; // Height of the wave
     const waveSpeed = 0.01; // Speed of wave animation
-    const DISTORTION_RADIUS = 200;
+    const DISTORTION_RADIUS = 0;
 
     const drawWave = (yOffset, xOffset, color, amplitude, frequency, offset) => {
       ctx.beginPath();

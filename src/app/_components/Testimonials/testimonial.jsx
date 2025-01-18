@@ -18,6 +18,7 @@ const testimonial = () => {
           y: -200,
           duration: 1,
           delay: 0.5,
+          ease: "power2.inOut",
           scrollTrigger :({
             trigger : "#testimonials",
             start: "top 100%",
@@ -32,6 +33,7 @@ const testimonial = () => {
           y: 200,
           duration: 1,
           delay: 0.5,
+          ease: "power2.inOut",
           scrollTrigger :({
             trigger : "#testimonials",
             start: "top 100%",
@@ -49,6 +51,7 @@ const testimonial = () => {
 
   return (
     <div id='testimonials' className="bg-[#131313] h-[75vh]  overflow-hidden flex justify-center items-center">
+      
       <div className='lftside space-y-20' >
         <h1 className='text-[#e8e8e8] text-2xl font-NMontreal text-left pl-40 px-24'>TESTIMONIALS</h1>
         <h1 className='text-[#e8e8e8] text-4xl font-urbanist font-light text-left pl-40 px-24'>A Message <br /> From our <br /><span className='text-[#ECB526] text-4xl font-normal'> Previous Members!!</span></h1>
@@ -64,7 +67,7 @@ const testimonial = () => {
           </div>
           <div className="section2 h-[35%] w-[100%] flex px-2 py-2">
             <div className='w-[20%] h-[100%] px-3 py-1'>
-              <div className='circle w-[60px] bg-slate-500 h-[60px] rounded-full '>
+              <div className='circlepic w-[60px] bg-slate-500 h-[60px] rounded-full '>
 
               </div>
 
@@ -94,7 +97,7 @@ const testimonial = () => {
           </div>
           <div className="section2 h-[35%] w-[100%] flex px-2 py-2">
             <div className='w-[20%] h-[100%] px-3 py-1'>
-              <div className='circle w-[60px] bg-slate-500 h-[60px] rounded-full '>
+              <div className='circlepic w-[60px] bg-slate-500 h-[60px] rounded-full '>
 
               </div>
 
@@ -113,7 +116,7 @@ const testimonial = () => {
           </div>
           <div className="section2 h-[35%] w-[100%] flex px-2 py-2">
             <div className='w-[20%] h-[100%] px-3 py-1'>
-              <div className='circle w-[60px] bg-slate-500 h-[60px] rounded-full '>
+              <div className='circlepic w-[60px] bg-slate-500 h-[60px] rounded-full '>
 
               </div>
 
