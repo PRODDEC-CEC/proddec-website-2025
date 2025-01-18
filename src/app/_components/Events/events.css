@@ -76,7 +76,7 @@
 }
 
 .evn{
-    background-color: rgba(34, 34, 34, 0.7);
+    background-color: #1D1D1D;
     padding-top: 20vh;
 }
 }
@@ -179,7 +179,7 @@
 }
 
 .evn{
-    background-color: rgba(34, 34, 34, 0.7);
+    background-color: #1D1D1D;
     display: flex;
     flex-direction: column;
     justify-content: center;

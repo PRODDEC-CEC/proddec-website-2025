@@ -84,7 +84,7 @@
         display: flex;
         align-items: center;
         height: 100vh;
-        background-color: rgba(34, 34, 34, .7);
+        background-color: #1D1D1D;
         margin-top: 0px;
     
     }
@@ -187,8 +187,8 @@
     .btn1{
         position: absolute;
         top: 58%;
-        width: 5vw;
-        height: 2vh;
+        height: auto;
+        width: auto;
         z-index: 40;
     
     }
@@ -294,7 +294,7 @@
         align-items: center;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(34, 34, 34, .7);
+        background-color: #1D1D1D;
         margin-top: 0px;    
     }
     
