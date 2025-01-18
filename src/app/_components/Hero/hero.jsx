@@ -76,10 +76,11 @@ const hero = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to (".mainHeader",{
-      y:100,
-      filter: "blur(2px)",
+      filter: "blur(5px)",
+      y: 100,
       opacity: 0,
-      duration: 0.2,
+      duration: 1.5,
+      ease: 'power2.inOut',
       scrollTrigger:{
         trigger : ".mainText2",
         start: "top 0%",
@@ -89,10 +90,11 @@ const hero = () => {
       },
     }),
       gsap.to (".mainText",{
-        y: 120,
-        filter: "blur(2px)",
+        filter: "blur(5px)",
         opacity: 0,
-        duration: 0.2,
+        y: 100,
+      ease: 'power2.inOut',
+        duration: 1.5,
         scrollTrigger:{
           trigger : ".mainText2",
           start: "top 0%",
@@ -103,10 +105,11 @@ const hero = () => {
       }),
 
       gsap.to (".mainText2",{
-        y: 150,
-        filter: "blur(2px)",
+        filter: "blur(5px)",
         opacity: 0,
-        duration: 0.2,
+        y: 100,
+        duration: 1.5,
+      ease: 'power2.inOut',
         delay: 0.5,
         scrollTrigger:{
           trigger : ".mainText2",
@@ -118,10 +121,12 @@ const hero = () => {
       }),
 
       gsap.to (".btn1",{
-        y: 150,
         opacity: 0,
-        duration: 0.5,
-        filter: "blur(2px)",
+        y: 100,
+        duration: 1.5,
+        filter: "blur(5px)",
+      ease: 'power2.inOut',
+
         scrollTrigger:{
           trigger : ".btn1",
           start: "top 0%",

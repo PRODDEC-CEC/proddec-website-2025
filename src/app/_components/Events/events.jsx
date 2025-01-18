@@ -214,8 +214,7 @@ const add1 = () => {
         <div className='evntcrds evntimg3'></div>
         <div className='evntcrds evntimg4'></div>
         <div className='evntcrds evntimg5'></div>
-        <div className='evntcrds evntimg6'><h1 className="text-4xl font-bold text-white font-urbanist px-4 mt-4 py-12">LATEST <br />FROM <br /> <span className='font-bold text-[#ECB526] text-5xl'>PRODDEC</span></h1></div>
-        
+        <div className='evntcrds evntimg6'><h1 className="text-4xl font-lighter text-white font-NMontreal px-4 mt-4 py-12">LATEST <br />FROM <br /> <span className=' text-[#ECB526] text-4xl font-medium'>PRODDEC</span></h1></div>
       </div>
 
     </div>

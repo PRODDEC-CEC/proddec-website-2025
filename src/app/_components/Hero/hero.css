@@ -1,5 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pp-neue-montreal');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 @media(min-width: 769px) {
     .wave1{
@@ -155,21 +162,23 @@
     #imglft h1 {
         font-family: 'PP Neue Montreal', sans-serif;
         font-weight: lighter;
-        font-size: 2rem;
+        font-size: 3rem;
         line-height: 1;
         color: #fff;
-        display: flex;
-        font-weight: bold;
-        font-size: 2vw;
-        justify-content: center;
-        align-items: center;
         text-align: left;
+        justify-content: center;
+        align-items: center;;
         padding-bottom: 5%;
+    }
+    
+    #imglft span {
+        color: #ECB526;
+        font-weight: normal;
     }
     
     .textmain{
         position: absolute;
-        top: 55%;
+        top: 60%;
         left : 41%;
         transform: translate(-50%, -50%);
         display: flex;
@@ -181,7 +190,8 @@
     }
     
     #imglft p{
-        font-size: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.3;
         color: #a0a0a0;
         font-family: 'Urbanist', sans-serif;
     }
