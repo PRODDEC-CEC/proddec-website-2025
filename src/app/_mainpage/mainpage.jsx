@@ -12,15 +12,17 @@ import React from 'react'
 const mainpage = () => {
   return (
     <div>
-    {/* <div className="bg-[#444444] py-10 px-4"> */}
-    <div className="overflow-x-hidden">
+    <div className="bg-[#222222] py-10 px-4">
+    <div className="overflow-x-hidden page1 ">
     <Navbar></Navbar>
     <Hero></Hero>
     <Events></Events>
+    <div className="page2 mt-10">
     <Testimonial></Testimonial>
+    </div>
 
 
-    {/* </div> */}
+    </div>
     </div></div>
       
 )}
