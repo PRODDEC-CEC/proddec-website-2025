@@ -81,7 +81,7 @@ const Navbar = () => {
     return (
         <div
             id="navbar"
-            className={`text-orangepeel shadow-md fixed top-0 left-0 right-0 mx-auto z-50 transition-[width, top, box-shadow, opacity] duration-500 ease-in-out ${
+            className={`text-orangepeel shadow-md fixed top-10 left-0 right-0 mx-auto z-50 transition-[width, top, box-shadow, opacity] duration-500 ease-in-out ${
                 isScrolled && !isMobileView
                     ? 'md:w-3/4 md:rounded-xl md:top-7 md:backdrop-blur md:bg-black md:bg-opacity-30'
                     : 'w-full top-0 bg-[rgba(34,34,34,0.4)]'

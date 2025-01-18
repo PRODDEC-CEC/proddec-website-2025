@@ -2,13 +2,19 @@
 
 import React from 'react'
 import "./events.css"
+import { useEffect } from 'react'
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from '@gsap/react'
 
 const add1 = () => {
 
-  useGSAP(() => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 769px)", () => {
 
     gsap.registerPlugin(ScrollTrigger);
   
@@ -25,7 +31,9 @@ const add1 = () => {
       })
     }),
 
+
     gsap.from(".evntimg2",{
+
       x: -100,
       duration: 1,
       delay: 0.5,
@@ -40,6 +48,7 @@ const add1 = () => {
     }),
 
     gsap.from(".evntimg3",{
+
       y: 300,
       duration: 1,
       delay: 0.5,
@@ -89,10 +98,115 @@ const add1 = () => {
       })
     })
 
+  
+    return () => mm.revert()
+
   })
+
+  mm.add("(max-width: 768px)", () => {
+
+    gsap.registerPlugin(ScrollTrigger);
+  
+    gsap.from(".evntimg1",{
+      x: -820,
+      duration: 1,
+      // delay: 0.5,
+      ease: "power4.inOut",
+      scrollTrigger:({
+        target: ".evntimg1",
+        start: "top 70%",
+        end: "bottom 150%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+
+    gsap.from(".evntimg2",{
+
+      x: -800,
+      duration: 1,
+      // delay: 0.5,
+      ease: "power2.inOut",
+      scrollTrigger :({
+        trigger : ".evntimg2",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+    gsap.from(".evntimg3",{
+
+    x: 900,
+      duration: 1,
+      // delay: 0.5,
+      scrollTrigger :({
+        trigger : ".evntimg3",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+    // gsap.from(".evn",{
+    //   backgroundColor: "rgba(51, 51, 51, 0.79);",
+    //   scrollTrigger :({
+    //     trigger : ".evntimg6",
+    //     start: "top 100%",
+    //     end: "bottom 50%",
+    //     scrub: 3,
+    //     // markers: true
+    //   })
+    // }),
+
+    gsap.from(".evntimg4",{
+      x: 800,
+      duration: 1,
+      // delay: 0.5,
+      scrollTrigger :({
+        trigger : ".evntimg4",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    }),
+
+    gsap.from(".evntimg5",{
+      x: -900,
+      duration: 1,
+      // delay: 0.5,
+      scrollTrigger :({
+        trigger : ".evntimg5",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    })
+
+    gsap.from(".evntimg6",{
+
+      x: -900,
+      duration: 1,
+      // delay: 0.5,
+      ease: "power2.inOut",
+      scrollTrigger :({
+        trigger : ".evntimg6",
+        start: "top 90%",
+        end: "bottom 90%",
+        scrub: 2,
+        // markers: true
+      })
+    })  
+
+  })}, [])
   
   return (
-    <div className=" evn h-[120vh] pt-48 w-[100vw]  pb-44 z-40">
+    <div className="evn sm:h-[120vh] h-[100vh] evn flex flex-col items-center z-40">
       
       <div id='evntcrd'>
         <div className='evntcrds evntimg1'></div>
