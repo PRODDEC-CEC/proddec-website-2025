@@ -1,5 +1,5 @@
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     
 
 #evntcrd{
@@ -76,7 +76,8 @@
 }
 
 .evn{
-    background-color: rgba(34, 34, 34, 0.7);
+    background-color: #1D1D1D;
+    padding-top: 20vh;
 }
 }
 
@@ -85,13 +86,14 @@
 
 
 #evntcrd{
+    overflow-x: hidden;
     display : flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     height: 100vh;
     width: 100%;
-    top: 190%;
+    top: 180%;
 }
 
 .evntcrds{
@@ -176,11 +178,14 @@
     scale: 0.5;
 }
 
+
+
 .evn{
-    background-color: rgba(34, 34, 34, 0.7);
+    background-color: #1D1D1D;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 }

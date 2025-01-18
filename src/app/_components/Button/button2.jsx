@@ -4,7 +4,7 @@ import './button1.css'
 
 const button = () => {
   return (
-<button>Know More</button>
+<button className='px-4 py-2 font-urbanist font-bold'>Know More</button>
   )
 }
 

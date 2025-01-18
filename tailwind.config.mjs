@@ -9,6 +9,8 @@ export default {
     extend: {
       fontFamily: {
         urbanist: ['Urbanist', 'sans-serif'],
+        belanosima: ['Belanosima', 'serif'],
+        NMontreal: ['PP Neue Montreal', 'sans-serif'],
       },
       colors: {
         'orangepeel' : '#FFA200',

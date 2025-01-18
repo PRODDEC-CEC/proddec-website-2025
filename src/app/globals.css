@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pp-neue-montreal');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,3 +9,16 @@
     color-scheme: dark;
 }
 
+.page1{
+    border-radius: 3rem;
+}
+
+#page2{
+    border-radius: 3rem;
+
+}
+
+#page3{
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
+}

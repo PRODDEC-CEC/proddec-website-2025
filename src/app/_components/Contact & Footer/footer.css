@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footermain{
+    border-top: 1px solid #a0a0a0;
+}
