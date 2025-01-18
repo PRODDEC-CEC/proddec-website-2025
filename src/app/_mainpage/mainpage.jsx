@@ -1,0 +1,27 @@
+import react from "react";
+import Hero from "../_components/Hero/hero"
+import Events from "../_components/Events/events"
+import Navbar from "../_components/navbar";
+import Testimonial from "../_components/Testimonials/testimonial";
+import "./mainpage.css"
+
+
+
+import React from 'react'
+
+const mainpage = () => {
+  return (
+    <div>
+    <div className="bg-[#222222] py-10 px-6">
+    <div className="overflow-x-hidden page1">
+    <Navbar></Navbar>
+    <Hero></Hero>
+    <Events></Events>
+    </div>
+    <div id="page2" className="overflow-hidden mt-10">
+    <Testimonial></Testimonial>
+    </div>
+    </div></div>
+      
+)}
+export default mainpage

@@ -1,0 +1,25 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button {
+  font-size: 1rem;
+  color: #fafafa;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  border-radius: 10px;
+  border: 2px solid #ecb526;
+  background: transparent;
+  box-shadow: 3px 3px #ecb526;
+  cursor: pointer;
+  
+}
+
+button:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
