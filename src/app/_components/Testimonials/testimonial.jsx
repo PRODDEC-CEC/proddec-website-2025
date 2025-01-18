@@ -1,16 +1,61 @@
 import React from 'react'
 import "./testimonial.css"
+import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from '@gsap/react'
+import { useEffect } from 'react'
 
 const testimonial = () => {
+    
+    useEffect(() => {
+      if (typeof window === "undefined") return;
+  
+    const mm = gsap.matchMedia();
+  
+      
+      mm.add("(min-width: 769px)", () => {
+        gsap.from("#cards1",{
+          y: -200,
+          duration: 1,
+          delay: 0.5,
+          scrollTrigger :({
+            trigger : "#testimonials",
+            start: "top 100%",
+            end: "bottom 0%",
+            scrub: 3,
+            // markers: true
+          })
+          
+        })
+
+        gsap.from("#cards2",{
+          y: 200,
+          duration: 1,
+          delay: 0.5,
+          scrollTrigger :({
+            trigger : "#testimonials",
+            start: "top 100%",
+            end: "bottom 0%",
+            scrub: 3,
+            // markers: true
+          })
+          
+        })
+
+      })
+    }, []);
+
+  
+
   return (
-    <div className="bg-[#121212] h-[75vh]  overflow-hidden flex justify-center items-center">
-      <div className='lftside' >
-        <h1 className='text-[#f0f0f0] text-2xl font-NMontreal text-left py-12 px-24'>TESTIMONIALS</h1>
-        <h1 className='text-[#f0f0f0] text-4xl font-urbanist font-light text-left py-12 px-24'>A Message <br /> From our <br /><span className='text-[#ECB526] text-5xl font-normal'> Previous Members!!</span></h1>
+    <div id='testimonials' className="bg-[#131313] h-[75vh]  overflow-hidden flex justify-center items-center">
+      <div className='lftside space-y-20' >
+        <h1 className='text-[#e8e8e8] text-2xl font-NMontreal text-left pl-40 px-24'>TESTIMONIALS</h1>
+        <h1 className='text-[#e8e8e8] text-4xl font-urbanist font-light text-left pl-40 px-24'>A Message <br /> From our <br /><span className='text-[#ECB526] text-4xl font-normal'> Previous Members!!</span></h1>
       </div>
       <div className=' flex justify-center items-center w-[62vw] h-[75vh] space-x-4 overflow-hidden'>
-        <div className='space-y-5'>
-        <div className="cards1 bg-[#333333] w-[24vw] h-[28vh] rounded-3xl"></div>
+        <div id='cards1' className='space-y-5 pt-28'>
+        <div className="cards1 bg-[#434343] w-[24vw] h-[28vh] rounded-3xl"></div>
 
 
         <div className="cards1 bg-[#dcdcdc] w-[24vw] h-[28vh] rounded-3xl flex flex-col">
@@ -33,13 +78,13 @@ const testimonial = () => {
         </div>
 
 
-        <div className="cards1 bg-[#333333] w-[24vw] h-[28vh] rounded-3xl"></div>
+        <div className="cards1 bg-[#434343] w-[24vw] h-[28vh] rounded-3xl"></div>
         </div>
-        <div className='space-y-5'>
+        <div id='cards2' className='space-y-5 pb-28'>
 
         <div className="cards1 w-[24vw] h-[28vh] rounded-3xl space-x-4 flex justify-end items-end overflow-hidden">
-          <div className="cards21 bg-[#333333] w-[20vw] h-[24vh] rounded-3xl"></div>
-          <div className="cards21 bg-[#333333] w-[20vw] h-[24vh] rounded-3xl"></div>
+          <div className="cards21 bg-[#434343] w-[20vw] h-[24vh] rounded-3xl"></div>
+          <div className="cards21 bg-[#434343] w-[20vw] h-[24vh] rounded-3xl"></div>
         </div>
 
 
@@ -81,7 +126,7 @@ const testimonial = () => {
         </div>
 
 
-        <div className="cards2 bg-[#333333] w-[24vw] h-[28vh] rounded-3xl"></div>
+        <div className="cards2 bg-[#434343] w-[24vw] h-[28vh] rounded-3xl"></div>
        
 
 

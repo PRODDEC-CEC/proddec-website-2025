@@ -98,7 +98,7 @@ const Navbar = () => {
             <div className="container mx-auto px-6 lg:px-10">
                 <div className="flex justify-between items-center py-4">
                     {/* Logo */}
-                    <div className="text-2xl font-bold text-white font-urbanist font-light">
+                    <div className="text-2xl text-white font-urbanist font-light">
                         <Link href="/">
                             <img src="" alt="" />
                             <p>PRODDEC</p>
@@ -106,7 +106,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Links for Desktop */}
-                    <div className="hidden md:flex space-x-8 items-center text-[#ECB526] font-urbanist font-light">
+                    <div className="hidden md:flex space-x-8 items-center text-[#ECB526] ">
                         <Link href="/" className="link-trigger">
                             <div className="relative overflow-hidden h-7 w-14 transition-transform duration-700 text-center rounded-md">
                                 <p className="transition-transform duration-700 uppercase">Home</p>
