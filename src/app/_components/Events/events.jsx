@@ -19,9 +19,11 @@ const add1 = () => {
     gsap.registerPlugin(ScrollTrigger);
   
     gsap.from(".evntimg1",{
+      filter: "grayscale(1)",
       y: -120,
       duration: 1,
       delay: 0.5,
+      ease: "power2.inOut",
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
@@ -33,6 +35,7 @@ const add1 = () => {
 
 
     gsap.from(".evntimg2",{
+      filter: "grayscale(1)",
 
       x: -100,
       duration: 1,
@@ -48,10 +51,11 @@ const add1 = () => {
     }),
 
     gsap.from(".evntimg3",{
-
+      filter: "grayscale(1)",
       y: 300,
       duration: 1,
       delay: 0.5,
+      ease: "power2.inOut",
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
@@ -73,9 +77,12 @@ const add1 = () => {
     // }),
 
     gsap.from(".evntimg4",{
+      filter: "grayscale(1)",
+
       x: 500,
       duration: 1,
       delay: 0.5,
+      ease: "power2.inOut",
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",
@@ -86,9 +93,12 @@ const add1 = () => {
     }),
 
     gsap.from(".evntimg5",{
+      filter: "grayscale(1)",
+      
       x: -900,
       duration: 1,
       delay: 0.5,
+      ease: "power2.inOut",
       scrollTrigger :({
         trigger : "#evntcrd",
         start: "top 100%",

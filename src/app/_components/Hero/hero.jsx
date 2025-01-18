@@ -77,7 +77,7 @@ const hero = () => {
 
     gsap.to (".mainHeader",{
       filter: "blur(5px)",
-      y: 100,
+      y: 60,
       opacity: 0,
       duration: 1.5,
       ease: 'power2.inOut',
@@ -92,7 +92,7 @@ const hero = () => {
       gsap.to (".mainText",{
         filter: "blur(5px)",
         opacity: 0,
-        y: 100,
+        y: 60,
       ease: 'power2.inOut',
         duration: 1.5,
         scrollTrigger:{
@@ -107,7 +107,7 @@ const hero = () => {
       gsap.to (".mainText2",{
         filter: "blur(5px)",
         opacity: 0,
-        y: 100,
+        y: 60,
         duration: 1.5,
       ease: 'power2.inOut',
         delay: 0.5,
@@ -122,13 +122,13 @@ const hero = () => {
 
       gsap.to (".btn1",{
         opacity: 0,
-        y: 100,
+        y: 60,
         duration: 1.5,
         filter: "blur(5px)",
       ease: 'power2.inOut',
 
         scrollTrigger:{
-          trigger : ".btn1",
+          trigger : ".mainText2",
           start: "top 0%",
           end: "bottom 70%",
           scrub: 2,

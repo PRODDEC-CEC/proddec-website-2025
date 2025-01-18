@@ -22,7 +22,7 @@ const testimonial = () => {
             trigger : "#testimonials",
             start: "top 100%",
             end: "bottom 0%",
-            scrub: 3,
+            scrub: 1,
             // markers: true
           })
           
@@ -36,7 +36,7 @@ const testimonial = () => {
             trigger : "#testimonials",
             start: "top 100%",
             end: "bottom 0%",
-            scrub: 3,
+            scrub: 1,
             // markers: true
           })
           
@@ -55,10 +55,10 @@ const testimonial = () => {
       </div>
       <div className=' flex justify-center items-center w-[62vw] h-[75vh] space-x-4 overflow-hidden'>
         <div id='cards1' className='space-y-5 pt-28'>
-        <div className="cards1 bg-[#434343] w-[24vw] h-[28vh] rounded-3xl"></div>
+        <div className="cards1 bg-[#434343] w-[28vw] h-[28vh] rounded-3xl"></div>
 
 
-        <div className="cards1 bg-[#dcdcdc] w-[24vw] h-[28vh] rounded-3xl flex flex-col">
+        <div className="cards1 bg-[#dcdcdc] w-[28vw] h-[28vh] rounded-3xl flex flex-col">
         <div className="section1 h-[65%] w-[100%] text-left font-urbanist text-[#0a0a0a]">
             <p className='px-7 py-7 leading-6 text-base italic'>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</p>
           </div>
@@ -78,17 +78,17 @@ const testimonial = () => {
         </div>
 
 
-        <div className="cards1 bg-[#434343] w-[24vw] h-[28vh] rounded-3xl"></div>
+        <div className="cards1 bg-[#434343] w-[28vw] h-[28vh] rounded-3xl"></div>
         </div>
         <div id='cards2' className='space-y-5 pb-28'>
 
-        <div className="cards1 w-[24vw] h-[28vh] rounded-3xl space-x-4 flex justify-end items-end overflow-hidden">
-          <div className="cards21 bg-[#434343] w-[20vw] h-[24vh] rounded-3xl"></div>
-          <div className="cards21 bg-[#434343] w-[20vw] h-[24vh] rounded-3xl"></div>
+        <div className="cards1 w-[28vw] h-[28vh] rounded-3xl space-x-4 flex justify-end items-end overflow-hidden">
+          <div className="cards21 bg-[#434343] w-[48%] h-[24vh] rounded-3xl"></div>
+          <div className="cards21 bg-[#434343] w-[48%] h-[24vh] rounded-3xl"></div>
         </div>
 
 
-        <div className="cards2 bg-[#dcdcdc] w-[24vw] h-[28vh] rounded-3xl flex flex-col">
+        <div className="cards2 bg-[#dcdcdc] w-[28vw] h-[28vh] rounded-3xl flex flex-col">
           <div className="section1 h-[65%] w-[100%] text-left font-urbanist text-[#0a0a0a]">
             <p className='px-7 py-7 leading-6 text-base italic'>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</p>
           </div>
@@ -107,7 +107,7 @@ const testimonial = () => {
         </div>
 
 
-        <div className="cards2 bg-[#dcdcdc] w-[24vw] h-[28vh] rounded-3xl flex flex-col">
+        <div className="cards2 bg-[#dcdcdc] w-[28vw] h-[28vh] rounded-3xl flex flex-col">
         <div className="section1 h-[65%] w-[100%] text-left font-urbanist text-[#0a0a0a]">
             <p className='px-7 py-7 leading-6 text-base italic'>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</p>
           </div>
@@ -126,7 +126,7 @@ const testimonial = () => {
         </div>
 
 
-        <div className="cards2 bg-[#434343] w-[24vw] h-[28vh] rounded-3xl"></div>
+        <div className="cards2 bg-[#434343] w-[28vw] h-[28vh] rounded-3xl"></div>
        
 
 
