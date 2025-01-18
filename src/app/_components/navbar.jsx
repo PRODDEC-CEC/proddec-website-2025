@@ -79,9 +79,9 @@ const Navbar = () => {
     return (
         <div
             id="navbar"
-            className={`text-orangepeel shadow-md fixed top-0 left-0 right-0 mx-auto z-50 transition-[width, top, box-shadow, opacity] duration-500 ease-in-out ${
+            className={`text-[#ECB526] shadow-md fixed top-14 left-0 right-0 mx-1 z-50 transition-[width, top, box-shadow, opacity] duration-500 ease-in-out ${
                 isScrolled
-                    ? 'w-3/4 rounded-xl top-7 backdrop-blur'
+                    ? 'w-full rounded-xl top-0 backdrop-blur'
                     : 'w-full top-0 bg-transparent'
             } h-20 flex items-center ${
                 isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -98,15 +98,15 @@ const Navbar = () => {
             <div className="container mx-auto px-6 lg:px-10">
                 <div className="flex justify-between items-center py-4">
                     {/* Logo */}
-                    <div className="text-2xl font-bold text-white">
+                    <div className="text-2xl font-bold text-white font-urbanist font-light">
                         <Link href="/">
                             <img src="" alt="" />
-                            <p>Proddec</p>
+                            <p>PRODDEC</p>
                         </Link>
                     </div>
 
                     {/* Links for Desktop */}
-                    <div className="hidden md:flex space-x-8 items-center text-orangepeel">
+                    <div className="hidden md:flex space-x-8 items-center text-[#ECB526] font-urbanist font-light">
                         <Link href="/" className="link-trigger">
                             <div className="relative overflow-hidden h-7 w-14 transition-transform duration-700 text-center rounded-md">
                                 <p className="transition-transform duration-700 uppercase">Home</p>

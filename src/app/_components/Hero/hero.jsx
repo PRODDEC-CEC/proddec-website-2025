@@ -251,8 +251,7 @@ gsap.from ("#imglft .btn2",{
     <HeroAbstract></HeroAbstract>
     </div>
     <div className='textmain'>
-    <h1 className='mainHeader'>PRODDEC</h1>
-    <p className='mainText'>Product Design and Development Center </p>
+    <h1 className='mainHeader'><span>PRO</span>DUCT<br/><span>D</span>ESIGN <br/>AND<br/> <span>DE</span>VELOPMENT<br/><span>C</span>ENTER</h1>
     <p className='mainText2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
     <div className='btn1'>
     <Btn1></Btn1>
@@ -264,7 +263,7 @@ gsap.from ("#imglft .btn2",{
     {/* The About Section */}
     <div className='hero2'>
       <div id='imglft'>
-        <h1>ABOUT PRODDEC</h1>
+        <h1>ABOUT<br /><span>PRODDEC</span></h1>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
           <div className='btn2'>
         <Btn2></Btn2>

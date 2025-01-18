@@ -13,7 +13,7 @@ import React from 'react'
 const mainpage = () => {
   return (
     <div>
-    <div className="bg-[#222222] py-10 px-6">
+    <div className="bg-[#222222] py-10 px-5">
     <div className="overflow-x-hidden page1">
     <Navbar></Navbar>
     <Hero></Hero>
