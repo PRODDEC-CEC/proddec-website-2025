@@ -1,0 +1,64 @@
+
+.ribbon-container {
+    position: relative;
+    overflow: hidden;
+    width: 86%;
+    left: 10.3%;
+    height: 40px;
+    background: #3c3c3c;
+    display: flex;
+    align-items: center;
+    font-family: 'PP Neue Montreal', sans-serif;
+  }
+  
+  .left-text {
+    position: absolute;
+    font-family: 'Urbanist', sans-serif;
+
+    display: flex;
+    top: 2%;
+    transform: translateY(-50%);
+    left: 3%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #c3c3c3;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  
+
+  .ribbon {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    position: absolute;
+  }
+  
+  .ribbon p {
+    display: inline-block;
+    color: #c3c3c3;
+    font-size: 1rem;
+    margin: 0 50px;
+  }
+  
+ 
+  .ribbon-container::before,
+  .ribbon-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 2%;
+    height: 100%;
+    z-index: 2;
+  }
+  
+  .ribbon-container::before {
+    left: 0;
+    background: linear-gradient(to right, #3c3c3c, transparent);
+  }
+  
+  .ribbon-container::after {
+    right: 0;
+    background: linear-gradient(to left, #3c3c3c, transparent);
+  }
+  
