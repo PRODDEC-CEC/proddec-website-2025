@@ -129,7 +129,7 @@
         transform: translate(-40%, -8%) rotate(-20deg);
         background-size: cover;
         background-position: right;
-        background-image: url("./assets/imgcntr1.jpg");
+        background-image: url("./assets/imgcntr1.jpg") ;
     }
     
     #imgrig .imgcntr:nth-child(2){
@@ -259,44 +259,39 @@
         overflow: hidden;
         position : absolute;
         text-align : center;
-        scale : 1.4;
+        scale : .8;
         z-index : 20;
     }
     
     .mainHeader{
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'PP Neue Montreal', sans-serif;
+        font-weight:lighter;
         font-size: 3rem;
-        color: #ECB526;
+        color: #f1f1f1;
         padding-top: 8px;
-        top: 1%; 
-        text-align: center;
-    
+        top: 1%;     
     }
     
-    .mainText{
-        font-family: 'Urbanist', sans-serif;
-        font-size: 0.9rem;
-        color: #fff;
-        opacity: 1;
-        position : absolute;
-        text-transform: uppercase;
-        text-align : center;
-
-       top: 20%;
+    .mainHeader span{
+        font-size:3rem;
+        color: #ECB526;
+        font-weight: normal;
+        top: 1%; 
+    
     }
     
     .mainText2{
         font-family: 'Urbanist', sans-serif;
         font-size: 0.8rem;
-        padding-left: 3%;
-        padding-right: 3%;
+        padding-left: 5%;
+        padding-right: 5%;
         color: #a0a0a0;
         position : absolute;
         text-align : center;
         padding-right: 0%;
         opacity: 1;
         padding-top: 8px;
-        top: 24%;
+        top: 80%;
     
     }
     
@@ -388,7 +383,7 @@
     .textmain{
         gap: 10px;
         position: absolute;
-        top: 60%;
+        top: 40%;
         left : 50%;
         transform: translate(-50%, -50%);
         display: flex;
@@ -416,7 +411,7 @@
     
     .btn1{
         position: absolute;
-        top: 39%;
+        top: 98%;
         z-index: 40;
         scale: 0.8;
     
@@ -424,7 +419,7 @@
     
     .btn2{
         position: absolute;
-        top: 155%;
+        top: 169%;
         padding-left: 24px;
         padding-right: 24px;
         z-index: 40;

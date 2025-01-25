@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from 'react'
 import { useEffect } from 'react'
@@ -278,9 +278,8 @@ gsap.from ("#imglft .btn2",{
       <div id='imgrig'>
         <div className="imgcntr"></div>
         <div className="imgcntr"></div>
-        <div className="imgcntr"></div>
-+
-      </div>
+        <div className="imgcntr"></div>      
+     </div>
       
     </div>
  

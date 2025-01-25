@@ -22,7 +22,7 @@ const App = () => {
 
    
     const startAnimation = () => {
-      const scrollSpeed = 1; 
+      const scrollSpeed = 0.5; 
       let position = 0;
 
       const step = () => {

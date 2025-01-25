@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import "./hero.css"
 import WaveEffect from './waveEffect';
