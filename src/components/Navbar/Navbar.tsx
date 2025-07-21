@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./Navbar.module.css";
 
-
 const scrollToSection = (sectionId: string) => {
   const section = document.querySelector(sectionId);
   if (section) {
@@ -13,19 +12,43 @@ const scrollToSection = (sectionId: string) => {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLUListElement>(null);
+  const menuRef = useRef<HTMLLIElement[]>([]);
+
+  const addRefsToElements = (el: HTMLLIElement | null) => {
+    if (el && !menuRef.current.includes(el)) {
+      menuRef.current.push(el);
+    }
+  };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(
-        navRef.current,
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.inOut", delay: 0.2 }
-      );
-    }, navRef);
+    const tl = gsap.timeline({
+      defaults: { duration: 0.5, ease: "power3.inOut" },
+    });
 
-    return () => ctx.revert();
+    tl.to(logoRef.current, {
+      opacity: 1,
+      duration: 0.3,
+      ease: "power3.inOut",
+    });
+
+    menuRef.current.forEach((item, index) => {
+      tl.to(
+        item,
+        {
+          x: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: "power3.in",
+          delay: index * 0.1,
+        },
+        "<"
+      );
+    });
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   const toggleMenu = () => {
@@ -41,20 +64,22 @@ const Navbar = () => {
   ];
 
   return (
-    <nav ref={navRef} className={styles.navbar}>
+    <nav className={styles.navbar}>
       <div className={styles.container}>
-        <div ref={logoRef} className={styles.logo} onClick={() => scrollToSection("#home")}>
+        <div
+          ref={logoRef}
+          className={styles.logo}
+          onClick={() => scrollToSection("#home")}
+        >
           PRODDEC
         </div>
 
-        <ul
-          ref={menuRef}
-          className={`${styles.navMenu} ${isMenuOpen ? styles.active : ""}`}
-        >
+        <ul className={`${styles.navMenu} ${isMenuOpen ? styles.active : ""}`}>
           {navItems.map((item, index) => (
-            <li key={index} className={styles.navItem}>
+            <li key={index} className={styles.navItem} ref={addRefsToElements}>
               <a
-               // href={item.href}
+                // href={item.href}
+
                 onClick={() => {
                   scrollToSection(item.href);
                   setIsMenuOpen(false);

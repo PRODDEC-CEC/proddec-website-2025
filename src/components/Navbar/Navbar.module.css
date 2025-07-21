@@ -9,8 +9,6 @@
     rgba(10, 10, 10, 0.6),
     transparent
   );
-  transform: translateY(-100px);
-  opacity: 0;
   transition: all var(--transition-normal);
 }
 
@@ -27,6 +25,7 @@
 .logo {
   font-size: var(--font-size-2xl);
   font-weight: 300;
+  opacity: 0;
   background: var(--gradient-primary);
   background-clip: text;
   -webkit-background-clip: text;
@@ -51,6 +50,7 @@
 
 .navItem {
   position: relative;
+  transform: translateX(30vw) scale(0.6);
 }
 
 .navLink {
