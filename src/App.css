@@ -136,3 +136,14 @@ body::before {
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
+
+@media screen and (max-width: 768px) {
+  *{
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  ::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}
