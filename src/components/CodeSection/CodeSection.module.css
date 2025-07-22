@@ -155,12 +155,16 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .codeWindow {
-    margin: 0 var(--spacing-sm);
+    margin: 0;
   }
   
   .codeContent {
     padding: var(--spacing-sm);
     font-size: var(--font-size-sm);
+  }
+
+  .lineNumbers {
+    display: none;
   }
   
   .windowHeader {

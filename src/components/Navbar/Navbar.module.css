@@ -29,7 +29,7 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: all var(--transition-normal);
-  font-family: 'DM Sans', monospace;
+  font-family: "DM Sans", monospace;
   z-index: 1001;
 }
 
@@ -147,9 +147,7 @@
     right: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(-90deg, 
-      var(--bg-primary) 0%, 
-      transparent 100%);
+    background: linear-gradient(-90deg, var(--bg-primary) 0%, transparent 100%);
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
@@ -182,10 +180,18 @@
     opacity: 1;
   }
 
-  .navMenu.active .navItem:nth-child(1) { transition-delay: 0.1s; }
-  .navMenu.active .navItem:nth-child(2) { transition-delay: 0.2s; }
-  .navMenu.active .navItem:nth-child(3) { transition-delay: 0.3s; }
-  .navMenu.active .navItem:nth-child(4) { transition-delay: 0.4s; }
+  .navMenu.active .navItem:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .navMenu.active .navItem:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .navMenu.active .navItem:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .navMenu.active .navItem:nth-child(4) {
+    transition-delay: 0.4s;
+  }
 
   .navLink {
     display: block;
@@ -197,27 +203,6 @@
     letter-spacing: 0.1em;
     position: relative;
     transition: all var(--transition-normal);
-  }
-
-  .navLink:hover {
-    color: var(--accent-primary);
-    transform: scale(1.05);
-  }
-
-  .navLink::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--accent-primary);
-    transition: all var(--transition-normal);
-    transform: translateX(-50%);
-  }
-
-  .navLink:hover::after {
-    width: 100%;
   }
 
   .hamburger {
