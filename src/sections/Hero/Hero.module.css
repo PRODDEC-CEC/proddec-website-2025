@@ -245,10 +245,6 @@
     background-size: 30px 30px;
   }
 
-  .logo {
-    font-size: var(--font-size-2xl);
-  }
-
   .tagline {
     font-size: var(--font-size-lg);
   }
@@ -287,10 +283,6 @@
 }
 
 @media (max-width: 480px) {
-  .logo {
-    font-size: var(--font-size-xl);
-  }
-
   .tagline {
     font-size: var(--font-size-base);
   }
