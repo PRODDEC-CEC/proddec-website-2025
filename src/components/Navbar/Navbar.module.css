@@ -29,6 +29,13 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: all var(--transition-normal);
+  font-family: 'DM Sans', monospace;
+}
+
+.devSuffix {
+  color: var(--accent-primary);
+  font-weight: 400;
+  font-size: 0.8em;
 }
 
 .logo:hover {

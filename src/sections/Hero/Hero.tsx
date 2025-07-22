@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { FaArrowDown, FaCode, FaCog } from 'react-icons/fa';
 import { HiCpuChip } from 'react-icons/hi2';
 import { IoTerminal } from 'react-icons/io5';
+import TaglineRotator from '../../components/TaglineRotator/TaglineRotator';
 import styles from './Hero.module.css';
 
 const Hero = () => {
@@ -76,8 +77,6 @@ const Hero = () => {
   return (
     <section ref={heroRef} className={styles.hero} id="home">
       <div className={styles.gridOverlay}></div>
-      
-      {/* Floating Tech Icons */}
       <div ref={techIconsRef} className={styles.techIcons}>
         <FaCode className={`tech-icon ${styles.techIcon1}`} />
         <FaCog className={`tech-icon ${styles.techIcon2}`} />
@@ -86,18 +85,16 @@ const Hero = () => {
       </div>
 
       <div className={styles.content}>
-        <div ref={logoRef} className={styles.logo}>
+        <div ref={logoRef} className={`${styles.logo} glitch scanlines`} data-text="PRODDEC.dev">
           PRODDEC
         </div>
         
         <div ref={taglineRef} className={styles.tagline}>
-          <span className={styles.terminalPrefix}>$</span> Build. Code. Create.
-          <br />
-          <span className={styles.subtitle}>Where Makers Meet Technology</span>
+          <TaglineRotator />
         </div>
         
         <div ref={ctaRef} className={styles.ctaContainer}>
-          <button className={styles.ctaButton}>
+          <button className={`${styles.ctaButton}`} data-text="Join The Makers">
             <IoTerminal className={styles.ctaIcon} />
             Join The Makers
           </button>

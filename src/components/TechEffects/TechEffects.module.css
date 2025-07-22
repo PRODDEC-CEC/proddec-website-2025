@@ -1,0 +1,5 @@
+/* TechEffects component styles - extends global animations */
+.techContainer {
+  position: relative;
+  z-index: 1;
+}

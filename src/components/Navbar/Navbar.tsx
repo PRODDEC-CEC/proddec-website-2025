@@ -68,8 +68,9 @@ const Navbar = () => {
       <div className={styles.container}>
         <div
           ref={logoRef}
-          className={styles.logo}
+          className={`${styles.logo} glitch scanlines`}
           onClick={() => scrollToSection("#home")}
+          data-text="PRODDEC.dev"
         >
           PRODDEC
         </div>
@@ -78,8 +79,6 @@ const Navbar = () => {
           {navItems.map((item, index) => (
             <li key={index} className={styles.navItem} ref={addRefsToElements}>
               <a
-                // href={item.href}
-
                 onClick={() => {
                   scrollToSection(item.href);
                   setIsMenuOpen(false);
