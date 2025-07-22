@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaUsers, FaLightbulb, FaRocket } from 'react-icons/fa';
-import { IoSparkles } from 'react-icons/io5';
+import { FaCode, FaTools, FaRocket, FaDatabase, FaServer } from 'react-icons/fa';
+import { IoTerminal, IoGitBranch } from 'react-icons/io5';
+import { HiCpuChip } from 'react-icons/hi2';
 import styles from './About.module.css';
 
-// Register ScrollTrigger plugin
+
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
@@ -14,19 +15,17 @@ const About = () => {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const valuesRef = useRef<HTMLDivElement>(null);
+  const techIconsRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking effect
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    // Calculate percentage position
     const xPercent = (x / rect.width) * 100;
     const yPercent = (y / rect.height) * 100;
     
-    // Create radial gradient that follows mouse
     card.style.background = `
       radial-gradient(circle at ${xPercent}% ${yPercent}%, 
         rgba(255, 107, 53, 0.15) 0%, 
@@ -43,7 +42,7 @@ const About = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title animation
+      gsap.set('.about-tech-icon', { opacity: 0, scale: 0.8 });
       gsap.fromTo(titleRef.current,
         { opacity: 0, y: 50 },
         {
@@ -59,7 +58,29 @@ const About = () => {
         }
       );
 
-      // Description animation
+      gsap.to('.about-tech-icon', {
+        opacity: 0.3,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.3,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to('.about-tech-icon', {
+        y: "random(-15, 15)",
+        rotation: "random(-10, 10)",
+        duration: "random(4, 6)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.8
+      });
+
       gsap.fromTo(descriptionRef.current,
         { opacity: 0, y: 30 },
         {
@@ -120,36 +141,45 @@ const About = () => {
   }, []);
 
 const stats = [
-    { number: "Growing", label: "Products Launched" },
-    { number: "Active", label: "Community Members" },
-    { number: "High", label: "Success Rate" }
+    { number: "24/7", label: "Active Development" },
+    { number: "Open", label: "Source Projects" },
+    { number: "High", label: "Performance Code" }
 ];
 
   const values = [
     {
-      icon: <FaLightbulb />,
-      title: "Innovation",
-      description: "We push boundaries and challenge conventional thinking to create groundbreaking solutions."
+      icon: <FaCode />,
+      title: "Code Excellence",
+      description: "We write clean, efficient, and maintainable code that stands the test of time and scale."
     },
     {
-      icon: <FaUsers />,
-      title: "Collaboration",
-      description: "Our diverse community works together, sharing knowledge and expertise to achieve common goals."
+      icon: <FaTools />,
+      title: "Maker Mindset",
+      description: "Our community of builders and creators turns ideas into reality through hands-on development."
     },
     {
       icon: <FaRocket />,
-      title: "Excellence",
-      description: "We maintain the highest standards in everything we do, from concept to final delivery."
+      title: "Performance",
+      description: "We optimize every aspect of our builds for speed, efficiency, and scalability."
     },
     {
-      icon: <IoSparkles />,
-      title: "Creativity",
-      description: "We believe in the power of creative thinking to solve complex problems and inspire change."
+      icon: <HiCpuChip />,
+      title: "Innovation",
+      description: "We leverage cutting-edge technologies to build the future of product development."
     }
   ];
 
   return (
     <section ref={sectionRef} id="about" className={styles.about}>
+      <div className={styles.gridOverlay}></div>
+      
+      {/* Floating Tech Icons */}
+      <div ref={techIconsRef} className={styles.techIcons}>
+        <FaDatabase className={`about-tech-icon ${styles.techIcon1}`} />
+        <FaServer className={`about-tech-icon ${styles.techIcon2}`} />
+        <IoGitBranch className={`about-tech-icon ${styles.techIcon3}`} />
+      </div>
+
       <div className={styles.container}>
         <div className={styles.content}>
           <h2 ref={titleRef} className={styles.title}>
@@ -158,14 +188,13 @@ const stats = [
           
           <div ref={descriptionRef} className={styles.description}>
             <p>
-              We are a passionate community of designers, developers, and innovators 
-              dedicated to transforming ideas into exceptional products. Since our 
-              founding, we've been at the forefront of product design and development, 
-              helping creators bring their visions to life.
+              <span className={styles.terminalPrefix}>$</span> We are a community of makers, developers, and tech innovators 
+              who turn lines of code into breakthrough products. Our ecosystem thrives on 
+              collaborative development, open-source contributions, and cutting-edge technology.
             </p>
             <p>
-              Our mission is simple: to provide the tools, knowledge, and community 
-              support needed to create products that make a meaningful impact in the world.
+              <span className={styles.terminalPrefix}>&gt;</span> Our mission: Empower creators with the tools, frameworks, 
+              and community needed to build products that push the boundaries of what's possible.
             </p>
           </div>
 
@@ -179,7 +208,10 @@ const stats = [
           </div>
 
           <div className={styles.valuesSection}>
-            <h3 className={styles.valuesTitle}>Our Values</h3>
+            <h3 className={styles.valuesTitle}>
+              <IoTerminal className={styles.terminalIcon} /> 
+              Our Tech Stack
+            </h3>
             <div ref={valuesRef} className={styles.values}>
               {values.map((value, index) => (
                 <div 

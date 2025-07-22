@@ -4,14 +4,9 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.6),
-    transparent
-  );
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.6), transparent);
   transition: all var(--transition-normal);
 }
-
 
 .container {
   margin: 0 auto;
@@ -63,23 +58,26 @@
   padding: var(--spacing-xs) 0;
 }
 
-.navLink::after {
-  content: "";
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-primary);
-  transition: width var(--transition-normal);
-}
+@media screen and (min-width: 768px) {
+  .navLink::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width var(--transition-normal);
+  }
 
-.navLink:hover {
-  color: var(--text-primary);
-}
+  .navLink:hover {
+    color: var(--text-primary);
+    cursor: pointer;
+  }
 
-.navLink:hover::after {
-  width: 100%;
+  .navLink:hover::after {
+    width: 100%;
+  }
 }
 
 .hamburger {
