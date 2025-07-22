@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./Navbar.module.css";
 
 const scrollToSection = (sectionId: string) => {
@@ -68,7 +67,7 @@ const Navbar = () => {
       <div className={styles.container}>
         <div
           ref={logoRef}
-          className={`${styles.logo} glitch scanlines`}
+          className={styles.logo}
           onClick={() => scrollToSection("#home")}
           data-text="PRODDEC.dev"
         >
@@ -92,7 +91,9 @@ const Navbar = () => {
         </ul>
 
         <div className={styles.hamburger} onClick={toggleMenu}>
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
+          <span className={`${styles.hamburgerLine} ${isMenuOpen ? styles.active : ''}`}></span>
+          <span className={`${styles.hamburgerLine} ${isMenuOpen ? styles.active : ''}`}></span>
+          <span className={`${styles.hamburgerLine} ${isMenuOpen ? styles.active : ''}`}></span>
         </div>
       </div>
     </nav>
