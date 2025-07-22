@@ -102,10 +102,18 @@ const Hero = () => {
           className={`${styles.logo} glitch scanlines`}
           data-text="Product Design and Development Center"
         >
-          <span className={styles.highlight}>Pro</span>duct{" "}
-          <span className={styles.highlight}>D</span>esign and{" "}
-          <span className={styles.highlight}>De</span>velopment{" "}
-          <span className={styles.highlight}>C</span>enter
+          <div className={styles.logoLine}>
+            <span className={styles.highlight}>Pro</span>duct
+          </div>
+          <div className={styles.logoLine}>
+            <span className={styles.highlight}>D</span>esign and
+          </div>
+          <div className={styles.logoLine}>
+            <span className={styles.highlight}>De</span>velopment
+          </div>
+          <div className={styles.logoLine}>
+            <span className={styles.highlight}>C</span>enter
+          </div>
         </div>
 
         <div ref={taglineRef} className={styles.tagline}>
