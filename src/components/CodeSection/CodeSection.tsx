@@ -49,6 +49,7 @@ const CodeSection = () => {
 
   return (
     <section ref={sectionRef} className={styles.codeSection}>
+      <div className={styles.gridOverlay}></div>
       <div className={styles.container}>
         <h3 className={styles.title}>
           <span className={styles.prompt}>~/proddec $</span> Live Development
