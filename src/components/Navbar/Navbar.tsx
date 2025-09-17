@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import styles from "./Navbar.module.css";
 
@@ -11,6 +12,8 @@ const scrollToSection = (sectionId: string) => {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const logoRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLLIElement[]>([]);
 
@@ -21,44 +24,78 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { duration: 0.5, ease: "power3.inOut" },
+    // COMMENTED OUT: GSAP animations that cause right-to-left sliding effect
+    // const tl = gsap.timeline({
+    //   defaults: { duration: 0.5, ease: "power3.inOut" },
+    // });
+
+    // tl.to(logoRef.current, {
+    //   opacity: 1,
+    //   duration: 0.3,
+    //   ease: "power3.inOut",
+    // });
+
+    // menuRef.current.forEach((item, index) => {
+    //   tl.to(
+    //     item,
+    //     {
+    //       x: 0,
+    //       scale: 1,
+    //       duration: 0.5,
+    //       ease: "power3.in",
+    //       delay: index * 0.1,
+    //     },
+    //     "<"
+    //   );
+    // });
+
+    // Simple fade-in for logo without animation
+    if (logoRef.current) {
+      logoRef.current.style.opacity = '1';
+    }
+    
+    // Reset menu items to their normal position without animation
+    menuRef.current.forEach((item) => {
+      if (item) {
+        item.style.transform = 'translateX(0) scale(1)';
+      }
     });
 
-    tl.to(logoRef.current, {
-      opacity: 1,
-      duration: 0.3,
-      ease: "power3.inOut",
-    });
-
-    menuRef.current.forEach((item, index) => {
-      tl.to(
-        item,
-        {
-          x: 0,
-          scale: 1,
-          duration: 0.5,
-          ease: "power3.in",
-          delay: index * 0.1,
-        },
-        "<"
-      );
-    });
-
-    return () => {
-      tl.kill();
-    };
+    // return () => {
+    //   tl.kill();
+    // };
   }, []);
+
+  const handleNavigation = (item: { name: string; href: string; isRoute?: boolean }) => {
+    if (item.isRoute) {
+      // Navigate to a different route
+      navigate(item.href);
+    } else {
+      // First navigate to home if not already there, then scroll to section
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Wait a bit for navigation to complete, then scroll
+        setTimeout(() => {
+          scrollToSection(item.href);
+        }, 100);
+      } else {
+        scrollToSection(item.href);
+      }
+    }
+    setIsMenuOpen(false);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Community", href: "#community" },
+    { name: "Home", href: "#home", isRoute: false },
+    { name: "About", href: "#about", isRoute: false },
+    { name: "Projects", href: "#projects", isRoute: false },
+    { name: "Membership", href: "/membership", isRoute: true },
+    { name: "Execom", href: "/execom", isRoute: true },
+    { name: "Community", href: "#community", isRoute: false },
     // { name: "Contact", href: "#contact" },
   ];
 
@@ -68,7 +105,7 @@ const Navbar = () => {
         <div
           ref={logoRef}
           className={styles.logo}
-          onClick={() => scrollToSection("#home")}
+          onClick={() => navigate('/')}
           data-text="PRODDEC.dev"
         >
           PRODDEC
@@ -78,10 +115,7 @@ const Navbar = () => {
           {navItems.map((item, index) => (
             <li key={index} className={styles.navItem} ref={addRefsToElements}>
               <a
-                onClick={() => {
-                  scrollToSection(item.href);
-                  setIsMenuOpen(false);
-                }}
+                onClick={() => handleNavigation(item)}
                 className={styles.navLink}
               >
                 {item.name}

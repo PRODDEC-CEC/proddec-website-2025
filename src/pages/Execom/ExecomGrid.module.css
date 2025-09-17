@@ -1,0 +1,79 @@
+.execomGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 80vw;
+  margin: auto;
+  padding: 1rem 0;
+}
+
+/* Large screens - 4 columns */
+@media (min-width: 1200px) {
+  .execomGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 75vw;
+  }
+}
+
+/* Medium-large screens - 3 columns */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .execomGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 85vw;
+  }
+}
+
+/* Medium screens - 3 columns */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .execomGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 90vw;
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Small-medium screens - 2 columns */
+@media (min-width: 769px) and (max-width: 900px) {
+  .execomGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 85vw;
+    margin: auto;
+  }
+}
+
+/* Small screens - 2 columns */
+@media (min-width: 641px) and (max-width: 768px) {
+  .execomGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    width: 90vw;
+    margin: auto;
+  }
+}
+
+/* Extra small screens - 1 column */
+@media (max-width: 640px) {
+  .execomGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 95vw;
+    margin: auto;
+    padding: 0.5rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .execomGrid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    width: 98vw;
+    padding: 0.2rem;
+  }
+}

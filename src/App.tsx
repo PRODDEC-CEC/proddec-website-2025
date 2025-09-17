@@ -1,24 +1,25 @@
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
-import Hero from './sections/Hero/Hero'
-import About from './sections/About/About'
-import Projects from './sections/Projects/Projects'
 import Footer from './components/Footer/Footer'
 import TechEffects from './components/TechEffects/TechEffects'
-import CodeSection from './components/CodeSection/CodeSection'
+import Home from './pages/Home'
+import Membership from './pages/Membership'
+import Execom2025 from './pages/Execom/Execom'
 
 function App() {
 
   return (
-    <>
+    <Router>
       <TechEffects />
       <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <CodeSection />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/membership" element={<Membership />} />
+        <Route path="/execom" element={<Execom2025 />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   )
 }
 
