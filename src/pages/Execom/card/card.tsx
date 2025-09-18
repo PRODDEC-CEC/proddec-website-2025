@@ -28,15 +28,10 @@ const MemberCard: React.FC<MemberCardProps> = ({
   imageHeight,
 }) => {
   const [transform, setTransform] = useState<string>('translateY(0) perspective(1000px) rotateX(0deg) rotateY(0deg)');
-  const [showInstruction, setShowInstruction] = useState<boolean>(true);
+  const [showInstruction, setShowInstruction] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowInstruction(false);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
+  // Only show instruction if explicitly enabled by parent (e.g. for 2025)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
@@ -117,8 +112,8 @@ const MemberCard: React.FC<MemberCardProps> = ({
                 overflow: 'hidden',
               }}
             >
-              <h3 className={styles['member-name']} style={{ fontSize: '1.1rem', margin: 0, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 160 }}>{name}</h3>
-              <p className={styles['member-position']} style={{ fontSize: '1rem', margin: 0, color: 'var(--accent-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 120 }}>{position}</p>
+              <h3 className={styles['member-name']} style={{ fontSize: '1.09rem', margin: 0, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 140 }}>{name}</h3>
+              <p className={styles['member-position']} style={{ fontSize: '1rem', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 160 }}>{position}</p>
             </div>
           </div>
         )}
@@ -132,7 +127,7 @@ const MemberCard: React.FC<MemberCardProps> = ({
           )}
         </div>
         {/* hover-indicator removed as per request */}
-        <div className={styles['member-details']}>
+        <div className={styles['member-details']} style={{textAlign: 'left'}}>
           <div className={styles['detail-section']}>
             <h4 className={styles['detail-title']}>About</h4>
             <p className={styles['detail-content']}>
@@ -140,7 +135,7 @@ const MemberCard: React.FC<MemberCardProps> = ({
             </p>
           </div>
           <div className={styles['detail-section']}>
-            <h4 className={styles['detail-title']}>Achievements</h4>
+            <h4 className={styles['detail-title']}>Skills</h4>
             <ul className={styles['achievements-list']}>
               {achievements.map((ach, i) => (
                 <li key={i}>{ach}</li>

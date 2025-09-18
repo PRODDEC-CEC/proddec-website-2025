@@ -5,7 +5,7 @@ import Footer from './components/Footer/Footer'
 import TechEffects from './components/TechEffects/TechEffects'
 import Home from './pages/Home'
 import Membership from './pages/Membership'
-import Execom2025 from './pages/Execom/Execom'
+import ExecomTimeline from './pages/Execom/ExecomTimeline'
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/membership" element={<Membership />} />
-        <Route path="/execom" element={<Execom2025 />} />
+        <Route path="/execom" element={<ExecomTimeline />} />
       </Routes>
       <Footer />
     </Router>

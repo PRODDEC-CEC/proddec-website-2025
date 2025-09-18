@@ -1,0 +1,13 @@
+.fadein-card {
+  opacity: 0;
+  color: rgba(0, 0, 0, 0.125);
+  transform: translateY(30px) scale(0.98);
+  animation: fadein-card-anim 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes fadein-card-anim {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

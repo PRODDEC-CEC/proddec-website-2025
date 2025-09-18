@@ -1,8 +1,9 @@
+import MemberCard from "../card/card";
+import fadein from "../card/card-fadein.module.css";
+import { useEffect, useState } from "react";
+import type { MemberCardProps } from "../card/card";
+import styles from "../ExecomGrid.module.css";
 
-
-import MemberCard from "./card/card";
-import type { MemberCardProps } from "./card/card";
-import styles from "./ExecomGrid.module.css";
 
 const members: MemberCardProps[] = [
     {
@@ -282,28 +283,43 @@ const members: MemberCardProps[] = [
 
 
 
-function Execom() {
+function Execom2023() {
+    const [isLg, setIsLg] = useState(false);
+    useEffect(() => {
+        setIsLg(window.innerWidth >= 1024);
+    }, []);
     return (
         <>
-            {/* <section style={{ width: '100%', padding: '3rem 0 2rem 0', textAlign: 'center', background: 'linear-gradient(90deg, #ff6b35 0%, #f39c12 100%)', color: 'white', marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2.8rem', fontWeight: 800, marginBottom: '1rem', letterSpacing: '0.03em' }}>Execom</h1>
-                <p style={{ fontSize: '1.2rem', fontWeight: 400, maxWidth: 700, margin: '0 auto', opacity: 0.95 }}>
-                    Meet the Executive Committee of PRODDEC, CEC. Our team of passionate innovators and leaders is dedicated to advancing engineering excellence and fostering a vibrant technical community.
-                </p>
-            </section> */}
             <div style={{ width: '100%', textAlign: 'center', margin: '2rem 0 1rem 0' }}>
-                <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', letterSpacing: '0.02em', color: '#ff6b35' }}>EXECOM 2025</h2>
-                <p style={{ fontSize: '1.05rem', fontWeight: 400, maxWidth: 600, margin: '0 auto', color: 'white'}}>
-                    Presenting the 2025 Executive Committee of PRODDEC, CEC. This team leads our club with vision, dedication, and a passion for innovation. Get to know the members who are shaping the future of PRODDEC!
+                                <style>{`
+                                    .execom2023-gradient {
+                                        background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+                                        -webkit-background-clip: text;
+                                        -webkit-text-fill-color: transparent;
+                                        background-clip: text;
+                                        text-fill-color: transparent;
+                                    }
+                                `}</style>
+                                <h2 className="execom2023-gradient" style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem', letterSpacing: '0.02em' }}>EXECOM 2023</h2>
+                <p style={{ fontSize: '1.05rem', fontWeight: 400, maxWidth: 600, margin: '0 auto', color: 'white', }}>
+                    Introducing the 2023 Execom of PRODDEC: a group committed to growth, creativity, and teamwork. Explore the leaders who inspired us this year!
                 </p>
             </div>
             <div className={styles.execomGrid} style={{ margin: '0 auto' }}>
                 {members.map((member, idx) => (
-                    <MemberCard key={idx} {...member} />
+                    <div
+                        key={idx}
+                        className={isLg ? fadein["fadein-card"] : undefined}
+                        data-aos={!isLg ? "fade-up" : undefined}
+                        data-aos-delay={!isLg ? String((idx%4)*80) : undefined}
+                    >
+                        <MemberCard {...member} />
+                    </div>
                 ))}
             </div>
         </>
     );
 }
 
-export default Execom;
+export default Execom2023;
+
