@@ -1,3 +1,124 @@
+/* Enhanced Timeline Hover Animations */
+.timeline-container {
+  position: relative;
+}
+
+.timeline-container:hover .timeline-line {
+  border-bottom-color: rgba(255, 107, 53, 0.4) !important;
+  transform: scaleX(1.02);
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.1);
+}
+
+.timeline-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+  transition: left 0.6s ease;
+  z-index: 0;
+}
+
+.timeline-button.hovered::before {
+  left: 100%;
+}
+
+.timeline-year-label {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.timeline-year-label.hovered:not(.selected) {
+  background: rgba(255, 107, 53, 0.1) !important;
+  color: #ff6b35 !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2) !important;
+}
+
+.timeline-year-label.selected {
+  animation: selectedPulse 2s ease-in-out infinite;
+}
+
+
+
+.execom-content-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.execom-content-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(255, 107, 53, 0.1), 
+    rgba(243, 156, 18, 0.1), 
+    rgba(255, 107, 53, 0.1)
+  );
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.timeline-container:hover + .execom-content-container::before {
+  opacity: 1;
+}
+
+/* Floating Animation for Timeline */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.timeline-button:hover .timeline-year-label:not(.selected) {
+  animation: float 1.5s ease-in-out infinite;
+}
+
+/* Ripple Effect */
+.timeline-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-button::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 107, 53, 0.3);
+  transform: scale(0);
+  transition: transform 0.6s ease;
+  z-index: 0;
+}
+
+.timeline-button:active::after {
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  transform: scale(1);
+  transition: transform 0s;
+}
+
 .timeline-outer {
   display: flex;
   justify-content: center;

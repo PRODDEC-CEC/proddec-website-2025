@@ -92,7 +92,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", href: "#home", isRoute: false },
     { name: "About", href: "#about", isRoute: false },
-    { name: "Projects", href: "#projects", isRoute: false },
+    { name: "Projects", href: "/projects", isRoute: true },
     { name: "Membership", href: "/membership", isRoute: true },
     { name: "Execom", href: "/execom", isRoute: true },
     { name: "Community", href: "#community", isRoute: false },

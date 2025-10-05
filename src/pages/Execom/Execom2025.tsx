@@ -15,9 +15,9 @@ const members: MemberCardProps[] = [
             "Event planning",
             "Public speaking"
         ],
-        email: "arjun.kumar@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/abhijith-j-nair",
         phone: "+91 98765 43210",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Abhijith J Nair.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -31,9 +31,9 @@ const members: MemberCardProps[] = [
             "Documentation",
             "Event organization"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/albin-thomas-30a22430b",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Albin Thomas.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -47,9 +47,9 @@ const members: MemberCardProps[] = [
             "Resource allocation",
             "Teamwork"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "mathew-saji-vaidyan",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Mathew Saji Vaidyan.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -63,9 +63,9 @@ const members: MemberCardProps[] = [
             "Team coordination",
             "Problem solving"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "eadhin-dileep",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Eadhin Dileep.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -79,14 +79,14 @@ const members: MemberCardProps[] = [
             "Social media management",
             "Networking"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/raveen-k-pillai",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Raveen K Pillai.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
     {
-        name: "Jithin Girish",
+        name: "Jithu Girish",
         position: "R&D Lead",
         department: "Computer Science",
         about: "Curious about new technologies and research. Enjoys working on innovative projects and guiding peers.",
@@ -95,9 +95,9 @@ const members: MemberCardProps[] = [
             "Project prototyping",
             "Mentoring juniors"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/jithugirish1",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Jithu Girish.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -111,9 +111,9 @@ const members: MemberCardProps[] = [
             "Arduino & IoT basics",
             "Research documentation"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/contactakshaykrishnab",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Akshay Krishna B.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -127,9 +127,9 @@ const members: MemberCardProps[] = [
             "Poster making",
             "Social media content",
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "juhaina-jaleel",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Juhaina Jaleel.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -143,14 +143,14 @@ const members: MemberCardProps[] = [
             "Event volunteering",
             "Communication"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "aswin-ajikumar",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Aswin AjiKumar.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
     {
-        name: "Feba Ashraaf",
+        name: "Feba Asharaf",
         position: "Content Lead",
         department: "Computer Science",
         about: "Enjoys writing and editing content for club events. Interested in blogging and creative writing.",
@@ -159,9 +159,9 @@ const members: MemberCardProps[] = [
             "Blogging",
             "Event documentation"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/feba-asharaf",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Feba Asharaf.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -175,9 +175,9 @@ const members: MemberCardProps[] = [
             "Debugging",
             "Team projects"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "mahadevan-reji",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Mahadevan Reji.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -191,9 +191,9 @@ const members: MemberCardProps[] = [
             "Git & GitHub",
             "Teamwork"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "www.linkedin.com/in/alwin-saji",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Alwin Saji.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -207,14 +207,14 @@ const members: MemberCardProps[] = [
             "Soldering",
             "Team collaboration"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/lakshmi-vs",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Lakshmi V S.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
     {
-        name: "Nilofer Fathima",
+        name: "Nilofor Fathima",
         position: "Design",
         department: "Computer Science",
         about: "Enjoys digital art and design. Likes creating posters and graphics for club events.",
@@ -223,9 +223,9 @@ const members: MemberCardProps[] = [
             "Digital illustration",
             "Canva basics",
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/nilofar-fathima-51ba0930a",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Nilofor Fathima.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -239,9 +239,9 @@ const members: MemberCardProps[] = [
             "Team collaboration",
             "Social media content"
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/jia-chinnu-a",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Jia Chinnu Abraham.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -255,9 +255,9 @@ const members: MemberCardProps[] = [
             "Video editing",
             "Social media management",
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/aparna-suresh56",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Aparna Suresh.jpg",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -271,9 +271,9 @@ const members: MemberCardProps[] = [
             "Video editing basics",
             "Photography",
         ],
-        email: "priya.sharma@ceconline.edu",
+        linkedin: "https://www.linkedin.com/in/aardra-rijith-a83688325",
         phone: "+91 91234 56789",
-        image: "/public/images/stock2.jpeg",
+        image: "/images/PRDC2025/Aardra M R.webp",
         imageWidth: 0,
         imageHeight: 0,
     },
@@ -297,10 +297,12 @@ function Execom() {
                     Presenting the 2025 Executive Committee of PRODDEC, CEC. This team leads our club with vision, dedication, and a passion for innovation. Get to know the members who are shaping the future of PRODDEC!
                 </p>
             </div>
-            <div className={styles.execomGrid} style={{ margin: '0 auto' }}>
-                {members.map((member, idx) => (
-                    <MemberCard key={idx} {...member} />
-                ))}
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '0 5vw' }}>
+                <div className={styles.execomGrid}>
+                    {members.map((member, idx) => (
+                        <MemberCard key={idx} {...member} />
+                    ))}
+                </div>
             </div>
         </>
     );

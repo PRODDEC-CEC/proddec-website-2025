@@ -5,6 +5,8 @@ import { HiCpuChip } from "react-icons/hi2";
 import { IoTerminal } from "react-icons/io5";
 import TaglineRotator from "../../components/TaglineRotator/TaglineRotator";
 import styles from "./Hero.module.css";
+import Membership from "../../pages/Membership";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -121,10 +123,10 @@ const Hero = () => {
         </div>
 
         <div ref={ctaRef} className={styles.ctaContainer}>
-          <button className={`${styles.ctaButton}`} data-text="Join The Makers">
+          <Link to="/Membership" className={styles.ctaButton} data-text="Join The Makers" style={{ display: 'inline-flex', alignItems: 'center', color: 'inherit', textDecoration: 'none' }}>
             <IoTerminal className={styles.ctaIcon} />
             Join The Makers
-          </button>
+          </Link>
         </div>
       </div>
 

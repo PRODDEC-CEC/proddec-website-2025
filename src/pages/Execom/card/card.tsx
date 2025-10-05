@@ -8,8 +8,9 @@ export interface MemberCardProps {
   department: string;
   about: string;
   achievements: string[];
-  email: string;
-  phone: string;
+  email?: string;
+  linkedin?: string;
+  phone?: string;
   image?: string; // image URL or import
   imageWidth?: string | number; // e.g. '100%', 120, etc.
   imageHeight?: string | number; // e.g. '100%', 120, etc.
@@ -22,6 +23,7 @@ const MemberCard: React.FC<MemberCardProps> = ({
   about,
   achievements,
   email,
+  linkedin,
   phone,
   image,
   imageWidth,
@@ -117,17 +119,17 @@ const MemberCard: React.FC<MemberCardProps> = ({
             </div>
           </div>
         )}
-        <div className={styles['member-basic-info']}>
+        <div className={styles['member-basic-info']} style={{ cursor: 'default' }}>
           {!isHovered && (
             <>
               <h3 className={styles['member-name']}>{name}</h3>
               <p className={styles['member-position']}>{position}</p>
-              <span className={styles['member-department']}>{department}</span>
+              {/* <span className={styles['member-department']}>{department}</span> */}
             </>
           )}
         </div>
         {/* hover-indicator removed as per request */}
-        <div className={styles['member-details']} style={{textAlign: 'left'}}>
+        <div className={styles['member-details']} style={{textAlign: 'left', cursor: 'default',}}>
           <div className={styles['detail-section']}>
             <h4 className={styles['detail-title']}>About</h4>
             <p className={styles['detail-content']}>
@@ -142,24 +144,41 @@ const MemberCard: React.FC<MemberCardProps> = ({
               ))}
             </ul>
           </div>
-          <div className={styles['detail-section']}>
-            <h4 className={styles['detail-title']}>Contact</h4>
-            <div className={styles['contact-info']}>
-              <div className={styles['contact-item']}>
-                <img
-                  src="/images/linkedin.png"
-                  alt="LinkedIn"
-                  className={styles['contact-icon']}
-                  style={{ objectFit: 'cover' }}
-                />
-                <span>{email}</span>
-              </div>
-              <div className={styles['contact-item']}>
-                <div className={styles['contact-icon']}>📱</div>
-                <span>{phone}</span>
+          {(email || linkedin || phone) && (
+            <div className={styles['detail-section']}>
+              <h4 className={styles['detail-title']}>Contact</h4>
+              <div className={styles['contact-info']}>
+                {linkedin && (
+                  <div className={styles['contact-item']}>
+                    <img
+                      src="/images/linkedin.png"
+                      alt="LinkedIn"
+                      className={styles['contact-icon']}
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <a href={`https://www.linkedin.com/in/${linkedin}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)', textDecoration: 'none', cursor: 'pointer' }}>{linkedin}</a>
+                  </div>
+                )}
+                {email && !linkedin && (
+                  <div className={styles['contact-item']}>
+                    <img
+                      src="/images/linkedin.png"
+                      alt="LinkedIn"
+                      className={styles['contact-icon']}
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <a href={`mailto:${email}`} style={{ color: 'var(--text-primary)', textDecoration: 'none', cursor: 'pointer' }}>{email}</a>
+                  </div>
+                )}
+                {phone && (
+                  <div className={styles['contact-item']}>
+                    {/* <div className={styles['contact-icon']}>📱</div> */}
+                    {/* <span>{phone}</span> */}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
