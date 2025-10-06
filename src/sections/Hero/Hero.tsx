@@ -20,7 +20,7 @@ const clip = "0% 0%, 100% 0% ,100% 100% ,60% 100% ,60% 85%,0% 85%";
       <div className={styles.content}>
         <div
           ref={logoRef}
-          className={`${styles.logo} glitch scanlines`}
+          className={`${styles.logo} glitch scanlines uppercase `}
           data-text="Product Design and Development Center"
         >
           <div className={styles.logoLine}>
