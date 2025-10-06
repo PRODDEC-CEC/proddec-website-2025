@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between dot and text */
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  font-weight:900;
+  background-color: rgb(47, 0, 255); /* or any color */
+  border-radius: 50%;
+}

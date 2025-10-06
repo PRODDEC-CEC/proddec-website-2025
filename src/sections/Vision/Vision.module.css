@@ -1,0 +1,68 @@
+ 
+
+.visionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  color: var(--text-primary);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2rem;
+}
+
+.ivision {
+  font-size: 4rem;
+  font-weight: 800;
+  background: var(--accent-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+  letter-spacing: 4px;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+.mission {
+  max-width: 900px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.pillar {
+  background-color: var(--bg-primary);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: glowPulse 5s infinite ease-in-out;
+}
+
+.pillar:hover {
+  transform: translateY(-10px) scale(1.05);
+   
+}
+
+.pillar h3 {
+  font-size: 1.5rem;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+}
+
+.svg {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  opacity: 0.3;
+   
+}

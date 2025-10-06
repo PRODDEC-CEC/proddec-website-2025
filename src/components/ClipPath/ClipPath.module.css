@@ -1,0 +1,26 @@
+.box_parent {
+  position: relative;
+  filter: url('#flt_tag');
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.box2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.boxContent {
+  position: relative; /* makes children visible above clip background */
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.flt_svg {
+  visibility: hidden; 
+  position: absolute;
+  width: 0;
+  height: 0;
+}

@@ -1,302 +1,44 @@
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  position: relative;
-  padding: var(--spacing-md);
-  padding-left: var(--spacing-xl);
+.heroCon{
+  width: 95vw;
+
+  height: auto;
+  border-radius: 20px;
+  background-color: transparent;
   overflow: hidden;
 }
 
-.gridOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-      rgba(255, 107, 53, 0.1) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: 1;
-  opacity: 0.3;
-}
-
-.techIcons {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.techIcon1 {
-  position: absolute;
-  top: 20%;
-  left: 15%;
-  font-size: 2rem;
-  color: var(--accent-primary);
-}
-
-.techIcon2 {
-  position: absolute;
-  top: 30%;
-  right: 20%;
-  font-size: 1.8rem;
-  color: var(--accent-secondary);
-}
-
-.techIcon3 {
-  position: absolute;
-  bottom: 35%;
-  left: 10%;
-  font-size: 2.2rem;
-  color: var(--accent-primary);
-}
-
-.techIcon4 {
-  position: absolute;
-  bottom: 25%;
-  right: 15%;
-  font-size: 1.9rem;
-  color: var(--accent-secondary);
-}
+ 
 
 .content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo {
-  margin-bottom: var(--spacing-md);
-  opacity: 0;
-  transform: translateY(50px);
-  font-family: "DM Sans", monospace;
-  line-height: 1.2;
-  max-width: 900px;
-  font-size: var(--font-size-4xl);
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-top: var(--spacing-lg);
-  text-align: left;
-}
-
-.logoLine {
-  display: block;
-  margin-bottom: 0.2em;
-}
-
-.highlight {
-  background: var(--gradient-primary);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.fullForm {
-  margin-bottom: var(--spacing-md);
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.fullFormText {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-family: "DM Sans", monospace;
-}
-
-.highlight {
-  color: var(--accent-primary);
-  font-weight: 400;
-}
-
-.devSuffix {
-  color: var(--accent-primary);
-  font-weight: 400;
-  font-size: 0.8em;
-}
-
-.tagline {
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-xl);
-  font-weight: 300;
-  line-height: 1.6;
-  font-family: "DM Sans", monospace;
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.ctaContainer {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: var(--spacing-lg);
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-.ctaButton {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 53, 0.1),
-    rgba(255, 138, 101, 0.1)
-  );
-  border: 1px solid var(--accent-primary);
-  border-radius: var(--radius-lg);
-  color: var(--text-primary);
+  font-size: 2.5rem;
   font-weight: bold;
-  font-size: var(--font-size-base);
-  cursor: pointer;
-  transition: all var(--transition-normal);
+  color: #fff;
+  line-height: 1.2;
   position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: "DM Sans", monospace;
+  user-select: none;
+  pointer-events: none;
+  margin-top: 2rem;
 }
 
-.ctaButton::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 107, 53, 0.2),
-    transparent
-  );
-  transition: left 0.5s ease;
+/* Logo lines */
+.logoLine {
+  margin-left: 30px;
+  font-size:4rem;
 }
 
-.ctaButton:hover::before {
-  left: 100%;
-}
-
-.ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
-  border-color: var(--accent-secondary);
-}
-
-.ctaIcon {
-  font-size: 1.1em;
-}
-
-.scrollIndicator {
-  position: absolute;
-  bottom: var(--spacing-lg);
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color var(--transition-normal);
-  z-index: 2;
-}
-
-.scrollIndicator:hover {
+.highlight {
   color: var(--accent-primary);
 }
 
-.scrollArrow {
-  font-size: var(--font-size-lg);
-  animation: bounce 2s infinite;
+.subText{
+  color: var(--text-muted);
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-5px);
-  }
-  60% {
-    transform: translateY(-3px);
-  }
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .hero {
-    padding: var(--spacing-lg) var(--spacing-sm);
-  }
-
-  .gridOverlay {
-    background-size: 30px 30px;
-  }
-
-  .tagline {
-    font-size: var(--font-size-lg);
-  }
-
-  .ctaButton {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
-  }
-
-  .techIcon1,
-  .techIcon2,
-  .techIcon3,
-  .techIcon4 {
-    font-size: 1.5rem;
-  }
-
-  .techIcon1 {
-    top: 15%;
-    left: 10%;
-  }
-
-  .techIcon2 {
-    top: 25%;
-    right: 10%;
-  }
-
-  .techIcon3 {
-    bottom: 30%;
-    left: 8%;
-  }
-
-  .techIcon4 {
-    bottom: 20%;
-    right: 8%;
-  }
-}
-
-@media (max-width: 480px) {
-  .tagline {
-    font-size: var(--font-size-base);
-  }
-
-  .techIcon1,
-  .techIcon2,
-  .techIcon3,
-  .techIcon4 {
-    font-size: 1.2rem;
-    opacity: 0.6;
-  }
-
-  .gridOverlay {
-    background-size: 25px 25px;
-    opacity: 0.2;
-  }
-}
+ 

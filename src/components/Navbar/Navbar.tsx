@@ -1,99 +1,48 @@
-import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useState, type FC } from "react";
 import styles from "./Navbar.module.css";
 
-const scrollToSection = (sectionId: string) => {
-  const section = document.querySelector(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-};
+const Navbar: FC = () => {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLLIElement[]>([]);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const addRefsToElements = (el: HTMLLIElement | null) => {
-    if (el && !menuRef.current.includes(el)) {
-      menuRef.current.push(el);
-    }
-  };
-
-  useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { duration: 0.5, ease: "power3.inOut" },
-    });
-
-    tl.to(logoRef.current, {
-      opacity: 1,
-      duration: 0.3,
-      ease: "power3.inOut",
-    });
-
-    menuRef.current.forEach((item, index) => {
-      tl.to(
-        item,
-        {
-          x: 0,
-          scale: 1,
-          duration: 0.5,
-          ease: "power3.in",
-          delay: index * 0.1,
-        },
-        "<"
-      );
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Community", href: "#community" },
-    // { name: "Contact", href: "#contact" },
-  ];
+  const navLinks: string[] = ["Home", "About", "Services", "Contact"];
 
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        <div
-          ref={logoRef}
-          className={styles.logo}
-          onClick={() => scrollToSection("#home")}
-          data-text="PRODDEC.dev"
-        >
-          PRODDEC
+        <div className={styles.logo}>
+          Code<span className={styles.devSuffix}>Lab</span>
         </div>
 
-        <ul className={`${styles.navMenu} ${isMenuOpen ? styles.active : ""}`}>
-          {navItems.map((item, index) => (
-            <li key={index} className={styles.navItem} ref={addRefsToElements}>
-              <a
-                onClick={() => {
-                  scrollToSection(item.href);
-                  setIsMenuOpen(false);
-                }}
-                className={styles.navLink}
-              >
-                {item.name}
+        {/* Nav Links */}
+        <ul className={`${styles.navMenu} ${menuOpen ? styles.active : ""}`}>
+          {navLinks.map((link: string, index: number) => (
+            <li key={index} className={styles.navItem}>
+              <a href={`#${link.toLowerCase()}`} className={styles.navLink}>
+                {link}
               </a>
             </li>
           ))}
         </ul>
 
+        {/* Hamburger Menu */}
         <div className={styles.hamburger} onClick={toggleMenu}>
-          <span className={`${styles.hamburgerLine} ${isMenuOpen ? styles.active : ''}`}></span>
-          <span className={`${styles.hamburgerLine} ${isMenuOpen ? styles.active : ''}`}></span>
-          <span className={`${styles.hamburgerLine} ${isMenuOpen ? styles.active : ''}`}></span>
+          <span
+            className={`${styles.hamburgerLine} ${
+              menuOpen ? styles.active : ""
+            }`}
+          ></span>
+          <span
+            className={`${styles.hamburgerLine} ${
+              menuOpen ? styles.active : ""
+            }`}
+          ></span>
+          <span
+            className={`${styles.hamburgerLine} ${
+              menuOpen ? styles.active : ""
+            }`}
+          ></span>
         </div>
       </div>
     </nav>

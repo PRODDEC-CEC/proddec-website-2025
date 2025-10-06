@@ -1,0 +1,51 @@
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+  position: relative;
+}
+
+/* Blur/fade on both ends */
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50px; /* width of the fade */
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+/* The scrolling track */
+.track {
+  display: inline-flex;
+  gap: 50px;
+  animation: scroll 15s linear infinite;
+}
+
+.update {
+  white-space: nowrap;
+  font-weight: bold;
+  color: var(--bg-tertiary);
+}
+
+/* scrolling animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

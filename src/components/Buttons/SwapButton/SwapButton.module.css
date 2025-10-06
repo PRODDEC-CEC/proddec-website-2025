@@ -1,0 +1,60 @@
+.btnBox {
+    display: flex;
+    margin-left: 30px;
+}
+
+.dir {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1;
+}
+
+.swapButtonIconLeft,
+.swapButtonIconRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 0;
+    transition: all 0.2s ease;
+    overflow: hidden;  
+}
+
+.swapButtonIconLeft {
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+}
+
+.swapButtonIconRight {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.swapButtonText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: 0;
+    font-weight: bold;
+    transition: transform 0.3s ease-out;
+}
+
+.dir:hover .swapButtonIconLeft {
+    
+    opacity: 0;
+    width: 0;
+}
+
+.dir:hover .swapButtonIconRight {
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+}
