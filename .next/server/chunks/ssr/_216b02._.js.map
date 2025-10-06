@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://D%3A/web-dev/PROODEC/proddec-website-2025/src/app/layout.jsx"],"sourcesContent":["import \"./globals.css\";\r\nimport { Metadata } from \"next\"\r\n\r\nexport const metadata = {\r\n  title: 'PRODDEC CEC'\r\n}\r\n\r\nexport default function RootLayout({ children }) {\r\n  return (\r\n    <html lang=\"en\">\r\n      <body>\r\n        {children}\r\n      </body>\r\n    </html>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;;;;AAGO,MAAM,WAAW;IACtB,OAAO;AACT;AAEe,SAAS,WAAW,EAAE,QAAQ,EAAE;IAC7C,qBACE,8OAAC;QAAK,MAAK;kBACT,cAAA,8OAAC;sBACE;;;;;;;;;;;AAIT"}},
-    {"offset": {"line": 34, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 45, "column": 0}, "map": {"version":3,"sources":["file://D%3A/web-dev/PROODEC/proddec-website-2025/node_modules/next/src/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.ts"],"sourcesContent":["module.exports = require('../../module.compiled').vendored[\n  'react-rsc'\n].ReactJsxDevRuntime\n"],"names":["module","exports","require","vendored","ReactJsxDevRuntime"],"mappings":";AAAAA,OAAOC,OAAO,GAAGC,QAAQ,0HAAyBC,QAAQ,CACxD,YACD,CAACC,kBAAkB","ignoreList":[0]}},
-    {"offset": {"line": 47, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
