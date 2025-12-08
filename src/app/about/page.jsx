@@ -1,9 +1,8 @@
+"use client"
 import React from 'react';
 import { Metadata } from "next";
 
-export const metadata = {
-  title: 'About Us - PRODDEC CEC'
-};
+ 
 
 const About = () => {
   const teamMembers = [
