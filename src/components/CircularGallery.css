@@ -1,0 +1,41 @@
+.circular-gallery-container {
+  width: 100%;
+  height: 600px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px; /* Controls the depth perception */
+  overflow: visible;
+  position: relative;
+  /* background: transparent; */
+}
+
+.circular-gallery {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  /* Size will be set inline or via props */
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* Prevent image drag interfering with swipe */
+}
