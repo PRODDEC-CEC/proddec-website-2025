@@ -4,7 +4,7 @@
   --font-sans: 'Inter', sans-serif;
   --font-zentry: 'Oswald', sans-serif;
   
-  --color-proddec-blue: #FFA200;
+  --color-proddec-yellow: #FFA200;
   --color-proddec-dark: #0a0a0a;
   --color-proddec-light: #f0f0f0;
   --color-theme-primary: #FFA200;
@@ -50,7 +50,7 @@ body {
 }
 
 ::selection {
-    background-color: var(--color-proddec-blue);
+    background-color: var(--color-proddec-yellow);
     color: white;
 }
 

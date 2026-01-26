@@ -100,7 +100,7 @@ const CircularGallery = ({
           return (
             <div
               key={index}
-              className="gallery-item"
+              className="gallery-item border border-proddec-yellow/80 rounded-lg overflow-hidden bg-[#1a1a1a] relative"
               style={{
                 width: itemWidth,
                 height: itemHeight,

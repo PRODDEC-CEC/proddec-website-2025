@@ -66,12 +66,12 @@ const GlowCard = ({ title, description, icon }) => {
         />
 
         <div className="relative z-10 flex flex-col items-start gap-5">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-proddec-blue/10 text-proddec-blue border border-proddec-blue/20 shadow-[0_0_15px_rgba(255,162,0,0.1)]">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-proddec-yellow/10 text-proddec-yellow border border-proddec-yellow/20 shadow-[0_0_15px_rgba(255,162,0,0.1)]">
             {icon}
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xl font-zentry font-semibold uppercase tracking-wider text-white group-hover:text-proddec-blue transition-colors duration-300">
+            <h3 className="text-xl font-zentry font-semibold uppercase tracking-wider text-white group-hover:text-proddec-yellow transition-colors duration-300">
               {title}
             </h3>
             <p className="text-sm leading-relaxed text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
@@ -89,7 +89,7 @@ const Mission = () => {
     <section className="py-24 relative overflow-hidden bg-black">
       {/* Minimal Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-proddec-blue/5 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-proddec-yellow/5 rounded-full blur-[120px]" />
           <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px]" />
       </div>
 
@@ -101,7 +101,7 @@ const Mission = () => {
           className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-zentry uppercase font-bold text-white mb-6">
-            Our <span className="text-proddec-blue">Mission</span>
+            Our <span className="text-proddec-yellow">Mission</span>
           </h2>
           <p className="max-w-xl mx-auto text-gray-400 text-lg">
             Driving progress through innovation, partnership, and dedicated growth.

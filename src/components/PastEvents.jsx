@@ -123,15 +123,22 @@ const eventsData = [
     description: "Deep dive into Kubernetes, Docker, and microservices architecture.",
     image: "https://picsum.photos/400/600?random=13",
     techStack: ["Docker", "K8s", "AWS", "Go"]
-  }
+  },
+  {
+    id: 4,
+    title: "Cloud Native",
+    description: "Deep dive into Kubernetes, Docker, and microservices architecture.",
+    image: "https://picsum.photos/400/600?random=14",
+    techStack: ["Docker", "K8s", "AWS", "Go"]
+  },
 ];
 
 
 const PastEvents = () => {
     return (
         <section id="past-events" className="w-full py-20 px-4 md:px-8 flex flex-col items-center">
-            <h2 className="text-4xl font-bold mb-4 text-[#FFA200]">Past Events</h2>
-            <p className="text-white/50 mb-12 text-center max-w-2xl">
+            <h2 className="text-4xl font-bold mb-4 text-[#FFA200]">Past <span className="text-white">Events</span></h2>
+            <p className="text-white/50 mb-12 text-5xl text-center">
                 Highlighting our journey through tech excellence.
             </p>
             

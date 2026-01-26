@@ -1,16 +1,48 @@
 import React, { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { FiMenu, FiX } from "react-icons/fi";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const navRef = useRef(null);
     const sidebarRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     
+    const navigate = useNavigate();
+    const location = useLocation();
+
     // Using a constant array size logic, so we can index directly
-    const navLinks = ['Home', 'About', 'Projects', 'Events', 'Vision', 'Mission', 'Contact'];
+    const navLinks = ['Home', 'About', 'Projects', 'Events', 'Vision', 'Mission', 'Execom', 'Contact'];
     const rulerItemsRef = useRef([]);
     const timeline = useRef(null);
+
+    const handleNavigation = (item) => {
+        setIsOpen(false);
+        const lowerItem = item.toLowerCase();
+        
+        if (lowerItem === 'home') {
+             navigate('/');
+        } else if (lowerItem === 'execom') {
+             navigate('/execom');
+        } else {
+            // For hash links (About, Projects, etc.)
+            if (location.pathname !== '/') {
+                // If not on home page, navigate home first then scroll
+                navigate('/', { state: { targetId: lowerItem } });
+                // Note: The ScrollToTop component or a useEffect in Home needs to handle the scrolling 
+                // but since we're using simple hash navigation for now, let's try direct hash
+                setTimeout(() => {
+                    const element = document.getElementById(lowerItem);
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                // Already on home page, just scroll
+                const element = document.getElementById(lowerItem);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+    };
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
@@ -139,7 +171,7 @@ const Navbar = () => {
         <>
             <nav ref={navRef} className="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-white pointer-events-none">
                 <div className="text-2xl font-zentry font-bold tracking-tighter uppercase cursor-pointer pointer-events-auto"
-                     onClick={() => window.location.reload()}>
+                     onClick={() => navigate('/')}>
                     PRODDEC
                 </div>
             </nav>
@@ -164,10 +196,7 @@ const Navbar = () => {
                             <div 
                                 ref={(el) => setRef(el, linkIndex)}
                                 className="group flex items-center justify-end gap-4 w-full cursor-pointer h-[12px]"
-                                onClick={() => {
-                                    setIsOpen(false);
-                                    window.location.href = `#${item.toLowerCase()}`;
-                                }}
+                                onClick={() => handleNavigation(item)}
                                 onMouseEnter={() => handleLineEnter(linkIndex)}
                                 onMouseLeave={() => handleLineLeave(linkIndex)}
                             >

@@ -62,7 +62,7 @@ const Projects = () => {
 
     return (
         <section id="project-gallery" className="w-full py-20 px-0 flex flex-col items-center overflow-hidden relative">
-            <h2 className="text-4xl font-bold mb-2 text-[#FFA200]">Projects Gallery</h2>
+            <h2 className="text-4xl font-bold mb-2 text-white">Projects <span className="text-proddec-yellow">Gallery</span></h2>
             <p className="mb-8 text-white/40 text-sm relative z-10">Drag to explore projects</p>
             
             <div className="w-full relative" style={{ height: '600px' }}>

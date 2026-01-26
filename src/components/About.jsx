@@ -71,7 +71,7 @@ const About = () => {
                                 ABOUT <span className="text-[#FFA200]">PRODDEC</span>
                             </h1>
                             <p className="text-lg text-gray-300 font-sans leading-relaxed">
-                                The Production Design and Development Council (PRODDEC) is the creative and technical hub of our institution. We bridge the gap between imagination and reality, fostering a community where innovation thrives.
+                                The Product Design and Development Center (PRODDEC) is the creative and technical hub of our institution. We bridge the gap between imagination and reality, fostering a community where innovation thrives.
                             </p>
                             <p className="text-lg text-gray-300 font-sans leading-relaxed">
                                 From organizing flagship events to executing complex technical projects, our team is dedicated to excellence in every endeavor. We empower students to explore their potential in design, development, and management.
