@@ -4,15 +4,13 @@ import About from '../components/About';
 import Projects from '../components/Projects';
 import PastEvents from '../components/PastEvents';
 import Vision from '../components/Vision';
-import Mission from '../components/Mission';
 
 const Home = () => {
   return (
-    <main className="relative z-10 w-full flex flex-col items-center">
+    <main className="relative z-10 w-full">
       <Hero />
       <About />
       <Vision />
-      <Mission />
       <Projects />
       <PastEvents />
     </main>

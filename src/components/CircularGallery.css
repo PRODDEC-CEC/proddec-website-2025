@@ -8,6 +8,9 @@
   overflow: visible;
   position: relative;
   /* background: transparent; */
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
 }
 
 .circular-gallery {
@@ -18,7 +21,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none; /* Let events pass through to container, except strictly children if needed. Wait, if I set pointer-events: none here, can I drag? */
 }
+
+/* We need pointer events on container for dragging, but we might want to disable them on inner structural divs so they don't capture events interestingly */
 
 .gallery-item {
   position: absolute;
@@ -31,6 +37,9 @@
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s ease;
+  pointer-events: auto; /* Re-enable pointer events for items so we can click them if needed (though drag is on container) */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .gallery-item img {
@@ -38,4 +47,7 @@
   height: 100%;
   object-fit: cover;
   pointer-events: none; /* Prevent image drag interfering with swipe */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }

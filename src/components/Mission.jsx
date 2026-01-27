@@ -100,11 +100,14 @@ const Mission = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
+          <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-proddec-yellow text-sm font-zentry tracking-wider uppercase mb-6">
+             Our Vision
+          </span>
           <h2 className="text-4xl md:text-5xl font-zentry uppercase font-bold text-white mb-6">
-            Our <span className="text-proddec-yellow">Mission</span>
+            Driving <span className="text-proddec-yellow">Progress</span>
           </h2>
           <p className="max-w-xl mx-auto text-gray-400 text-lg">
-            Driving progress through innovation, partnership, and dedicated growth.
+             Fostering a culture of innovation, partnership, and dedicated growth to shape the future.
           </p>
         </motion.div>
 

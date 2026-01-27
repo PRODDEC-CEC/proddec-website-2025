@@ -50,7 +50,10 @@ const Footer = () => {
                     {/* Brand / Left Section - 5 cols */}
                     <div className="lg:col-span-5 flex flex-col space-y-8">
                         <div>
+                            <div className='flex gap-2'>
+                             <img src="/images/logo.png" alt="Logo" className="h-8 w-auto pointer-events-auto cursor-pointer" />
                             <h2 className="text-3xl font-black text-white tracking-widest uppercase mb-4">Proddec</h2>
+                            </div>
                             <p className="text-gray-400 max-w-md leading-relaxed text-lg">
                                 Product Design and Development Centre. Fostering innovation, creativity, and engineering excellence in the heart of CEC.
                             </p>

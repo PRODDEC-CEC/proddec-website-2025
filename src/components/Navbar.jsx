@@ -169,7 +169,8 @@ const Navbar = () => {
 
     return (
         <>
-            <nav ref={navRef} className="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-white pointer-events-none">
+            <nav ref={navRef} className="fixed top-0 left-0 w-full p-6 flex gap-2 items-center z-50 mix-blend-difference text-white pointer-events-none">
+                <img src="/images/logo.png" alt="Logo" className="h-8 w-auto pointer-events-auto cursor-pointer" />
                 <div className="text-2xl font-zentry font-bold tracking-tighter uppercase cursor-pointer pointer-events-auto"
                      onClick={() => navigate('/')}>
                     PRODDEC

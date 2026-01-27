@@ -52,7 +52,12 @@ const Projects = () => {
             key={`${project.id}-${index}`} 
             className="w-full h-full bg-[#1a1a1a] rounded-lg overflow-hidden border border-white/10 relative group"
         >
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+            <img 
+                src={project.image} 
+                alt={project.title} 
+                draggable="false"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100 select-none" 
+            />
             <div className="absolute inset-x-0 bottom-0 p-4 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
                 <h3 className="text-xl font-bold text-[#FFA200]">{project.title}</h3>
                 <p className="text-gray-300 text-sm mt-1">{project.description}</p>
