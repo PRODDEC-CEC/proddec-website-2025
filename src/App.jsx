@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="relative min-h-screen text-white overflow-hidden bg-black">
+      <div className="relative min-h-screen text-white overflow-x-hidden bg-black">
         <Navbar />
         
         <Routes>
