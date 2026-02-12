@@ -74,6 +74,21 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        // Check if we are at the end (with a small tolerance)
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+        }
+      }
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <CarouselContext.Provider value={{ onCardClose: () => {}, currentIndex }}>
       <div className="relative w-full">
@@ -230,7 +245,7 @@ export const Card = ({ card, index, layout = false }) => {
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className="text-proddec-yellow text-xl md:text-3xl font-bold max-w-xs text-left [text-wrap:balance] font-zentry mt-2 uppercase tracking-wide group-hover:text-proddec-yellow transition-colors duration-300"
+            className="text-proddec-yellow bg-black/40 py-1 rounded-full text-center px-2 text-xl md:text-3xl font-bold max-w-xs text:balance font-zentry mt-2 uppercase tracking-wide group-hover:text-proddec-yellow transition-colors duration-300"
           >
             {card.title}
           </motion.p>

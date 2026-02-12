@@ -54,8 +54,8 @@ const Projects = () => {
     return (
         <section id="project-gallery" className="w-full py-20 px-0 flex flex-col overflow-hidden relative bg-black">
              <div className="w-[80vw] mx-auto text-center pl-4">
-                 <h2 className="text-sm font-bold mb-2 text-white tracking-widest font-zentry uppercase">Projects <span className="text-proddec-yellow">Gallery</span></h2>
-                 <p className="text-white/40 text-5xl font-sans">Explore our latest work</p>
+                 <h2 className="text-lg font-bold mb-2 text-white tracking-widest">Projects <span className="text-proddec-yellow">Gallery</span></h2>
+                 <p className="text-white/40 text-4xl">Explore our latest work</p>
              </div>
             
             <Carousel items={cards} />
