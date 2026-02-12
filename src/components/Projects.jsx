@@ -52,23 +52,13 @@ const Projects = () => {
     }
 
     return (
-        <section id="project-gallery" className="w-full py-20 px-0 flex flex-col items-center overflow-hidden relative">
-            <h2 className="text-4xl font-bold mb-2 text-white">Projects <span className="text-proddec-yellow">Gallery</span></h2>
-            <p className="mb-8 text-white/40 text-sm relative z-10">Drag to explore projects</p>
-
-            <div className="w-full relative" style={{ height: '600px' }}>
-                {galleryItems.length > 0 ? (
-                    <CircularGallery
-                        items={galleryItems}
-                        itemWidth={280}
-                        itemHeight={350}
-                        padding={10}
-                        initialSpeed={0.5}
-                    />
-                ) : (
-                    <p className="text-white/50">No projects found.</p>
-                )}
-            </div>
+        <section id="project-gallery" className="w-full py-20 px-0 flex flex-col overflow-hidden relative bg-black">
+             <div className="w-[80vw] mx-auto text-center pl-4">
+                 <h2 className="text-lg font-bold mb-2 text-white tracking-widest">Projects <span className="text-proddec-yellow">Gallery</span></h2>
+                 <p className="text-white/40 text-4xl">Explore our latest work</p>
+             </div>
+            
+            <Carousel items={cards} />
         </section>
     );
 };
