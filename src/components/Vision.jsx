@@ -15,7 +15,7 @@ const Vision = () => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top top",
-                    end: "+=3000",
+                    end: "+=6000",
                     scrub: 1,
                     pin: true,
                     pinSpacing: true,
@@ -41,10 +41,12 @@ const Vision = () => {
             // 2. Vision Content fades in
             .fromTo(".vision-content", {
                 opacity: 0,
-                y: 50
+                y: 50,
+                filter: "blur(10px)"
             }, {
                 opacity: 1,
                 y: 0,
+                filter: "blur(0px)",
                 duration: 1,
                 ease: "power2.out"
             }, "-=1")
@@ -91,10 +93,12 @@ const Vision = () => {
             // 7. Mission Content (Grid) fades in
             .fromTo(".mission-content", {
                 opacity: 0,
-                y: 50
+                y: 50,
+                filter: "blur(10px)"
             }, {
                 opacity: 1,
                 y: 0,
+                filter: "blur(0px)",
                 duration: 1,
                 ease: "power2.out"
             }, "-=1")
@@ -120,7 +124,7 @@ const Vision = () => {
             {/* Added z-20 to ensure it sits above subsequent content during pinning if conflicts arise */}
             
             {/* Vision Container */}
-            <div ref={visionRef} className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
+            <div ref={visionRef} className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10 will-change-transform">
                 <span className="vision-eyebrow text-proddec-yellow font-sans text-sm uppercase tracking-[0.3em] mb-6 block font-bold">Our Vision</span>
                 
                 <div className="vision-content flex flex-col items-center">
@@ -134,7 +138,7 @@ const Vision = () => {
             </div>
 
             {/* Mission Container */}
-            <div ref={missionRef} className="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 invisible z-10">
+            <div ref={missionRef} className="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-0 invisible z-10 will-change-transform">
                 <span className="mission-eyebrow text-proddec-yellow font-sans text-sm uppercase tracking-[0.3em] mb-12 block font-bold">Our Mission</span>
                 
                 <div className="mission-content grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-12 max-w-6xl w-full text-center">
