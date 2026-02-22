@@ -1,17 +1,29 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 
 const SEO = ({ title, description, keywords }) => {
-    return (
-        <Helmet>
-            <title>{title ? `PRODDEC` : 'PRODDEC - Product Design & Development Centre'}</title>
-            <meta name="description" content={description || "Product Design and Development Centre (PRODDEC) is a student-run organization at College of Engineering Chengannur focusing on innovation and technical excellence."} />
-            <meta name="keywords" content={keywords || "PRODDEC, CET, Engineering, Design, Development, Projects, Students"} />
-            <meta property="og:title" content={title ? `${title} | PRODDEC` : 'PRODDEC - Product Design & Development Centre'} />
-            <meta property="og:description" content={description || "Product Design and Development Centre (PRODDEC) is a student-run organization at College of Engineering Chengannur focusing on innovation and technical excellence."} />
-            <meta property="og:type" content="website" />
-        </Helmet>
-    );
+    useEffect(() => {
+        document.title = title ? `${title} | PRODDEC` : 'PRODDEC';
+
+        const setMetaTag = (name, content) => {
+            let element = document.querySelector(`meta[name="${name}"]`);
+            if (!element) {
+                element = document.createElement('meta');
+                element.name = name;
+                document.head.appendChild(element);
+            }
+            element.content = content;
+        };
+
+        if (description) {
+            setMetaTag('description', description);
+        }
+
+        if (keywords) {
+            setMetaTag('keywords', keywords);
+        }
+    }, [title, description, keywords]);
+
+    return null;
 };
 
 export default SEO;
