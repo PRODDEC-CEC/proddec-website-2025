@@ -97,10 +97,12 @@ const Mission = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="text-center mb-20"
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-proddec-yellow text-sm font-zentry tracking-wider uppercase mb-6">
+          <span className="inline-block text-proddec-yellow text-sm font-zentry tracking-wider uppercase mb-6">
              Our Vision
           </span>
           <h2 className="text-4xl md:text-5xl font-zentry uppercase font-bold text-white mb-6">

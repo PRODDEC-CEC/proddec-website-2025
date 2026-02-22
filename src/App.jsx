@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
@@ -12,15 +12,6 @@ const AllEvents = lazy(() => import("./Pages/AllEvents"));
 const Admin = lazy(() => import("./Pages/Admin"));
 const MembershipRegistration = lazy(() => import("./Pages/MembershipRegistration"));
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
 
 // Loading Fallback Component
 const PageLoader = () => (

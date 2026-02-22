@@ -4,6 +4,7 @@ import About from '../components/About';
 import Projects from '../components/Projects';
 import PastEvents from '../components/PastEvents';
 import Vision from '../components/Vision';
+import Mission from '../components/Mission';
 import Execom from './Execom';
 import SEO from '../components/SEO';
 
@@ -19,7 +20,7 @@ const Home = () => {
       <Hero />
       <About />
       <Vision />
-
+      {/* <Mission /> */}
       <Projects />
       <PastEvents />
       <Execom showCurrentOnly={true} />

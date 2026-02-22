@@ -10,9 +10,9 @@ const PastEvents = () => {
   const recentEvents = events.slice(0, 3);
 
   return (
-    <section id="past-events" className="w-full py-20 px-4 md:px-8 flex flex-col items-center">
-      <h2 className="text-2xl font-bold mb-4 text-[#FFA200]">Past <span className="text-white">Events</span></h2>
-      <p className="text-white/50 mb-12 text-5xl text-center">
+    <section id="events" className="w-full py-20 px-4 md:px-8 flex flex-col items-center">
+      <h2 className="text-xl uppercase font-bold mb-4 text-[#FFA200]">Past <span className="text-white">Events</span></h2>
+      <p className="text-white/50 mb-12 text-2xl uppercase text-center font-montserrat tracking-wide">
         Highlighting our journey through tech excellence.
       </p>
 

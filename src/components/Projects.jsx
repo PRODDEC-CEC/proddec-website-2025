@@ -1,39 +1,48 @@
-import React, { useMemo } from 'react';
-import CircularGallery from './CircularGallery';
+import React from 'react';
 import useProjects from '../hooks/useProjects';
-import getOptimizedImageUrl from '../utils/optimizeImage';
+import { Carousel, Card } from './AppleCardsCarousel';
 
 const Projects = () => {
     const { projects, loading, error } = useProjects();
 
-    // Memoize the gallery items to avoid unnecessary re-renders
-    const galleryItems = useMemo(() => {
-        if (loading || error || projects.length === 0) return [];
+    const dummyProjects = [
+        {
+            category: "Artificial Intelligence",
+            title: "AI Chatbot Assistant",
+            image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=800&auto=format&fit=crop",
+            content: "An advanced AI chatbot capable of understanding context and providing helpful responses.",
+        },
+        {
+            category: "Robotics",
+            title: "Autonomous Drone",
+            image: "https://images.unsplash.com/photo-1506947411487-a56738267384?q=80&w=800&auto=format&fit=crop",
+            content: "A self-navigating drone designed for search and rescue operations.",
+        },
+        {
+            category: "IoT",
+            title: "Smart Home System",
+            image: "https://images.unsplash.com/photo-1558002038-1091a166aa72?q=80&w=800&auto=format&fit=crop",
+            content: "Integrated smart home system controlling lights, temperature, and security.",
+        },
+        {
+            category: "Web Development",
+            title: "E-Commerce Platform",
+            image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800&auto=format&fit=crop",
+            content: "Full-featured e-commerce platform with secure payment gateway.",
+        },
+        {
+            category: "Mobile App",
+            title: "Fitness Tracker",
+            image: "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800&auto=format&fit=crop",
+            content: "Mobile application for tracking fitness activities and health metrics.",
+        },
+    ];
 
-        // Duplicate data to create a full circle effect without gaps
-        // Tripling the list gives us enough items for the circular gallery
-        const allProjects = [...projects, ...projects, ...projects];
+    const displayProjects = (projects && projects.length > 0) ? projects : dummyProjects;
 
-        return allProjects.map((project, index) => (
-            <div
-                key={`${project.id}-${index}`}
-                className="w-full h-full bg-[#1a1a1a] rounded-lg overflow-hidden border border-white/10 relative group"
-            >
-                <img
-                    src={getOptimizedImageUrl(project.image, 400)}
-                    alt={project.title}
-                    draggable="false"
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100 select-none"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                    <h3 className="text-xl font-bold text-[#FFA200]">{project.title}</h3>
-                    {project.category && <p className="text-gray-300 text-xs uppercase tracking-wider mb-1">{project.category}</p>}
-                    <p className="text-gray-300 text-sm mt-1 line-clamp-2">{project.description || project.title}</p>
-                </div>
-            </div>
-        ));
-    }, [projects, loading, error]);
+    const cards = displayProjects.map((card, index) => (
+        <Card key={card.src || card.image || index} card={card} index={index} />
+    ));
 
     if (loading) {
         return (
@@ -45,17 +54,17 @@ const Projects = () => {
 
     if (error) {
         return (
-            <section id="project-gallery" className="w-full py-20 px-0 flex flex-col items-center text-red-500">
+            <section id="projects" className="w-full py-20 px-0 flex flex-col items-center text-red-500">
                 <p>Failed to load projects.</p>
             </section>
         )
     }
 
     return (
-        <section id="project-gallery" className="w-full py-20 px-0 flex flex-col overflow-hidden relative bg-black">
+        <section id="projects" className="w-full py-20 px-0 flex flex-col overflow-hidden relative bg-black">
              <div className="w-[80vw] mx-auto text-center pl-4">
-                 <h2 className="text-lg font-bold mb-2 text-white tracking-widest">Projects <span className="text-proddec-yellow">Gallery</span></h2>
-                 <p className="text-white/40 text-4xl">Explore our latest work</p>
+                 <h2 className="text-md uppercase font-bold mb-2 text-white tracking-widest">Projects <span className="text-proddec-yellow">Gallery</span></h2>
+                 <p className="text-white/60 uppercase text-2xl mt-6 font-montserrat">Explore our latest work</p>
              </div>
             
             <Carousel items={cards} />

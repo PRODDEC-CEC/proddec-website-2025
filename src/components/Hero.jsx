@@ -4,6 +4,7 @@ import Bg from './Bg';
 import useEvents from '../hooks/useEvents';
 import useProjects from '../hooks/useProjects';
 import getOptimizedImageUrl from '../utils/optimizeImage';
+import Projects from '../components/Projects.jsx';
 
 const Hero = () => {
     const component = useRef(null);
@@ -75,9 +76,9 @@ const Hero = () => {
             className="relative min-h-screen w-full overflow-hidden bg-black text-white flex flex-col justify-center"
         >
             {/* Background Component */}
-            <div className="absolute inset-0 z-0 opacity-50">
-                <Bg tint="#FFA200" />
-            </div>
+            {/* <div className="absolute inset-0 z-0 opacity-30">
+                <Bg tint="#FFA200" pageLoadAnimation={false} />
+            </div> */}
 
             {/* Gradient Overlay for better text readability */}
             <div className="absolute inset-0 z-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent pointer-events-none" />
@@ -87,7 +88,7 @@ const Hero = () => {
                 {/* Left Column: Title & Main CTA (Span 7 cols) */}
                 <div className="lg:col-span-7 flex flex-col items-start space-y-8">
                     {/* Logo Label */}
-                    <div className="hero-title-line border border-[#FFA200]/30 px-3 py-1 rounded-full text-xs font-mono text-[#FFA200] uppercase tracking-widest backdrop-blur-sm">
+                    <div className="hero-title-line border border-[#FFA200]/30 px-3 py-1 rounded-full text-xs font-montserrat text-[#FFA200] uppercase tracking-widest backdrop-blur-sm">
                         Product Design & Development Centre
                     </div>
 
@@ -180,7 +181,13 @@ const Hero = () => {
                         </div>
 
                         <div className="flex justify-end px-2">
-                            <button className="text-xs uppercase font-bold tracking-widest text-[#FFA200] hover:text-white transition-colors border-b border-transparent hover:border-white">
+                            <button
+                                onClick={() => {
+                                    const projectsSection = document.getElementById('project-gallery');
+                                    if (projectsSection) projectsSection.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="text-xs uppercase font-bold tracking-widest text-[#FFA200] hover:text-white transition-colors border-b border-transparent hover:border-white"
+                            >
                                 See All Projects
                             </button>
                         </div>

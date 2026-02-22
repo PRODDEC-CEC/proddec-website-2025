@@ -70,18 +70,18 @@ const About = () => {
                             <h1 className="text-4xl md:text-6xl font-bold font-zentry leading-tight mb-4 text-white">
                                 ABOUT <span className="text-[#FFA200]">PRODDEC</span>
                             </h1>
-                            <p className="text-lg text-gray-300 font-sans leading-relaxed">
+                            <p className="text-lg text-gray-300 font-montserrat leading-relaxed">
                                 The Product Design and Development Center (PRODDEC) is the creative and technical hub of our institution. We bridge the gap between imagination and reality, fostering a community where innovation thrives.
                             </p>
-                            <p className="text-lg text-gray-300 font-sans leading-relaxed">
+                            <p className="text-lg text-gray-300 font-montserrat leading-relaxed">
                                 From organizing flagship events to executing complex technical projects, our team is dedicated to excellence in every endeavor. We empower students to explore their potential in design, development, and management.
                             </p>
 
-                            <div className="pt-6">
+                            {/* <div className="pt-6">
                                 <button className="px-8 py-3 bg-[#FFA200] text-black font-bold font-sans uppercase tracking-wider hover:bg-white transition-colors duration-300 cursor-pointer">
                                     Learn More
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* Visual/Image Content */}
@@ -99,7 +99,7 @@ const About = () => {
                 </AnimatedSection>
 
                 {/* Stats Section */}
-                <AnimatedSection className="mt-20">
+                <AnimatedSection className="mt-20 cursor-default">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-800 pt-10">
                         {[
                             { number: "10+", label: "Years Active" },

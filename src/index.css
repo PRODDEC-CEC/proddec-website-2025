@@ -3,6 +3,7 @@
 @theme {
   --font-sans: 'Inter', sans-serif;
   --font-zentry: 'Oswald', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
   
   --color-proddec-yellow: #FFA200;
   --color-proddec-dark: #0a0a0a;
@@ -11,7 +12,7 @@
 }
 
 :root {
-  font-family: var(--font-sans);
+  font-family: var(--font-zentry);
   line-height: 1.5;
   font-weight: 400;
 
@@ -27,7 +28,7 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   background-color: #ffffff;

@@ -40,14 +40,14 @@ const ProfileCard = ({ name, title, handle, avatarUrl, className = "" }) => {
           <h3 className="font-zentry text-3xl font-bold uppercase text-white leading-none mb-1 group-hover:translate-x-1 transition-transform duration-300">
             {name}
           </h3>
-          <p className="font-mono text-[10px] text-[#FFA200] tracking-widest uppercase">
-                // {title}
+          <p className="font-sans text-[10px] text-[#FFA200] tracking-widest uppercase">
+                / {title} /
           </p>
         </div>
 
         <div className="flex items-end justify-between mt-2">
           <div className="flex flex-col gap-1">
-            <span className="text-[9px] text-zinc-600 font-mono uppercase tracking-widest">Connect</span>
+            <span className="text-[9px] text-zinc-600 font-inter uppercase tracking-widest">Connect</span>
           </div>
 
           <a

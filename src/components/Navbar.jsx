@@ -1,11 +1,30 @@
 import React, { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useNavigate, useLocation } from 'react-router-dom';
+import MobileNav from './MobileNav';
+
+const NavHint = ({ isMobile }) => {
+    const [visible, setVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setVisible(false), 8000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (!visible) return null;
+
+    return (
+        <span className="ml-auto pointer-events-auto text-[11px] md:text-xs text-white/50 font-montserrat tracking-wide cursor-default select-none">
+            {isMobile ? 'Tap the right edge for menu →' : 'Hover on the right edge for menu →'}
+        </span>
+    );
+};
 
 const Navbar = () => {
     const navRef = useRef(null);
     const sidebarRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -14,6 +33,13 @@ const Navbar = () => {
     const navLinks = ['Home', 'About', 'Projects', 'Events', 'Vision', 'Mission', 'Execom', 'Contact'];
     const rulerItemsRef = useRef([]);
     const timeline = useRef(null);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
+    }, []);
 
     const handleNavigation = (item) => {
         setIsOpen(false);
@@ -52,32 +78,34 @@ const Navbar = () => {
                 { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.5 }
             );
 
-            // Sidebar Animation
-            timeline.current = gsap.timeline({ paused: true })
-                .to(sidebarRef.current, {
-                    x: '0%',
-                    duration: 0.6,
-                    ease: 'power3.inOut'
-                })
-                .fromTo(rulerItemsRef.current.filter(el => el), // Filter out any nulls
-                    { x: 100, opacity: 0 },
-                    { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
-                    "-=0.4"
-                );
+            // Sidebar Animation (Desktop only)
+            if (!isMobile && sidebarRef.current) {
+                timeline.current = gsap.timeline({ paused: true })
+                    .to(sidebarRef.current, {
+                        x: '0%',
+                        duration: 0.6,
+                        ease: 'power3.inOut'
+                    })
+                    .fromTo(rulerItemsRef.current.filter(el => el), // Filter out any nulls
+                        { x: 100, opacity: 0 },
+                        { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+                        "-=0.4"
+                    );
+            }
         });
 
         return () => ctx.revert();
-    }, []);
+    }, [isMobile]); // Re-run when mobile state changes
 
     useEffect(() => {
-        if (timeline.current) {
+        if (!isMobile && timeline.current) {
             if (isOpen) {
                 timeline.current.play();
             } else {
                 timeline.current.reverse();
             }
         }
-    }, [isOpen]);
+    }, [isOpen, isMobile]);
 
     const updateHoverState = (index, state) => {
         if (index < 0 || index >= rulerItemsRef.current.length || !rulerItemsRef.current[index]) return;
@@ -175,17 +203,45 @@ const Navbar = () => {
                      onClick={() => navigate('/')}>
                     PRODDEC
                 </div>
+                
+                {/* Mobile Hamburger - Visible only on mobile */}
+                {isMobile && (
+                    <button 
+                        onClick={() => setIsOpen(true)}
+                        className="ml-auto pointer-events-auto p-2 text-white hover:text-proddec-yellow transition-colors"
+                        aria-label="Open Menu"
+                    >
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                )}
+
+                <NavHint isMobile={isMobile} />
             </nav>
 
             {/* Trigger Zone */}
             <div 
                 className="fixed top-0 right-0 w-[50px] h-screen z-40"
-                onMouseEnter={() => setIsOpen(true)}
+                onMouseEnter={() => !isMobile && setIsOpen(true)}
+                onClick={() => setIsOpen(prev => !prev)}
             />
+            
+            {/* Mobile Navigation Overlay */}
+            {isMobile && (
+                <MobileNav 
+                    isOpen={isOpen} 
+                    navLinks={navLinks} 
+                    onClose={() => setIsOpen(false)} 
+                />
+            )}
 
+            {/* Desktop Sidebar */}
             <div 
                 ref={sidebarRef}
-                className="fixed top-0 right-0 h-screen w-full md:w-[450px] z-[45] flex flex-col justify-center translate-x-full"
+                className={`fixed top-0 right-0 h-screen w-full md:w-[450px] z-[45] flex flex-col justify-center translate-x-full ${isMobile ? 'hidden' : ''}`}
                 onMouseLeave={() => setIsOpen(false)}
             >
                 <div className="flex flex-col w-full pr-12 items-end justify-center h-full py-10">

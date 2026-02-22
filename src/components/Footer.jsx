@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
@@ -19,88 +20,109 @@ const Footer = () => {
 
     return (
         <footer 
+            id="contact"
             ref={footerRef}
             onMouseMove={handleMouseMove}
             className="w-full relative bg-black overflow-hidden flex flex-col justify-between font-sans h-auto border-t border-gray-900"
         >
             {/* Background Text Effect */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                {/* Base Layer - Faint White */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+                {/* Base Layer - Faint White (Desktop) / Logo (Mobile) */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-[0.05]">
-                     <h1 className="text-[23vw] font-black tracking-tighter text-white leading-none text-center w-full">PRODDEC</h1>
+                     <h1 className="hidden md:block text-[23vw] font-black text-white leading-none font-zentry text-center w-full">PRODDEC</h1>
+                     <img src="/images/logo.png" alt="PRODDEC Logo" className="block md:hidden w-[80%] h-auto object-contain unselectable grayscale" />
                 </div>
                 
-                {/* Spotlight Layer - Yellow */}
+                {/* Spotlight Layer - Yellow (Desktop Only) */}
                 <div 
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="hidden md:flex absolute inset-0 items-center justify-center overflow-hidden"
                     style={{
                         maskImage: `radial-gradient(circle 150px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 100%)`,
                         WebkitMaskImage: `radial-gradient(circle 150px at ${mousePos.x}px ${mousePos.y}px, black 0%, transparent 100%)`
                     }}
                 >
-                     <h1 className="text-[23vw] font-black tracking-tighter text-[#FFA200]/40 leading-none text-center w-full">PRODDEC</h1>
+                     <h1 className="text-[23vw] font-black text-[#FFA200]/40 leading-none font-zentry text-center w-full">PRODDEC</h1>
                 </div>
             </div>
 
             {/* Content Container - Z-index to sit above background */}
             <div className="relative z-10 container mx-auto px-6 py-10 flex flex-col h-full justify-between">
                 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full mb-16">
                     
-                    {/* Brand / Left Section - 5 cols */}
-                    <div className="lg:col-span-5 flex flex-col space-y-8">
-                        <div>
-                            <div className='flex gap-2'>
+                    {/* Column 1: Brand & Socials */}
+                    <div className="flex flex-col space-y-6 md:col-span-2 lg:col-span-1">
+                        <div className='flex gap-2 items-center'>
                              <img src="/images/logo.png" alt="Logo" className="h-8 w-auto pointer-events-auto cursor-pointer" />
-                            <h2 className="text-3xl font-black text-white tracking-widest uppercase mb-4">Proddec</h2>
-                            </div>
-                            <p className="text-gray-400 max-w-md leading-relaxed text-lg">
-                                Product Design and Development Centre. Fostering innovation, creativity, and engineering excellence in the heart of CEC.
-                            </p>
+                            <h2 className="text-3xl font-black text-white uppercase font-zentry">Proddec</h2>
                         </div>
-                        <div className="flex space-x-6">
+                        <p className="text-gray-400 leading-relaxed text-sm font-montserrat">
+                            Product Design and Development Centre. Fostering innovation, creativity, and engineering excellence in the heart of CEC.
+                        </p>
+                        <div className="flex space-x-4">
                             {[FaFacebook, FaInstagram, FaLinkedin, FaTwitter].map((Icon, idx) => (
                                 <a key={idx} href="#" ref={el => iconRefs.current[idx] = el}
-                                   onMouseEnter={() => onEnter(idx)}
-                                   onMouseLeave={() => onLeave(idx)}
-                                   className="text-2xl text-white hover:text-proddec-yellow transition-colors p-2 bg-white/5 rounded-full hover:bg-black">
+                                   className="text-xl text-white hover:text-[#FFA200] transition-colors p-2 bg-white/5 rounded-full hover:bg-black border border-white/10 hover:border-[#FFA200]">
                                     <Icon />
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Spacer */}
-                    <div className="lg:col-span-1"></div>
+                    {/* Wrapper for Quick Links and Contact to be side-by-side on mobile */}
+                    <div className="col-span-1 md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-4">
+                        {/* Column 2: Quick Links */}
+                        <div className="flex flex-col space-y-6 lg:pl-8">
+                            <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Quick Links</h3>
+                            <nav className="flex flex-col space-y-3">
+                                <a href="/#about" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">About Us</a>
+                                <Link to="/events" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">Events</Link>
+                                <a href="/#project-gallery" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">Projects</a>
+                            </nav>
+                        </div>
 
-                    {/* Links - 3 cols */}
-                    <div className="lg:col-span-3 flex flex-col space-y-6">
-                        <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Quick Links</h3>
-                        <nav className="flex flex-col space-y-3">
-                            {['About Us', 'Events', 'Projects', 'Gallery'].map((item) => (
-                                <a key={item} href="#" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">
-                                    {item}
-                                </a>
-                            ))}
-                        </nav>
+                        {/* Column 3: Contact */}
+                        <div className="flex flex-col space-y-6 lg:pl-8">
+                            <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Contact</h3>
+                            <div className="flex flex-col space-y-4">
+                                <div className="text-gray-300 text-sm leading-relaxed">
+                                    <p className="font-bold text-white mb-1">College Of Engineering</p>
+                                    <p>Chengannur, Alappuzha</p>
+                                    <p>Kerala 689121</p>
+                                </div>
+                                
+                                <div className="flex flex-col space-y-3 pt-2">
+                                    <a href="mailto:contact@proddec.org" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3 break-all">
+                                        <FaEnvelope className="shrink-0" /> contact@proddec.org
+                                    </a>
+                                    <a href="tel:+919876543210" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3">
+                                        <FaPhone className="rotate-90 shrink-0" /> +91 98765 43210
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Contact - 3 cols */}
-                     <div className="lg:col-span-3 flex flex-col space-y-6">
-                        <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Get in Touch</h3>
-                        <div className="flex flex-col space-y-4">
-                            <a href="mailto:contact@proddec.org" className="text-gray-400 hover:text-white flex items-center gap-3 group transition-colors">
-                                <span className="p-2 bg-white/5 rounded-lg group-hover:bg-[#FFA200] group-hover:text-black transition-all"><FaEnvelope size={16} /></span>
-                                contact@proddec.org
-                            </a>
-                            <a href="tel:+919876543210" className="text-gray-400 hover:text-white flex items-center gap-3 group transition-colors">
-                               <span className="p-2 bg-white/5 rounded-lg group-hover:bg-[#FFA200] group-hover:text-black transition-all rotate-90"><FaPhone size={16} /></span>
-                                +91 98765 43210
-                            </a>
-                            <div className="text-gray-400 flex items-start gap-3 group">
-                                 <span className="p-2 bg-white/5 rounded-lg group-hover:bg-[#FFA200] group-hover:text-black transition-all mt-1"><FaMapMarkerAlt size={16} /></span>
-                                 <span className="leading-snug hover:text-white cursor-pointer">College of Engineering,<br/>Chengannur, Kerala</span>
-                            </div>
+                    {/* Column 4: Map */}
+                    <div className="flex flex-col space-y-6 md:col-span-2 lg:col-span-1">
+                        <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Location</h3>
+                        <div className="w-full h-40 rounded-xl overflow-hidden border border-white/10 relative group shadow-lg cursor-pointer">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3936.672626927906!2d76.61123731479836!3d9.317189993318182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0622ea03960ab7%3A0xa16f6424564c4839!2sCollege%20of%20Engineering%20Chengannur!5e0!3m2!1sen!2sin!4v1677663456789!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="100%" 
+                                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(90%) contrast(1.2)' }} 
+                                allowFullScreen="" 
+                                loading="lazy" 
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="scale-100 group-hover:scale-110 transition-transform duration-700 ease-out"
+                                title="College of Engineering Chengannur Location"
+                            ></iframe>
+                             {/* Overlay to intercept clicks if needed, or just decoration */}
+                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+                             <div className="absolute bottom-2 right-2 pointer-events-none">
+                                <span className="text-[10px] bg-[#FFA200] text-black font-bold px-2 py-1 rounded shadow-sm">View Map</span>
+                             </div>
                         </div>
                     </div>
                 </div>
