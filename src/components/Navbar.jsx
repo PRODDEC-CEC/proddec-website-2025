@@ -4,6 +4,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import MobileNav from './MobileNav';
 
 const NavHint = ({ isMobile }) => {
+    if (isMobile) return null;
+
     const [visible, setVisible] = useState(true);
 
     useEffect(() => {
@@ -15,7 +17,7 @@ const NavHint = ({ isMobile }) => {
 
     return (
         <span className="ml-auto pointer-events-auto text-[11px] md:text-xs text-white/50 font-montserrat tracking-wide cursor-default select-none">
-            {isMobile ? 'Tap the right edge for menu →' : 'Hover on the right edge for menu →'}
+            Hover on the right edge for menu →
         </span>
     );
 };
@@ -241,7 +243,7 @@ const Navbar = () => {
             {/* Desktop Sidebar */}
             <div 
                 ref={sidebarRef}
-                className={`fixed top-0 right-0 h-screen w-full md:w-[450px] z-[45] flex flex-col justify-center translate-x-full ${isMobile ? 'hidden' : ''}`}
+                className={`fixed top-0 right-0 h-screen w-full md:w-[350px] z-[45] flex flex-col justify-center translate-x-full ${isMobile ? 'hidden' : ''} bg-black/30 backdrop-blur-sm`}
                 onMouseLeave={() => setIsOpen(false)}
             >
                 <div className="flex flex-col w-full pr-12 items-end justify-center h-full py-10">
