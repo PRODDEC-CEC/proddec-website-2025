@@ -107,13 +107,13 @@ const Hero = () => {
                             }}
                             className="group relative px-8 py-4 bg-transparent border border-[#FFA200] text-[#FFA200] rounded-full overflow-hidden transition-all hover:bg-[#FFA200] hover:text-black hover:shadow-[0_0_20px_rgba(255,162,0,0.6)]"
                         >
-                            <Link to='/admin'>
+                             
                             <span className="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-2">
                                 Explore
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                                 </svg>
-                            </span></Link>
+                            </span>
                         </button>
                     </div>
                 </div>
