@@ -1,126 +1,178 @@
-import React from 'react';
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { FaLightbulb, FaHandshake, FaRocket } from 'react-icons/fa';
+import React, { useRef, useLayoutEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const missions = [
-  {
-    title: "Innovation",
-    description: "Pioneering new solutions and pushing technological boundaries to solve real-world problems.",
-    icon: <FaLightbulb className="text-3xl" />,
-  },
-  {
-    title: "Collaboration",
-    description: "Building strong partnerships and fostering a culture of teamwork and mutual growth.",
-    icon: <FaHandshake className="text-3xl" />,
-  },
-  {
-    title: "Growth",
-    description: "Empowering individuals to reach their full potential through continuous learning and development.",
-    icon: <FaRocket className="text-3xl" />,
-  }
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const GlowCard = ({ title, description, icon }) => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
 
-  function handleMouseMove({ currentTarget, clientX, clientY }) {
-    let { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
-  return (
-    <div
-      className="group relative w-full max-w-sm rounded-2xl bg-white/5 p-[1px] transition-transform duration-300 hover:scale-[1.01]"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Animated Border Layer */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              600px circle at ${mouseX}px ${mouseY}px,
-              rgba(255, 162, 0, 0.6), 
-              transparent 40%
-            )
-          `,
-        }}
-      />
-
-      {/* Card Content */}
-      <div className="relative h-full rounded-2xl bg-[#0a0a0a] px-8 py-12 overflow-hidden">
-        {/* Inner Subtle Glow */}
-        <motion.div
-          className="pointer-events-none absolute -inset-px opacity-0 transition duration-500 group-hover:opacity-100"
-          style={{
-            background: useMotionTemplate`
-              radial-gradient(
-                500px circle at ${mouseX}px ${mouseY}px,
-                rgba(255, 162, 0, 0.1),
-                transparent 40%
-              )
-            `,
-          }}
-        />
-
-        <div className="relative z-10 flex flex-col items-start gap-5">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-proddec-yellow/10 text-proddec-yellow border border-proddec-yellow/20 shadow-[0_0_15px_rgba(255,162,0,0.1)]">
-            {icon}
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-xl font-zentry font-semibold uppercase tracking-wider text-white group-hover:text-proddec-yellow transition-colors duration-300">
-              {title}
-            </h3>
-            <p className="text-sm leading-relaxed text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-              {description}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const Mission = () => {
-  return (
-    <section className="py-24 relative overflow-hidden bg-black">
-      {/* Minimal Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-proddec-yellow/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px]" />
-      </div>
+    const missionSectionRef = useRef(null);
 
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: false, margin: "-100px" }}
-          className="text-center mb-20"
-        >
-          <span className="inline-block text-proddec-yellow text-sm font-zentry tracking-wider uppercase mb-6">
-             Our Vision
-          </span>
-          <h2 className="text-4xl md:text-5xl font-zentry uppercase font-bold text-white mb-6">
-            Driving <span className="text-proddec-yellow">Progress</span>
-          </h2>
-          <p className="max-w-xl mx-auto text-gray-400 text-lg">
-             Fostering a culture of innovation, partnership, and dedicated growth to shape the future.
-          </p>
-        </motion.div>
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            let mm = gsap.matchMedia();
 
-        <div className="flex flex-wrap justify-center gap-8">
-            {missions.map((mission, index) => (
-              <GlowCard key={index} {...mission} />
-            ))}
-        </div>
-      </div>
-    </section>
-  );
+            mm.add("(max-width: 767px)", () => {
+                // Mobile animations
+                
+                // MISSION
+                const missionTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: missionSectionRef.current,
+                        start: "top top",
+                        end: "+=1500", // Increase scroll distance for staggering
+                        scrub: 1,
+                        pin: true,
+                        pinSpacing: true,
+                        anticipatePin: 1,
+                    }
+                });
+
+                missionTl.fromTo(".mission-eyebrow", {
+                    scale: 8, 
+                    y: "40vh", 
+                    color: "#ffffff",
+                    transformOrigin: "center center"
+                }, {
+                    scale: 1,
+                    y: 0, 
+                    color: "#FFA200",
+                    duration: 1, 
+                    ease: "power2.inOut"
+                })
+                .to(".mission-eyebrow", {
+                    y: -20, 
+                    duration: 0.5
+                }, "+=0.1")
+                .fromTo(".mission-content > div:first-child", { // Mission Title/Desc first
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "<") 
+                .fromTo(".mission-item", { // Then Mission Items staggered
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.4, // Staggered appearance
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, "-=0.4")
+                .to({}, { duration: 0.5 }); 
+            });
+
+            mm.add("(min-width: 768px)", () => {
+                // Desktop animations
+                const missionTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: missionSectionRef.current,
+                        start: "top top",
+                        end: "+=1000",
+                        scrub: 1,
+                        pin: true,
+                        pinSpacing: true,
+                        anticipatePin: 1,
+                    }
+                });
+
+                missionTl.fromTo(".mission-eyebrow", {
+                    scale: 15,
+                    y: "30vh", 
+                    color: "#ffffff",
+                    transformOrigin: "center center"
+                }, {
+                    scale: 1,
+                    y: 0,
+                    color: "#FFA200",
+                    duration: 1,
+                    ease: "power2.inOut"
+                })
+                .fromTo(".mission-content", {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                }, "+=0.2")
+                .fromTo(".mission-item", {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1, 
+                    duration: 0.5,
+                    ease: "power2.out"
+                }, "<0.2");
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <section id="mission" ref={missionSectionRef} className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-center overflow-hidden relative z-20 p-6 md:p-12">
+            <span className="mission-eyebrow text-proddec-yellow font-sans text-sm md:text-base uppercase tracking-[0.3em] mb-4 md:mb-12 block font-bold text-center">Our Mission</span>
+            
+            <div className="mission-content flex flex-col w-full max-w-7xl gap-6 md:gap-12">
+                <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12 items-center lg:items-center w-full">
+                    <div className="w-full lg:w-1/3 flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
+                        <h2 className="text-3xl sm:text-4xl md:text-7xl lg:text-[4rem] xl:text-[5rem] font-zentry font-black leading-[0.9] uppercase">
+                            Driving <br className="hidden md:block" /><span className="text-proddec-yellow">Innovation</span><br className="hidden md:block" /> Forward
+                        </h2>
+                        <p className="mt-4 md:mt-6 text-xs sm:text-sm md:text-lg font-sans text-gray-400 max-w-md lg:max-w-none">
+                            Our mission is driven by three core pillars that guide every initiative, workshop, and project we undertake.
+                        </p>
+                    </div>
+                    <div className="w-full lg:w-2/3 flex flex-col gap-4 md:gap-8">
+                        <div className="mission-item group flex flex-row gap-3 md:gap-6 items-start border-t border-proddec-yellow md:border-white/10 pt-3 md:pt-6 cursor-pointer transition-colors duration-300 md:hover:border-proddec-yellow">
+                            <span className="text-proddec-yellow font-zentry text-2xl md:text-5xl leading-none opacity-100 md:opacity-50 mt-1 transition-opacity duration-300 md:group-hover:opacity-100">01</span>
+                            <div className="flex flex-col gap-1 md:gap-3 text-left">
+                                <h3 className="text-base md:text-2xl lg:text-3xl font-zentry font-bold text-proddec-yellow md:text-white uppercase tracking-tighter transition-colors duration-300 md:group-hover:text-proddec-yellow">
+                                    Cultivate Technical Expertise
+                                </h3>
+                                <p className="font-sans text-[10px] sm:text-xs md:text-base leading-relaxed transition-all duration-300 text-white md:text-gray-400 md:group-hover:text-white md:group-hover:translate-x-2">
+                                    We provide comprehensive training, hands-on workshops, and real-world projects to equip students with cutting-edge technical skills and industry-standard practices.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div className="mission-item group flex flex-row gap-3 md:gap-6 items-start border-t border-proddec-yellow md:border-white/10 pt-3 md:pt-6 cursor-pointer transition-colors duration-300 md:hover:border-proddec-yellow">
+                            <span className="text-proddec-yellow font-zentry text-2xl md:text-5xl leading-none opacity-100 md:opacity-50 mt-1 transition-opacity duration-300 md:group-hover:opacity-100">02</span>
+                            <div className="flex flex-col gap-1 md:gap-3 text-left">
+                                <h3 className="text-base md:text-2xl lg:text-3xl font-zentry font-bold text-proddec-yellow md:text-white uppercase tracking-tighter transition-colors duration-300 md:group-hover:text-proddec-yellow">
+                                    Foster Creative Problem Solving
+                                </h3>
+                                <p className="font-sans text-[10px] sm:text-xs md:text-base leading-relaxed transition-all duration-300 text-white md:text-gray-400 md:group-hover:text-white md:group-hover:translate-x-2">
+                                    We create an environment that encourages creative thinking, experimentation, and the development of novel solutions to complex contemporary challenges.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="mission-item group flex flex-row gap-3 md:gap-6 items-start border-t border-proddec-yellow md:border-white/10 pt-3 md:pt-6 cursor-pointer transition-colors duration-300 md:hover:border-proddec-yellow">
+                            <span className="text-proddec-yellow font-zentry text-2xl md:text-5xl leading-none opacity-100 md:opacity-50 mt-1 transition-opacity duration-300 md:group-hover:opacity-100">03</span>
+                            <div className="flex flex-col gap-1 md:gap-3 text-left">
+                                <h3 className="text-base md:text-2xl lg:text-3xl font-zentry font-bold text-proddec-yellow md:text-white uppercase tracking-tighter transition-colors duration-300 md:group-hover:text-proddec-yellow">
+                                    Build a Collaborative Community
+                                </h3>
+                                <p className="font-sans text-[10px] sm:text-xs md:text-base leading-relaxed transition-all duration-300 text-white md:text-gray-400 md:group-hover:text-white md:group-hover:translate-x-2">
+                                    We establish a strong network of peers, alumni, and industry professionals to facilitate mentorship, collaboration, and lifelong professional relationships.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default Mission;

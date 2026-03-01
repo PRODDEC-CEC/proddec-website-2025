@@ -11,6 +11,7 @@ const EventPage = lazy(() => import("./Pages/EventPage"));
 const AllEvents = lazy(() => import("./Pages/AllEvents"));
 const Admin = lazy(() => import("./Pages/Admin"));
 const MembershipRegistration = lazy(() => import("./Pages/MembershipRegistration"));
+const Idea = lazy(() => import("./Pages/Idea"));
 
 
 // Loading Fallback Component
@@ -24,7 +25,7 @@ function App() {
   return (
     <Router>
       <SmoothScroll />
-      <div className="w-full min-h-screen bg-black text-white font-sans selection:bg-[#FFA200] selection:text-black">
+      <div classN910ame="w-full min-h-screen bg-black text-white font-sans selection:bg-[#FFA200] selection:text-black">
         <Navbar />
         <Suspense fallback={<PageLoader />}>
           <Routes>
@@ -33,6 +34,7 @@ function App() {
             <Route path="/events" element={<AllEvents />} />
             <Route path="/event/:id" element={<EventPage />} />
             <Route path="/register-membership" element={<MembershipRegistration />} />
+            <Route path="/idea" element={<Idea />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </Suspense>

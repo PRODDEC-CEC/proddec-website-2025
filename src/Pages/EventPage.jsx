@@ -71,9 +71,9 @@ const EventPage = () => {
         <div ref={containerRef} className="relative min-h-screen w-full bg-black text-white overflow-hidden flex flex-col justify-between p-6 md:p-12 pt-24">
             <SEO title={event.title} description={event.description} />
             {/* Background */}
-            <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
+            {/* <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
                 <Bg tint="#FFA200" />
-            </div>
+            </div> */}
 
             {/* Main Content - Centered */}
             <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto grow gap-8">

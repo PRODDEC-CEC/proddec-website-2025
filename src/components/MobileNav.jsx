@@ -26,6 +26,10 @@ const MobileNav = ({ isOpen, onClose, navLinks }) => {
                 const idx = sections.indexOf('execom');
                 if (idx !== -1) return idx;
             }
+            if (path === '/idea') {
+                const idx = sections.indexOf('idea');
+                if (idx !== -1) return idx;
+            }
 
             // 2. If we are on Home (/), try to match visible section
             if (path === '/') {
@@ -96,16 +100,36 @@ const MobileNav = ({ isOpen, onClose, navLinks }) => {
                 navigate('/');
             } else if (lowerItem === 'execom') {
                 navigate('/execom');
+            } else if (lowerItem === 'idea') {
+                navigate('/idea');
             } else {
+                 const scrollToElement = (id) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        let offset = 0;
+                        const isMobileView = window.innerWidth < 768;
+
+                        if (id === 'vision') {
+                            offset = 1000; 
+                        } else if (id === 'mission') {
+                           offset = isMobileView ? 1500 : 1000;
+                        }
+
+                        const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+                        window.scrollTo({
+                            top: elementPosition + offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                 };
+
                  if (location.pathname !== '/') {
                     navigate('/', { state: { targetId: lowerItem } });
                     setTimeout(() => {
-                        const element = document.getElementById(lowerItem);
-                        if (element) element.scrollIntoView({ behavior: 'smooth' });
+                        scrollToElement(lowerItem);
                     }, 500); 
                 } else {
-                    const element = document.getElementById(lowerItem);
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    scrollToElement(lowerItem);
                 }
             }
         }, 400); 
@@ -183,7 +207,7 @@ const MobileNav = ({ isOpen, onClose, navLinks }) => {
                                 onClick={() => handleLinkClick(item, index)}
                             >
                                 <div className={`flex flex-col items-center justify-center p-2 rounded-xl transition-colors`}>
-                                    <span className={`text-[10px] sm:text-xs font-zentry font-bold tracking-widest uppercase transition-colors duration-300 ${activeIndex === index ? 'text-[#FFA200]' : 'text-white/70 group-hover:text-white'}`}>
+                                    <span className={`text-[9px] text-semibold sm:text-xs uppercase font-sans tracking-widest transition-colors duration-300 ${activeIndex === index ? 'text-[#FFA200]' : 'text-white/70 group-hover:text-white'}`}>
                                         {item}
                                     </span>
                                 </div>

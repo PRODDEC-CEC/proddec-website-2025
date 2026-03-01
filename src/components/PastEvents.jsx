@@ -11,8 +11,8 @@ const PastEvents = () => {
 
   return (
     <section id="events" className="w-full py-20 px-4 md:px-8 flex flex-col items-center">
-      <h2 className="text-xl uppercase font-bold mb-4 text-[#FFA200]">Past <span className="text-white">Events</span></h2>
-      <p className="text-white/50 mb-12 text-2xl uppercase text-center font-montserrat tracking-wide">
+      <h2 className="text-xl uppercase font-sans font-bold mb-4 text-[#FFA200]">Past <span className="text-white">Events</span></h2>
+      <p className="text-white/50 mb-12 md:text-2xl uppercase text-center font-sans text-sm tracking-wide">
         Highlighting our journey through tech excellence.
       </p>
 
@@ -23,7 +23,7 @@ const PastEvents = () => {
       ) : error ? (
         <p className="text-red-500 mb-8">Failed to load events.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl justify-items-center mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-[80vw] md:w-full max-w-7xl justify-items-center mb-12">
           {recentEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}

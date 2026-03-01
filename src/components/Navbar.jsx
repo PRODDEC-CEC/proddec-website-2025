@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { useNavigate, useLocation } from 'react-router-dom';
 import MobileNav from './MobileNav';
 
-const NavHint = ({ isMobile }) => {
+const NavHint = ({ isMobile, setIsOpen }) => {
     if (isMobile) return null;
 
     const [visible, setVisible] = useState(true);
@@ -16,7 +16,10 @@ const NavHint = ({ isMobile }) => {
     if (!visible) return null;
 
     return (
-        <span className="ml-auto pointer-events-auto text-[11px] md:text-xs text-white/50 font-montserrat tracking-wide cursor-default select-none">
+        <span 
+            onMouseEnter={() => setIsOpen(true)}
+            className="ml-auto pointer-events-auto text-sm md:text-base text-[#FFA200] font-bold font-montserrat tracking-wide cursor-default select-none drop-shadow-[0_0_10px_rgba(255,162,0,0.5)]"
+        >
             Hover on the right edge for menu →
         </span>
     );
@@ -32,7 +35,7 @@ const Navbar = () => {
     const location = useLocation();
 
     // Using a constant array size logic, so we can index directly
-    const navLinks = ['Home', 'About', 'Projects', 'Events', 'Vision', 'Mission', 'Execom', 'Contact'];
+    const navLinks = ['Home', 'Idea', 'Projects', 'Events', 'Vision', 'Mission', 'Execom', 'Contact'];
     const rulerItemsRef = useRef([]);
     const timeline = useRef(null);
 
@@ -49,25 +52,43 @@ const Navbar = () => {
         
         if (lowerItem === 'home') {
              navigate('/');
+        } else if (lowerItem === 'idea') {
+             navigate('/idea');
         } else if (lowerItem === 'execom') {
              navigate('/execom');
         } else {
             // For hash links (About, Projects, etc.)
+            const scrollToElement = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    let offset = 0;
+                    if (id === 'vision') {
+                        offset = 1250; // Pin duration
+                    } else if (id === 'mission') {
+                       // Check if mobile
+                       const isMobileView = window.innerWidth < 768;
+                       offset = isMobileView ? 1500 : 1000;
+                    }
+
+                    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({
+                        top: elementPosition + offset,
+                        behavior: 'smooth'
+                    });
+                }
+            };
+            
             if (location.pathname !== '/') {
                 // If not on home page, navigate home first then scroll
                 navigate('/', { state: { targetId: lowerItem } });
                 // Note: The ScrollToTop component or a useEffect in Home needs to handle the scrolling 
                 // but since we're using simple hash navigation for now, let's try direct hash
                 setTimeout(() => {
-                    const element = document.getElementById(lowerItem);
-                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    scrollToElement(lowerItem);
                 }, 100);
             } else {
                 // Already on home page, just scroll
-                const element = document.getElementById(lowerItem);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                }
+                scrollToElement(lowerItem);
             }
         }
     };
@@ -221,7 +242,7 @@ const Navbar = () => {
                     </button>
                 )}
 
-                <NavHint isMobile={isMobile} />
+                <NavHint isMobile={isMobile} setIsOpen={setIsOpen} />
             </nav>
 
             {/* Trigger Zone */}

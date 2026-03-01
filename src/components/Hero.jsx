@@ -73,7 +73,7 @@ const Hero = () => {
         <section
             ref={component}
             id="home"
-            className="relative min-h-screen w-full overflow-hidden bg-black text-white flex flex-col justify-center"
+            className="relative min-h-screen md:w-[95vw] mx-auto overflow-hidden text-white flex flex-col justify-center"
         >
             {/* Background Component */}
             {/* <div className="absolute inset-0 z-0 opacity-30">
@@ -88,7 +88,7 @@ const Hero = () => {
                 {/* Left Column: Title & Main CTA (Span 7 cols) */}
                 <div className="lg:col-span-7 flex flex-col items-start space-y-8">
                     {/* Logo Label */}
-                    <div className="hero-title-line border border-[#FFA200]/30 px-3 py-1 rounded-full text-xs font-montserrat text-[#FFA200] uppercase tracking-widest backdrop-blur-sm">
+                    <div className="hero-title-line border border-[#FFA200]/30 px-3 py-1 rounded-full text-[10px] md:text-xs font-montserrat text-[#FFA200] uppercase tracking-widest backdrop-blur-sm">
                         Product Design & Development Centre
                     </div>
 
@@ -100,21 +100,18 @@ const Hero = () => {
                     </h1>
 
                     <div className="hero-cta">
-                        <button
-                            onClick={() => {
-                                const nextSection = document.getElementById('project-gallery');
-                                if (nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            className="group relative px-8 py-4 bg-transparent border border-[#FFA200] text-[#FFA200] rounded-full overflow-hidden transition-all hover:bg-[#FFA200] hover:text-black hover:shadow-[0_0_20px_rgba(255,162,0,0.6)]"
+                        <Link
+                            to="/idea"
+                            className="group relative md:px-8 md:py-4 px-4 py-2 bg-transparent border border-[#FFA200] rounded-full overflow-hidden transition-all hover:bg-[#FFA200] hover:text-black hover:shadow-[0_0_20px_rgba(255,162,0,0.6)] inline-flex items-center"
                         >
                              
                             <span className="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-2">
-                                Explore
+                                Have an IDEA ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                                 </svg>
                             </span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -244,8 +241,6 @@ const Hero = () => {
                 </div>
             </div>
 
-            {/* Decorative CSS for outline text & scrollbar hide */}
-            {/* Decorative CSS for outline text & scrollbar hide moved to index.css */}
         </section>
     );
 };

@@ -5,30 +5,10 @@ import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ExecomSection = ({ title, members, filter }) => {
-  const carouselRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (carouselRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-        // Only scroll if there is overflow (mobile view)
-        if (scrollWidth > clientWidth) {
-          if (scrollLeft + clientWidth >= scrollWidth - 20) {
-            carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
-          } else {
-            // Scroll by card width + gap approx
-            carouselRef.current.scrollBy({ left: window.innerWidth * 0.7 + 24, behavior: "smooth" });
-          }
-        }
-      }
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   if (!members || members.length === 0) return null;
 
   return (
-    <div className="mb-24 relative px-4 md:px-16 w-[90vw] mx-auto md:w-full">
+    <div className="mb-24 relative px-4 md:px-0 w-[90vw] mx-auto md:w-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 pl-4 border-l-4 border-[#FFA200]">
         <h2 className="text-3xl md:text-4xl font-bold text-white font-zentry tracking-wide text-[#FFA200]">{title}</h2>
         <div className="mt-4 md:mt-0">
@@ -36,9 +16,9 @@ const ExecomSection = ({ title, members, filter }) => {
         </div>
       </div>
 
-      <div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 pb-8 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-12 md:overflow-visible md:pb-0 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-12">
         {members.map((member) => (
-          <div key={member.id} className="snap-center shrink-0 w-[70vw] sm:w-[350px] md:w-auto transform hover:z-10 transition-all duration-300">
+          <div key={member.id} className="w-full transform hover:z-10 transition-all duration-300">
             <ProfileCard
               name={member.name}
               title={member.title}

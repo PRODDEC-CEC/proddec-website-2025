@@ -8,38 +8,38 @@ const plans = [
         name: 'First Year',
         price: '₹599',
         features: ['Access to Workshops', 'Mentorship Sessions', 'Basic Projects'],
-        color: '#FF0000', // Red
-        gradient: 'from-red-600 to-red-500',
-        shadow: 'rgba(255, 0, 0, 0.3)',
-        borderColor: 'border-red-500',
+        color: '#FDE047', // Yellow-300
+        gradient: 'from-yellow-400 to-yellow-300',
+        shadow: 'rgba(253, 224, 71, 0.3)',
+        borderColor: 'border-yellow-300',
     
     },
     {
         name: 'Second Year',
         price: '₹499',
         features: ['Advanced Workshops', 'Hackathon Support', 'Core Projects'],
-        color: '#00FF00', // Green
-        gradient: 'from-green-600 to-green-500',
-        shadow: 'rgba(0, 255, 0, 0.3)',
-        borderColor: 'border-green-500'
+        color: '#FACC15', // Yellow-400
+        gradient: 'from-yellow-500 to-yellow-400',
+        shadow: 'rgba(250, 204, 21, 0.3)',
+        borderColor: 'border-yellow-400'
     },
     {
         name: 'Third Year',
         price: '₹399',
         features: ['Leadership Roles', 'Industry Networking', 'Flagship Events'],
-        color: '#800080', // Purple
-        gradient: 'from-purple-600 to-purple-500',
-        shadow: 'rgba(128, 0, 128, 0.3)',
-        borderColor: 'border-purple-500'
+        color: '#FBBF24', // Yellow-500
+        gradient: 'from-amber-500 to-amber-400',
+        shadow: 'rgba(234, 179, 8, 0.3)',
+        borderColor: 'border-amber-500'
     },
     {
         name: 'Fourth Year',
         price: '₹299',
         features: ['Alumni Access', 'Placement Assist', 'Honorary Membership'],
-        color: '#0000FF', // Blue
-        gradient: 'from-blue-600 to-blue-500',
-        shadow: 'rgba(0, 0, 255, 0.3)',
-        borderColor: 'border-blue-500'
+        color: '#FBBF24', // Yellow-600
+        gradient: 'from-amber-600 to-amber-500',
+        shadow: 'rgba(217, 119, 6, 0.3)',
+        borderColor: 'border-amber-500'
     }
 ];
 
@@ -49,13 +49,13 @@ const Membership = () => {
     const [selectedPlan, setSelectedPlan] = useState('First Year');
 
     return (
-        <section className="w-full py-20 px-4 md:px-12 bg-black text-white" id="membership">
-            <div className="max-w-6xl mx-auto">
+        <section className="w-[85vw] md:w-full py-10 mx-auto bg-black text-white" id="membership">
+            <div className="w-[85vw] mx-auto">
                 {/* Header */}
                 <div className="mb-12">
                     <p className="text-[#FFA200] font-bold text-sm uppercase tracking-widest mb-2">PRODDEC MEMBER</p>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 font-zentry">Choose your Membership Tier</h2>
-                    <ul className="space-y-3">
+                    <h2 className="text-4xl md:text-5xl mb-6">Choose your Membership Tier</h2>
+                    <ul className="space-y-3 font-sans text-sm md:text-lg">
                         <li className="flex items-center gap-3 text-white/80">
                             <FaCheck className="text-[#FFA200]" />
                             <span>Exclusive access to PRODDEC resources and tools</span>
@@ -95,7 +95,7 @@ const Membership = () => {
                                     </div>
                                 )}
                                 {/* Card Header (Gradient Box) */}
-                                <div className={`mb-6 p-4 -mx-6 -mt-6 rounded-t-2xl font-bold uppercase tracking-widest text-center ${isSelected
+                                <div className={`mb-6 p-4 -mx-6 -mt-6 rounded-t-2xl font-sans font-bold uppercase tracking-wider text-center ${isSelected
                                     ? `bg-linear-to-r ${plan.gradient} text-white`
                                     : 'bg-white/10 text-white/50'
                                     }`}>
@@ -114,7 +114,7 @@ const Membership = () => {
                                         <div key={idx} className="flex items-start gap-2">
                                             <FaCheck className={`mt-1`} style={{ color: isSelected ? plan.color : 'rgba(255,255,255,0.5)' }} />
                                             <div>
-                                                <p className={`font-medium ${isSelected ? 'text-black/80' : 'text-white/80'}`}>{feature}</p>
+                                                <p className={`font-medium font-sans ${isSelected ? 'text-black/80' : 'text-white/80'}`}>{feature}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -126,7 +126,7 @@ const Membership = () => {
                                         e.stopPropagation();
                                         navigate(`/register-membership?plan=${encodeURIComponent(plan.name)}&price=${encodeURIComponent(plan.price)}`);
                                     }}
-                                    className={`w-full mt-8 py-3 rounded font-bold uppercase tracking-wider transition-colors text-white`}
+                                    className={`w-full mt-8 py-3 rounded-2xl font-bold uppercase tracking-wider transition-colors text-white`}
                                     style={{
                                         backgroundColor: isSelected ? plan.color : 'rgba(255,255,255,0.1)',
                                         color: isSelected ? 'white' : 'white'
@@ -140,8 +140,8 @@ const Membership = () => {
                     })}
                 </div>
 
-                <p className="text-center text-white/30 text-xs mt-12">
-                    Membership validity is for the end of your academic year. Benefits apply accordingly.
+                <p className="text-center text-white/30 text-xs font-sans mt-12">
+                    *Membership validity is for the end of your academic year. Benefits apply accordingly.
                 </p>
 
             </div>

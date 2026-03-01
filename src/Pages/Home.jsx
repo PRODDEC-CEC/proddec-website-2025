@@ -5,7 +5,8 @@ import Projects from '../components/Projects';
 import PastEvents from '../components/PastEvents';
 import Vision from '../components/Vision';
 import Mission from '../components/Mission';
-import Execom from './Execom';
+import HomeExecom from '../components/HomeExecom';
+import Testimonials from '../components/Testimonials';
 import SEO from '../components/SEO';
 
 import Membership from '../components/Membership';
@@ -20,10 +21,11 @@ const Home = () => {
       <Hero />
       <About />
       <Vision />
-      {/* <Mission /> */}
+      <Mission />
       <Projects />
       <PastEvents />
-      <Execom showCurrentOnly={true} />
+      <HomeExecom />
+      <Testimonials />
       <Membership />
     </main>
   );

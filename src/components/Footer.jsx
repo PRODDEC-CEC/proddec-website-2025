@@ -8,7 +8,6 @@ const Footer = () => {
     const footerRef = useRef(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-
     const handleMouseMove = (e) => {
         if (!footerRef.current) return;
         const rect = footerRef.current.getBoundingClientRect();
@@ -17,6 +16,15 @@ const Footer = () => {
             y: e.clientY - rect.top,
         });
     };
+
+    const quickLinks = [
+        { name: "About Us", path: "/#about", isExternal: true },
+        { name: "Vision", path: "/#vision", isExternal: true },
+        { name: "Mission", path: "/#mission", isExternal: true },
+        { name: "Events", path: "/events", isExternal: false },
+        { name: "Projects", path: "/#project-gallery", isExternal: true },
+        { name: "Execom", path: "/execom", isExternal: false },
+    ];
 
     return (
         <footer 
@@ -73,17 +81,25 @@ const Footer = () => {
                     <div className="col-span-1 md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-4">
                         {/* Column 2: Quick Links */}
                         <div className="flex flex-col space-y-6 lg:pl-8">
-                            <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Quick Links</h3>
+                            <h3 className="text-[#FFA200] font-bold text-md md:text-xl uppercase tracking-wider">Quick Links</h3>
                             <nav className="flex flex-col space-y-3">
-                                <a href="/#about" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">About Us</a>
-                                <Link to="/events" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">Events</Link>
-                                <a href="/#project-gallery" className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 uppercase font-semibold duration-300 w-fit">Projects</a>
+                                {quickLinks.map((link, idx) => (
+                                    link.isExternal ? (
+                                        <a key={idx} href={link.path} className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 duration-300 w-fit">
+                                            {link.name}
+                                        </a>
+                                    ) : (
+                                        <Link key={idx} to={link.path} className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 duration-300 w-fit">
+                                            {link.name}
+                                        </Link>
+                                    )
+                                ))}
                             </nav>
                         </div>
 
                         {/* Column 3: Contact */}
-                        <div className="flex flex-col space-y-6 lg:pl-8">
-                            <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Contact</h3>
+                        <div className="flex flex-col space-y-6 lg:pl-8 cursor-default">
+                            <h3 className="text-[#FFA200] font-bold md:text-xl uppercase tracking-wider">Contact</h3>
                             <div className="flex flex-col space-y-4">
                                 <div className="text-gray-300 text-sm leading-relaxed">
                                     <p className="font-bold text-white mb-1">College Of Engineering</p>
@@ -105,8 +121,8 @@ const Footer = () => {
 
                     {/* Column 4: Map */}
                     <div className="flex flex-col space-y-6 md:col-span-2 lg:col-span-1">
-                        <h3 className="text-[#FFA200] font-bold text-xl uppercase tracking-wider">Location</h3>
-                        <div className="w-full h-40 rounded-xl overflow-hidden border border-white/10 relative group shadow-lg cursor-pointer">
+                        <h3 className="text-[#FFA200] font-bold md:text-xl uppercase tracking-wider">Location</h3>
+                        <div className=" w-[80vw] m-auto md:w-full h-40 rounded-xl overflow-hidden border border-white/10 relative group shadow-lg cursor-pointer">
                             <iframe 
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3936.672626927906!2d76.61123731479836!3d9.317189993318182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0622ea03960ab7%3A0xa16f6424564c4839!2sCollege%20of%20Engineering%20Chengannur!5e0!3m2!1sen!2sin!4v1677663456789!5m2!1sen!2sin" 
                                 width="100%" 
@@ -128,9 +144,9 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <div className="pt-4 md:pt-8 border-t border-white/10 flex md:flex-row justify-between items-center text-[8px] md:text-sm text-gray-500">
                     <p>© 2026 PRODDEC. All rights reserved.</p>
-                     <p className="mt-2 md:mt-0 flex items-center gap-1">Made with <span className="text-[#FFA200]">⚡</span> by PRODDEC Web Team</p>
+                     <p className="mt-2 md:mt-0 items-center gap-1">Made with <span className="text-[#FFA200]">⚡</span> by <b className="text-[#FFA200]">PRODDEC</b> Web Team</p>
                 </div>
             </div>
         </footer>

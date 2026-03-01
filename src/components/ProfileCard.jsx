@@ -4,7 +4,7 @@ import getOptimizedImageUrl from '../utils/optimizeImage';
 
 const ProfileCard = ({ name, title, handle, avatarUrl, className = "" }) => {
   return (
-    <div className={`group relative h-[450px] w-full max-w-[320px] overflow-hidden bg-zinc-900 rounded-xl border border-zinc-800 transition-all duration-300 hover:border-[#FFA200]/50 hover:shadow-2xl hover:shadow-[#FFA200]/10 ${className}`}>
+    <div className={`group relative h-[400px] md:h-[450px] w-full max-w-[320px] overflow-hidden bg-zinc-900 rounded-xl border border-zinc-800 transition-all duration-300 hover:border-[#FFA200]/50 hover:shadow-2xl hover:shadow-[#FFA200]/10 ${className}`}>
 
       {/* 2/3 Image Section - approx 66% */}
       <div className="relative h-[66%] w-full overflow-hidden">

@@ -58,7 +58,7 @@ const StatItem = ({ number, label }) => {
 const About = () => {
     return (
         <section id="about" className="relative w-full min-h-screen bg-black text-white py-20 px-6 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+            <div className="w-[90vw] mx-auto">
                 <AnimatedSection>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
@@ -70,10 +70,10 @@ const About = () => {
                             <h1 className="text-4xl md:text-6xl font-bold font-zentry leading-tight mb-4 text-white">
                                 ABOUT <span className="text-[#FFA200]">PRODDEC</span>
                             </h1>
-                            <p className="text-lg text-gray-300 font-montserrat leading-relaxed">
+                            <p className=" text-md md:text-lg text-gray-300 font-montserrat leading-relaxed">
                                 The Product Design and Development Center (PRODDEC) is the creative and technical hub of our institution. We bridge the gap between imagination and reality, fostering a community where innovation thrives.
                             </p>
-                            <p className="text-lg text-gray-300 font-montserrat leading-relaxed">
+                            <p className="text-md md:text-lg text-gray-300 font-montserrat leading-relaxed">
                                 From organizing flagship events to executing complex technical projects, our team is dedicated to excellence in every endeavor. We empower students to explore their potential in design, development, and management.
                             </p>
 
@@ -86,13 +86,13 @@ const About = () => {
 
                         {/* Visual/Image Content */}
                         <div className="relative">
-                            <div className="relative z-10 w-full h-[400px] md:h-[500px] bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden group">
+                            <div className="relative z-10 w-full h-[300px] md:h-[500px] bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden group">
                                 <img src="/images/idea1.png" alt="About PRODDEC" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 <div className="absolute inset-0 pointer-events-none"></div>
                             </div>
 
                             {/* Background accent */}
-                            <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#FFA200]/30 rounded-lg -z-0"></div>
+                            <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-full h-full border-2 border-[#FFA200]/30 rounded-lg -z-0"></div>
                         </div>
 
                     </div>
@@ -102,10 +102,10 @@ const About = () => {
                 <AnimatedSection className="mt-20 cursor-default">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-800 pt-10">
                         {[
-                            { number: "10+", label: "Years Active" },
-                            { number: "50+", label: "Events Hosted" },
-                            { number: "100+", label: "Projects Done" },
-                            { number: "500+", label: "Members" }
+                            { number: "30+", label: "Years Active" },
+                            { number: "150+", label: "Events Hosted" },
+                            { number: "200+", label: "Projects Done" },
+                            { number: "3000+", label: "Members" }
                         ].map((stat, index) => (
                             <StatItem key={index} {...stat} />
                         ))}

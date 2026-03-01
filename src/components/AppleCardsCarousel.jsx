@@ -125,7 +125,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
         </div>
         
         {/* Navigation Buttons */}
-        <div className="flex justify-end gap-2 mr-40">
+        <div className="flex justify-end gap-2 mr-[10vw] md:mr-[23vw]">
           <button
             className={`relative z-40 h-10 w-10 rounded-full bg-proddec-yellow group border border-black hover:border-proddec-yellow flex items-center justify-center disabled:opacity-50 transition-colors duration-150 hover:bg-black/50`}
             onClick={scrollLeft}
@@ -233,19 +233,19 @@ export const Card = ({ card, index, layout = false }) => {
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[80vh] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
+        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-90 w-60 md:h-[80vh] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left"
+            className="text-white text-sm md:text-base font-medium font-sans uppercase text-left"
           >
             {card.category}
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className="text-proddec-yellow bg-black/40 py-1 rounded-full text-center px-2 text-xl md:text-3xl font-bold max-w-xs text:balance font-zentry mt-2 uppercase tracking-wide group-hover:text-proddec-yellow transition-colors duration-300"
+            className="text-proddec-yellow bg-black/40 py-1 rounded-full text-center px-2 text-sm md:text-3xl font-bold max-w-xs text:balance font-zentry mt-2 tracking-wide group-hover:text-proddec-yellow transition-colors duration-300"
           >
             {card.title}
           </motion.p>
