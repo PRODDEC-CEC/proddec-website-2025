@@ -15,7 +15,8 @@ const ProfileCard = ({ name, title, handle, avatarUrl, className = "" }) => {
         <img
           src={getOptimizedImageUrl(avatarUrl, 400)}
           alt={name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          draggable="false"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 select-none"
         />
 
         {/* Tech Decorations on Image */}

@@ -124,7 +124,7 @@ const Footer = () => {
                         <h3 className="text-[#FFA200] font-bold md:text-xl uppercase tracking-wider">Location</h3>
                         <div className=" w-[80vw] m-auto md:w-full h-40 rounded-xl overflow-hidden border border-white/10 relative group shadow-lg cursor-pointer">
                             <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3936.672626927906!2d76.61123731479836!3d9.317189993318182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0622ea03960ab7%3A0xa16f6424564c4839!2sCollege%20of%20Engineering%20Chengannur!5e0!3m2!1sen!2sin!4v1677663456789!5m2!1sen!2sin" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.179809479044!2d76.61491067444221!3d9.317330584410188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0622ea027eb08f%3A0x41105b207db821c6!2sCollege%20of%20Engineering%20Chengannur!5e0!3m2!1sen!2sin!4v1772461854824!5m2!1sen!2sin" 
                                 width="100%" 
                                 height="100%" 
                                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(90%) contrast(1.2)' }} 

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,21 +13,29 @@ const Admin = lazy(() => import("./Pages/Admin"));
 const MembershipRegistration = lazy(() => import("./Pages/MembershipRegistration"));
 const Idea = lazy(() => import("./Pages/Idea"));
 
-
-// Loading Fallback Component
-const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <div className="w-16 h-16 border-4 border-[#FFA200] border-t-transparent rounded-full animate-spin"></div>
-  </div>
-);
+import Loader from "./components/Loader";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <Router>
       <SmoothScroll />
-      <div classN910ame="w-full min-h-screen bg-black text-white font-sans selection:bg-[#FFA200] selection:text-black">
+      <div className="w-full min-h-screen bg-black text-white font-sans selection:bg-[#FFA200] selection:text-black">
         <Navbar />
-        <Suspense fallback={<PageLoader />}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/execom" element={<Execom />} />
