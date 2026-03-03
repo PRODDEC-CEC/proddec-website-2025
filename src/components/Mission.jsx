@@ -119,7 +119,7 @@ const Mission = () => {
     }, []);
 
     return (
-        <section id="mission" ref={missionSectionRef} className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-center overflow-hidden relative z-20 p-6 md:p-12">
+        <section id="mission" ref={missionSectionRef} className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-start md:justify-center overflow-hidden relative z-20 px-6 pt-28 pb-6 md:p-12">
             <span className="mission-eyebrow text-proddec-yellow font-sans text-sm md:text-base uppercase tracking-[0.3em] mb-4 md:mb-12 block font-bold text-center">Our Mission</span>
             
             <div className="mission-content flex flex-col w-full max-w-7xl gap-6 md:gap-12">

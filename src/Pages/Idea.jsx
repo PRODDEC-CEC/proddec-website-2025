@@ -54,7 +54,7 @@ const Idea = () => {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white pt-32 pb-20 overflow-x-hidden flex flex-col font-sans">
+        <div className="min-h-screen w-[95vw] mx-auto bg-black text-white pt-32 pb-20 overflow-x-hidden flex flex-col font-sans">
             
             {/* Background Elements */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -82,7 +82,7 @@ const Idea = () => {
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.1 }}
-                            className="text-gray-400 text-lg font-medium max-w-sm leading-relaxed md:text-right"
+                            className="text-gray-400 text-sm md:text-lg font-medium md:max-w-sm leading-relaxed md:text-right"
                         >
                             Share your thoughts, projects, or innovations with PRODDEC. 
                         </motion.p>
@@ -110,7 +110,7 @@ const Idea = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     placeholder="Your Full Name"
-                                    className="w-full bg-transparent border-b border-white/20 py-2 text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
+                                    className="w-full bg-transparent border-b border-white/20 py-2 md:text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
                                 />
                             </div>
 
@@ -125,7 +125,7 @@ const Idea = () => {
                                     value={formData.phone}
                                     onChange={handleChange}
                                     placeholder="+91 XXXXX XXXXX"
-                                    className="w-full bg-transparent border-b border-white/20 py-2 text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
+                                    className="w-full bg-transparent border-b border-white/20 py-2 md:text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
                                 />
                             </div>
 
@@ -139,7 +139,7 @@ const Idea = () => {
                                     value={formData.class}
                                     onChange={handleChange}
                                     placeholder="e.g. S4 G"
-                                    className="w-full bg-transparent border-b border-white/20 py-2 text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
+                                    className="w-full bg-transparent border-b border-white/20 py-2 md:text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
                                 />
                             </div>
 
@@ -155,13 +155,13 @@ const Idea = () => {
                                     value={formData.membershipId}
                                     onChange={handleChange}
                                     placeholder="e.g. PROXXXXX"
-                                    className="w-full bg-transparent border-b border-white/20 py-2 text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
+                                    className="w-full bg-transparent border-b border-white/20 py-2 md:text-2xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all font-light"
                                 />
                             </div>
 
                             {/* Idea Description Input */}
                             <div className="space-y-4 group md:col-span-2">
-                                <label htmlFor="description" className="block text-xs font-bold uppercase tracking-widest text-gray-500 ml-1 group-focus-within:text-[#FFA200] transition-colors">The Idea</label>
+                                <label htmlFor="description" className="block text-xs font-bold uppercase tracking-widest text-gray-500 ml-1 group-focus-within:text-[#FFA200] transition-colors">Brief your Idea</label>
                                 <textarea
                                     id="description"
                                     name="description"
@@ -169,8 +169,8 @@ const Idea = () => {
                                     value={formData.description}
                                     onChange={handleChange}
                                     rows="4"
-                                    placeholder="Tell us about what you want to build..."
-                                    className="w-full bg-transparent border-b border-white/20 py-2 text-xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all resize-none font-light leading-relaxed"
+                                    placeholder="Tell us about what you want to build...?"
+                                    className="w-full bg-transparent border-b border-white/20 py-2 md:text-xl text-white placeholder-white/10 focus:outline-none focus:border-[#FFA200] transition-all resize-none font-light leading-relaxed"
                                 ></textarea>
                             </div>
                         </div>

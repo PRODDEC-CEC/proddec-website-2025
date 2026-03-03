@@ -102,7 +102,7 @@ const Vision = () => {
     return (
         <>
             {/* Vision Section */}
-            <section id="vision" ref={visionSectionRef} className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-center overflow-hidden relative z-20 p-6 md:p-12">
+            <section id="vision" ref={visionSectionRef} className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-start md:justify-center overflow-hidden relative z-20 px-6 pt-28 pb-6 md:p-12">
                 <div className="w-full max-w-7xl flex flex-col items-center justify-center text-center">
                     <span className="vision-eyebrow text-proddec-yellow font-sans text-sm md:text-base uppercase tracking-[0.3em] mb-8 md:mb-12 block font-bold">Our Vision</span>
                     

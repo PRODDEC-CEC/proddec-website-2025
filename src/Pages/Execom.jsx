@@ -24,7 +24,7 @@ const ExecomSection = ({ title, members, filter }) => {
               title={member.title}
               handle={member.handle}
               avatarUrl={member.avatarUrl}
-              className="shadow-2xl h-full"
+              className="shadow-2xl"
             />
           </div>
         ))}

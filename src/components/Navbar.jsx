@@ -38,6 +38,43 @@ const Navbar = () => {
     const navLinks = ['Home', 'Idea', 'Projects', 'Events', 'Vision', 'Mission', 'Execom', 'Contact'];
     const rulerItemsRef = useRef([]);
     const timeline = useRef(null);
+    const lastScrollY = useRef(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // If at the very top, always show
+            if (currentScrollY < 10) {
+                if (!isVisible) {
+                    setIsVisible(true);
+                    gsap.to(navRef.current, { y: 0, duration: 0.3, ease: 'power2.out' });
+                }
+                lastScrollY.current = currentScrollY;
+                return;
+            }
+
+            if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+                // Scrolling down
+                if (isVisible && !isOpen) {
+                    setIsVisible(false);
+                    gsap.to(navRef.current, { y: -100, duration: 0.3, ease: 'power2.out' });
+                }
+            } else if (currentScrollY < lastScrollY.current) {
+                // Scrolling up
+                if (!isVisible && !isOpen) {
+                    setIsVisible(true);
+                    gsap.to(navRef.current, { y: 0, duration: 0.3, ease: 'power2.out' });
+                }
+            }
+            
+            lastScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isVisible, isOpen]);
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 768);
@@ -220,7 +257,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav ref={navRef} className="fixed top-0 left-0 w-full p-6 flex gap-2 items-center z-50 mix-blend-difference text-white pointer-events-none">
+            <nav ref={navRef} className="fixed top-0 left-0 w-full p-6 flex gap-2 items-center z-50 text-white pointer-events-none">
                 <img src="/images/logo.png" alt="Logo" className="h-8 w-auto pointer-events-auto cursor-pointer" />
                 <div className="text-2xl font-zentry font-bold tracking-tighter uppercase cursor-pointer pointer-events-auto"
                      onClick={() => navigate('/')}>
@@ -246,11 +283,13 @@ const Navbar = () => {
             </nav>
 
             {/* Trigger Zone */}
-            <div 
-                className="fixed top-0 right-0 w-[50px] h-screen z-40"
-                onMouseEnter={() => !isMobile && setIsOpen(true)}
-                onClick={() => setIsOpen(prev => !prev)}
-            />
+            {!isMobile && (
+                <div 
+                    className="fixed top-0 right-0 w-[50px] h-screen z-40"
+                    onMouseEnter={() => setIsOpen(true)}
+                    onClick={() => setIsOpen(prev => !prev)}
+                />
+            )}
             
             {/* Mobile Navigation Overlay */}
             {isMobile && (

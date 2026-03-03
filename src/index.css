@@ -35,19 +35,18 @@ body {
   color: #fff;
 }
 
-/* Custom Scrollbar */
+html {
+  overflow-x: hidden;
+}
+
+/* Hide Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    display: none;
 }
-::-webkit-scrollbar-track {
-    background: #0a0a0a; 
-}
-::-webkit-scrollbar-thumb {
-    background: #444; 
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #666; 
+
+* {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 ::selection {
@@ -75,13 +74,6 @@ button:focus-visible {
 .text-outline-white {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
     color: transparent;
-}
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .animate-spin-reverse { animation: spin-reverse 3s linear infinite; }

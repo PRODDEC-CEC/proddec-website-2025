@@ -18,12 +18,14 @@ const Footer = () => {
     };
 
     const quickLinks = [
+        { name: "Home", path: "/", isExternal: false },
         { name: "About Us", path: "/#about", isExternal: true },
         { name: "Vision", path: "/#vision", isExternal: true },
         { name: "Mission", path: "/#mission", isExternal: true },
         { name: "Events", path: "/events", isExternal: false },
         { name: "Projects", path: "/#project-gallery", isExternal: true },
         { name: "Execom", path: "/execom", isExternal: false },
+        { name: "Idea", path: "/idea", isExternal: false },
     ];
 
     return (
@@ -80,16 +82,16 @@ const Footer = () => {
                     {/* Wrapper for Quick Links and Contact to be side-by-side on mobile */}
                     <div className="col-span-1 md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-4">
                         {/* Column 2: Quick Links */}
-                        <div className="flex flex-col space-y-6 lg:pl-8">
+                        <div className="flex flex-col space-y-6 lg:pl-8 w-full">
                             <h3 className="text-[#FFA200] font-bold text-md md:text-xl uppercase tracking-wider">Quick Links</h3>
-                            <nav className="flex flex-col space-y-3">
+                            <nav className="grid grid-cols-1 md:grid-cols-2 gap-3 font-montserrat">
                                 {quickLinks.map((link, idx) => (
                                     link.isExternal ? (
-                                        <a key={idx} href={link.path} className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 duration-300 w-fit">
+                                        <a key={idx} href={link.path} className="text-gray-400 hover:text-yellow-400 transition-colors text-sm hover:translate-x-0.5 duration-300 w-fit">
                                             {link.name}
                                         </a>
                                     ) : (
-                                        <Link key={idx} to={link.path} className="text-gray-400 hover:text-white transition-colors text-sm hover:translate-x-1 duration-300 w-fit">
+                                        <Link key={idx} to={link.path} className="text-gray-400 hover:text-yellow-400 transition-colors text-sm hover:translate-x-0.5 duration-300 w-fit">
                                             {link.name}
                                         </Link>
                                     )
@@ -146,7 +148,7 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="pt-4 md:pt-8 border-t border-white/10 flex md:flex-row justify-between items-center text-[8px] md:text-sm text-gray-500">
                     <p>© 2026 PRODDEC. All rights reserved.</p>
-                     <p className="mt-2 md:mt-0 items-center gap-1">Made with <span className="text-[#FFA200]">⚡</span> by <b className="text-[#FFA200]">PRODDEC</b> Web Team</p>
+                     <p className="md:mt-0 items-center gap-1">Made with <span className="text-[#FFA200]">⚡</span> by <b className="text-[#FFA200]">PRODDEC</b> Web Team</p>
                 </div>
             </div>
         </footer>

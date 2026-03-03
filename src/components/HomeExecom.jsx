@@ -139,13 +139,13 @@ const HomeExecom = () => {
                 onMouseDown={handleMouseDown}
             >
                 {currentTeam.map((member) => (
-                    <div key={member.id} className="snap-center h-[50vh] md:h-[70vh] shrink-0 w-[70vw] sm:w-[350px] md:w-[300px] transform hover:z-10 transition-all duration-300">
+                    <div key={member.id} className="snap-center shrink-0 w-[70vw] sm:w-[350px] md:w-[300px] transform hover:z-10 transition-all duration-300">
                         <ProfileCard
                             name={member.name}
                             title={member.title}
                             handle={member.handle}
                             avatarUrl={member.avatarUrl}
-                            className="shadow-2xl h-full"
+                            className="shadow-2xl"
                         />
                     </div>
                 ))}

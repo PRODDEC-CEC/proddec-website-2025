@@ -100,7 +100,7 @@ export const EventCard = ({ event }) => {
 
     return (
         <CardContainer key={event.id} className="inter-var">
-            <CardBody className="bg-proddec-dark relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#FFA200]/10 border-white/10 hover:border-[#FFA200]/30 border w-full h-[70vw] lg:h-[30vw] rounded-xl p-6 flex flex-col justify-between">
+            <CardBody className="relative group/card border-white/10 hover:border-[#FFA200]/30 border w-full h-[400px] md:h-[450px] rounded-xl p-6 flex flex-col justify-between">
 
                 {/* Card Item: Image */}
                 <CardItem

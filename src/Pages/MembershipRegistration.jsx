@@ -208,7 +208,7 @@ const MembershipRegistration = () => {
                         />
 
                          {['Details', 'Payment', 'Proof', 'Done'].map((label, idx) => (
-                            <div key={idx} className="flex flex-col items-center gap-2 bg-[#0a0a0a] z-10 px-1">
+                            <div key={idx} className="flex flex-col items-center gap-2 z-10 px-1">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all border-2 ${
                                     step > idx ? 'bg-[#FFA200] border-[#FFA200] text-black' : 
                                     step === idx ? 'bg-[#0a0a0a] border-[#FFA200] text-[#FFA200]' : 

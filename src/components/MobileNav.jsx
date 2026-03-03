@@ -138,7 +138,7 @@ const MobileNav = ({ isOpen, onClose, navLinks }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-60 bg-black/95 backdrop-blur-md flex items-center justify-center overflow-hidden">
+        <div className="fixed inset-0 z-60 bg-black/50 backdrop-blur-md flex items-center justify-center overflow-hidden">
             {/* Close Button */}
             <button 
                 onClick={onClose}
