@@ -71,7 +71,8 @@ const About = () => {
                                 ABOUT <span className="text-[#FFA200]">PRODDEC</span>
                             </h1>
                             <p className=" text-md md:text-lg text-gray-300 font-montserrat leading-relaxed">
-                                The Product Design and Development Center (PRODDEC) is the creative and technical hub of our institution. We bridge the gap between imagination and reality, fostering a community where innovation thrives.
+                                Product Design and Development Centre is a student-driven innovation hub dedicated to transforming ideas into real-world solutions. We believe success is measured not by likes and shares, but by working prototypes, industry collaboration, and meaningful impact.
+At PRODDEC, we foster a culture of innovation, product development, and entrepreneurship. Our mission is to empower student innovators by bridging the gap between concept and commercialization through consistent mentorship, hands-on workshops, and collaborative projects.
                             </p>
                             <p className="text-md md:text-lg text-gray-300 font-montserrat leading-relaxed">
                                 From organizing flagship events to executing complex technical projects, our team is dedicated to excellence in every endeavor. We empower students to explore their potential in design, development, and management.

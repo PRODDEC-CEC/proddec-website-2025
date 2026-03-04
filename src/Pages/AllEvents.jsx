@@ -176,76 +176,129 @@ const AllEvents = () => {
 
             {/* Event Details Modal */}
             {selectedEvent && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ zIndex: 100 }}>
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
+                    
+                    {/* Backdrop */}
                     <div 
-                        className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                        className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-300"
                         onClick={closeModal}
                     ></div>
                     
-                    <div className="relative w-full max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] animate-fadeIn">
+                    {/* Modal Card */}
+                    <div className="relative w-full max-w-5xl bg-[#0f0f0f] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[85vh] animate-fadeIn ring-1 ring-white/5">
                         
+                        {/* Close Button */}
                         <button 
                             onClick={closeModal}
-                            className="absolute top-4 right-4 z-20 p-2 bg-black/50 text-white hover:text-[#FFA200] rounded-full backdrop-blur-sm transition-colors"
+                            className="absolute top-4 right-4 z-50 p-3 bg-black/40 text-white/70 hover:text-[#FFA200] hover:bg-black/80 rounded-full backdrop-blur-md transition-all duration-300 border border-white/10 group"
+                            aria-label="Close modal"
                         >
-                            <FaTimes />
+                            <FaTimes className="group-hover:rotate-90 transition-transform duration-300" />
                         </button>
 
-                        {/* Modal Image */}
-                        <div className="w-full md:w-2/5 h-64 md:h-auto relative">
+                        {/* Image Section */}
+                        <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent z-10 opacity-80 md:hidden"></div>
                             <img 
                                 src={selectedEvent.image} 
                                 alt={selectedEvent.title} 
-                                className="w-full h-full object-cover grayscale opacity-80"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] md:bg-gradient-to-r md:from-transparent md:to-[#0a0a0a] opacity-90"></div>
-                        </div>
-
-                        {/* Modal Content */}
-                        <div className="flex-1 p-8 overflow-y-auto custom-scrollbar">
-                            <div className="flex flex-col h-full">
-                                <span className="text-[#FFA200] font-mono text-sm uppercase tracking-widest mb-2">
-                                    {new Date(selectedEvent.date).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
-                                </span>
-                                
-                                <h2 className="text-3xl md:text-5xl font-zentry font-black text-white mb-6 leading-none">
+                            
+                            {/* Mobile overlay title */}
+                             <div className="absolute bottom-4 left-4 z-20 md:hidden">
+                                <h2 className="text-2xl font-zentry font-black text-white leading-none drop-shadow-lg">
                                     {selectedEvent.title}
                                 </h2>
+                            </div>
+                        </div>
 
-                                <div className="space-y-6 mb-8 flex-grow">
-                                    <div className="flex items-start gap-3 text-white/70">
-                                        <FaCalendarAlt className="mt-1 text-[#FFA200]" />
+                        {/* Content Section */}
+                        <div className="w-full md:w-1/2 flex flex-col bg-[#0f0f0f]">
+                            <div className="flex-1 p-6 md:p-10 overflow-y-auto custom-scrollbar">
+                                
+                                {/* Header Info */}
+                                <div className="hidden md:block mb-6">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 ${new Date(selectedEvent.date) < new Date() ? 'bg-white/5 text-white/40' : 'bg-[#FFA200]/10 text-[#FFA200]'}`}>
+                                            {new Date(selectedEvent.date) < new Date() ? 'Past Event' : 'Upcoming'}
+                                        </span>
+                                        <span className="text-white/40 text-xs font-mono">
+                                            {new Date(selectedEvent.date).getFullYear()} Edition
+                                        </span>
+                                    </div>
+                                    <h2 className="text-4xl lg:text-5xl font-zentry font-black text-white leading-[0.9] tracking-tight">
+                                        {selectedEvent.title}
+                                    </h2>
+                                </div>
+
+                                {/* Tech Stack Tags */}
+                                {selectedEvent.techStack && selectedEvent.techStack.length > 0 && (
+                                    <div className="flex flex-wrap gap-2 mb-8">
+                                        {selectedEvent.techStack.map((tech, i) => (
+                                            <span key={i} className="px-3 py-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-md text-xs font-mono text-white/70 transition-colors cursor-default">
+                                                #{tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Details Grid */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 p-5 bg-white/5 rounded-2xl border border-white/5">
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-2 bg-white/5 rounded-lg text-[#FFA200]">
+                                            <FaCalendarAlt />
+                                        </div>
                                         <div>
-                                            <p className="text-sm font-bold text-white uppercase tracking-wider">Date & Time</p>
-                                            <p>{new Date(selectedEvent.date).toLocaleString()}</p>
+                                            <p className="text-xs font-bold text-white/40 uppercase tracking-wider mb-1">Date & Time</p>
+                                            <p className="text-white font-medium text-sm">
+                                                {new Date(selectedEvent.date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
+                                            </p>
+                                            <p className="text-white/60 text-xs mt-0.5">
+                                                {new Date(selectedEvent.date).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+                                            </p>
                                         </div>
                                     </div>
                                     
-                                    <div className="flex items-start gap-3 text-white/70">
-                                        <FaMapMarkerAlt className="mt-1 text-[#FFA200]" />
-                                        <div>
-                                            <p className="text-sm font-bold text-white uppercase tracking-wider">Location</p>
-                                            <p>{selectedEvent.location}</p>
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-2 bg-white/5 rounded-lg text-[#FFA200]">
+                                            <FaMapMarkerAlt />
                                         </div>
-                                    </div>
-
-                                    <div className="pt-4 border-t border-white/10">
-                                        <p className="text-white/80 leading-relaxed whitespace-pre-wrap">
-                                            {selectedEvent.description}
-                                        </p>
+                                        <div>
+                                            <p className="text-xs font-bold text-white/40 uppercase tracking-wider mb-1">Location</p>
+                                            <p className="text-white font-medium text-sm text-balance">
+                                                {selectedEvent.location || 'TBA'}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
 
-                                {/* Register Button */}
-                                {new Date(selectedEvent.date) >= new Date() && selectedEvent.registerLink && (
+                                {/* Description */}
+                                <div className="prose prose-invert prose-sm max-w-none">
+                                    <p className="text-white/70 font-light leading-relaxed whitespace-pre-line">
+                                        {selectedEvent.description}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Footer Actions */}
+                            <div className="p-6 md:p-10 pt-0 mt-auto md:bg-[#0f0f0f] border-t border-white/5 md:border-none sticky bottom-0 z-10 w-full mb-0">
+                                {new Date(selectedEvent.date) >= new Date() && selectedEvent.registerLink ? (
                                     <a 
                                         href={selectedEvent.registerLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center gap-2 bg-[#FFA200] text-black font-bold py-4 px-8 rounded hover:bg-white transition-colors uppercase tracking-widest w-full md:w-auto text-center"
+                                        className="flex items-center justify-center gap-3 w-full bg-[#FFA200] hover:bg-[#ffb333] text-black font-black py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(255,162,0,0.3)] hover:shadow-[0_0_30px_rgba(255,162,0,0.5)] uppercase tracking-widest text-sm"
                                     >
-                                        Register Now <FaExternalLinkAlt className="text-sm" />
+                                        Register Now <FaExternalLinkAlt />
                                     </a>
+                                ) : (
+                                    <button 
+                                        disabled
+                                        className="w-full bg-white/5 text-white/30 font-bold py-4 px-6 rounded-xl border border-white/5 uppercase tracking-widest text-sm cursor-not-allowed flex items-center justify-center gap-2"
+                                    >
+                                        Event Concluded
+                                    </button>
                                 )}
                             </div>
                         </div>

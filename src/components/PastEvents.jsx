@@ -21,6 +21,9 @@ const PastEvents = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
+            // Disable auto-carousel on desktop (md breakpoint is 768px)
+            if (window.innerWidth >= 768) return;
+
             if (carouselRef.current && !isDragging) {
                 const { scrollLeft: currentScrollLeft, scrollWidth, clientWidth } = carouselRef.current;
                 // Only scroll if there is overflow (mobile view or desktop if many items)
@@ -142,11 +145,11 @@ const PastEvents = () => {
             ) : (
                 <div 
                     ref={carouselRef} 
-                    className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 pb-8 w-full scrollbar-hide cursor-grab active:cursor-grabbing max-w-7xl"
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 pb-8 w-full scrollbar-hide cursor-grab active:cursor-grabbing max-w-7xl lg:justify-center"
                     onMouseDown={handleMouseDown}
                 >
-                    {events.slice(0, 10).map((event) => (
-                        <div key={event.id} className="snap-center select-none shrink-0 w-[70vw] sm:w-[350px] md:w-[300px] transform hover:z-10 transition-all duration-300">
+                    {events.slice(0, 3).map((event) => (
+                        <div key={event.id} className="snap-center shrink-0 w-[70vw] sm:w-[350px] md:w-[300px] transform hover:z-10 transition-all duration-300">
                             <EventCard event={event} />
                         </div>
                     ))}
