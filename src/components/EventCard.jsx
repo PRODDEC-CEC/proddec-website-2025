@@ -127,7 +127,7 @@ export const EventCard = ({ event }) => {
                             {/* Card Item: Date */}
                             <CardItem
                                 translateZ="50"
-                                className="text-[#FFA200] text-xs font-mono mb-2"
+                                className="text-[#FFA200] text-xs font-montserrat mb-2"
                             >
                                 {new Date(event.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
                             </CardItem>

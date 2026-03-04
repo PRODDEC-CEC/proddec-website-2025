@@ -146,7 +146,7 @@ const Idea = () => {
                             {/* Membership ID Input (Optional) */}
                             <div className="space-y-4 group">
                                 <label htmlFor="membershipId" className="block text-xs font-bold uppercase tracking-widest text-gray-500 ml-1 group-focus-within:text-[#FFA200] transition-colors">
-                                    Proddec ID <span className="opacity-50 font-normal normal-case ml-2">(Optional)</span>
+                                    Proddec Membership ID <span className="opacity-50 font-normal normal-case ml-2">(Optional)</span>
                                 </label>
                                 <input
                                     type="text"
