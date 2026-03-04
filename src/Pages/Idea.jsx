@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft, FaLightbulb, FaUser, FaIdCard, FaPhone, FaPaperPlane, FaEnvelope } from 'react-icons/fa';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const Idea = () => {
     const [formData, setFormData] = useState({
@@ -22,11 +24,19 @@ const Idea = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would typically send the data to a backend
-        console.log("Idea Submitted:", formData);
-        setSubmitted(true);
+        try {
+            await addDoc(collection(db, 'ideas'), {
+                ...formData,
+                createdAt: serverTimestamp()
+            });
+            console.log("Idea Submitted:", formData);
+            setSubmitted(true);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            alert("Error submitting idea. Please try again.");
+        }
     };
 
     if (submitted) {

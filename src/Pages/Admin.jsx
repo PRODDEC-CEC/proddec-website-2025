@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, query, where, updateDoc, deleteDoc, doc, writeBatch, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 import uploadImage from '../utils/uploadImage';
-import { FaPlus, FaTrash, FaCheck, FaUsers, FaCalendarAlt, FaProjectDiagram, FaEdit, FaTimes } from 'react-icons/fa';
+import { FaPlus, FaTrash, FaCheck, FaUsers, FaCalendarAlt, FaProjectDiagram, FaEdit, FaTimes, FaLightbulb } from 'react-icons/fa';
 
 const Admin = () => {
     const [activeTab, setActiveTab] = useState('events');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
+
+    // --- State for Submitted Ideas ---
+    const [submittedIdeas, setSubmittedIdeas] = useState([]);
 
     // --- State for Teams ---
     const [teams, setTeams] = useState([]);
@@ -51,6 +54,8 @@ const Admin = () => {
             fetchEvents();
         } else if (activeTab === 'projects') {
             fetchProjects();
+        } else if (activeTab === 'ideas') {
+            fetchIdeas();
         }
     }, [activeTab]);
 
@@ -107,6 +112,32 @@ const Admin = () => {
             setExistingProjects(projectData);
         } catch (error) {
             console.error("Error fetching projects:", error);
+        }
+    };
+
+    // --- Idea Management Functions ---
+    const fetchIdeas = async () => {
+        try {
+            const q = query(collection(db, 'ideas'), orderBy('createdAt', 'desc'));
+            const snapshot = await getDocs(q);
+            const ideasData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setSubmittedIdeas(ideasData);
+        } catch (error) {
+            console.error("Error fetching ideas:", error);
+        }
+    };
+
+    const handleDeleteIdea = async (ideaId) => {
+        if (!window.confirm("Are you sure you want to delete this idea?")) return;
+        setLoading(true);
+        try {
+            await deleteDoc(doc(db, 'ideas', ideaId));
+            setMessage("Idea deleted successfully.");
+            fetchIdeas();
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -407,7 +438,8 @@ const Admin = () => {
                     { id: 'teams', label: 'Manage Teams', icon: <FaUsers /> },
                     { id: 'events', label: 'Add Events', icon: <FaCalendarAlt /> },
                     { id: 'projects', label: 'Add Projects', icon: <FaProjectDiagram /> },
-                    { id: 'execom', label: 'Manage Members', icon: <FaUsers /> }
+                    { id: 'execom', label: 'Manage Members', icon: <FaUsers /> },
+                    { id: 'ideas', label: 'View Ideas', icon: <FaLightbulb /> }
                 ].map(tab => (
                     <button
                         key={tab.id}
@@ -680,6 +712,39 @@ const Admin = () => {
                                 </div>
                             </div>
                         )}
+                    </div>
+                )}
+
+                {/* --- View Ideas --- */}
+                {activeTab === 'ideas' && (
+                    <div className="space-y-6">
+                        <h2 className="text-2xl font-bold mb-6 text-white/90">Submitted Ideas</h2>
+                        <div className="grid grid-cols-1 gap-4">
+                            {submittedIdeas.map(idea => (
+                                <div key={idea.id} className="bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col gap-2 relative group">
+                                    <button 
+                                        onClick={() => handleDeleteIdea(idea.id)} 
+                                        className="absolute top-4 right-4 text-red-500 hover:text-red-400 p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                                        title="Delete Idea"
+                                    >
+                                        <FaTrash />
+                                    </button>
+                                    <h3 className="text-xl font-bold text-[#FFA200]">{idea.name}</h3>
+                                    <div className="text-sm text-gray-400 flex gap-4 flex-wrap mb-2">
+                                        <span><strong className="text-gray-500">Class:</strong> {idea.class}</span>
+                                        {idea.membershipId && <span><strong className="text-gray-500">ID:</strong> {idea.membershipId}</span>}
+                                        <span><strong className="text-gray-500">Phone:</strong> {idea.phone}</span>
+                                    </div>
+                                    <div className="p-4 bg-black/30 rounded-lg text-white/80 whitespace-pre-wrap">
+                                        {idea.description}
+                                    </div>
+                                    <div className="mt-2 text-xs text-gray-600 text-right">
+                                        Submitted on: {idea.createdAt?.toDate ? idea.createdAt.toDate().toLocaleString() : new Date().toLocaleString()}
+                                    </div>
+                                </div>
+                            ))}
+                            {submittedIdeas.length === 0 && <p className="text-white/40 text-center py-8">No ideas submitted yet.</p>}
+                        </div>
                     </div>
                 )}
             </div>
