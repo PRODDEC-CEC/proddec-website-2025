@@ -45,6 +45,18 @@ const useExecom = () => {
                     return acc;
                 }, {});
 
+                
+                // Sort members by 'order' field (ascending)
+                Object.keys(grouped).forEach((year) => {
+                    grouped[year].sort((a, b) => {
+                        const valA = parseInt(a.order);
+                        const valB = parseInt(b.order);
+                        const orderA = isNaN(valA) ? 9999 : valA;
+                        const orderB = isNaN(valB) ? 9999 : valB;
+                        return orderA - orderB;
+                    });
+                });
+
                 setExecom(grouped);
                 setCurrentTeam(grouped[activeYear] || []);
                 setLoading(false);
