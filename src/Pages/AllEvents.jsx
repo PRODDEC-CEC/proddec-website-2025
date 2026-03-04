@@ -1,14 +1,16 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useNavigate } from 'react-router-dom';
 import Bg from '../components/Bg';
 import useEvents from '../hooks/useEvents';
 import SEO from '../components/SEO';
+import { FaTimes, FaCalendarAlt, FaMapMarkerAlt, FaExternalLinkAlt } from 'react-icons/fa';
 
 const AllEvents = () => {
     const component = useRef(null);
     const navigate = useNavigate();
-    const { events, loading, error } = useEvents(); // Data is already sorted by hook
+    const { events, loading, error } = useEvents(); 
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -27,29 +29,34 @@ const AllEvents = () => {
                 ease: "power2.out"
             }, "-=0.6");
 
-            // Only animate cards if they exist
             if (!loading && events.length > 0) {
                 tl.from(".event-card", {
                     y: 50,
                     opacity: 0,
                     stagger: 0.1,
                     duration: 0.8,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    clearProps: "all" // Ensure visibility after animation
                 }, "-=0.4");
             }
 
-
         }, component);
         return () => ctx.revert();
-    }, [loading, events]); // Re-run animation when data loads
+    }, [loading, events]);
+
+    const openModal = (event) => {
+        setSelectedEvent(event);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+        setSelectedEvent(null);
+        document.body.style.overflow = 'auto';
+    };
 
     return (
         <div ref={component} className="relative min-h-screen w-full bg-black text-white overflow-hidden pt-24 px-4 md:px-12 pb-12 font-sans">
             <SEO title="All Events" description="Browse all past and upcoming events, workshops, and hackathons at PRODDEC." />
-            {/* Background */}
-            <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
-                <Bg tint="#FFA200" />
-            </div>
 
             <div className="relative z-10 max-w-7xl mx-auto">
 
@@ -85,55 +92,80 @@ const AllEvents = () => {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {events.map((event) => {
+                        {[...events].sort((a, b) => new Date(b.date) - new Date(a.date)).map((event) => {
                             const isCompleted = new Date(event.date) < new Date();
                             return (
-                                <div key={event.id} className="event-card group relative flex flex-col bg-white/5 hover:bg-white/10 transition-all duration-300 rounded-xl overflow-hidden border border-white/5 hover:border-[#FFA200]/30 h-full">
-                                    {/* Image Container */}
-                                    <div className="relative aspect-[16/9] overflow-hidden">
-                                        <div className="absolute inset-0 bg-black/50 z-10 transition-opacity duration-300 group-hover:opacity-30" />
+                                <div 
+                                    key={event.id} 
+                                    onClick={() => openModal(event)}
+                                    className="event-card group relative h-[500px] w-full rounded-3xl overflow-hidden cursor-pointer border-1 border-transparent hover:border-proddec-yellow bg-neutral-900"
+                                >
+                                    {/* Full Background Image */}
+                                    <div className="absolute inset-0 z-0">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10 opacity-90 transition-opacity duration-300" />
+                                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10" />
                                         <img 
                                             src={event.image} 
                                             alt={event.title} 
-                                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                            loading="lazy"
+                                            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-110 grayscale group-hover:grayscale-0"
                                         />
-                                        
-                                        {/* Status Badge */}
-                                        <div className="absolute top-3 right-3 z-20">
-                                            <span className={`px-2 py-1 text-[10px] font-bold uppercase tracking-widest rounded ${isCompleted ? 'bg-black/80 text-white/50' : 'bg-[#FFA200] text-black shadow-[0_0_15px_rgba(255,162,0,0.5)]'}`}>
-                                                {isCompleted ? 'Past' : 'Live'}
-                                            </span>
-                                        </div>
                                     </div>
 
-                                    {/* Content */}
-                                    <div className="flex flex-col flex-grow p-5 justify-between">
-                                        <div>
-                                            <div className="flex items-center justify-between mb-2">
-                                                <span className="text-[#FFA200] font-mono text-xs uppercase tracking-wider">
-                                                    {new Date(event.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                                    {/* Top Status */}
+                                    <div className="absolute top-5 right-5 z-20 overflow-hidden">
+                                        <span className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md border border-white/10 ${isCompleted ? 'bg-black/60 text-white/40' : 'bg-white/10 text-[#FFA200] group-hover:bg-[#FFA200] group-hover:text-proddec-yellow transition-colors duration-300'}`}>
+                                            {isCompleted ? 'Past' : 'Live'}
+                                        </span>
+                                    </div>
+
+                                    {/* Content Overlay */}
+                                    <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col justify-end h-full">
+                                        
+                                        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                            {/* Date */}
+                                            <div className="mb-2">
+                                                <span className="text-[#FFA200] font-sans text-xs uppercase tracking-wider pl-3 border-l-2 border-[#FFA200]">
+                                                    {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                                 </span>
                                             </div>
 
-                                            <h3 className="text-xl font-zentry font-medium text-white mb-2 leading-tight group-hover:text-[#FFA200] transition-colors">
+                                            {/* Title */}
+                                            <h3 className="text-3xl font-zentry font-medium text-white mb-3 leading-none drop-shadow-lg">
                                                 {event.title}
                                             </h3>
                                             
-                                            <p className="text-white/50 text-sm font-light leading-relaxed line-clamp-2 mb-4">
-                                                {event.description}
-                                            </p>
+                                            {/* Description - Reveals on Hover */}
+                                            <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                                <div className="overflow-hidden">
+                                                    <p className="text-white/70 text-sm font-light leading-relaxed line-clamp-3 mb-6">
+                                                        {event.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Divider & Read More */}
+                                            <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                                                <span className="text-xs font-montserrat uppercase tracking-widest text-white/50 group-hover:text-white transition-colors delay-100">
+                                                    Explore
+                                                </span>
+                                                
+                                                {/* Animated Button */}
+                                                <div className="relative w-10 h-10 rounded-full border border-white/20 flex items-center justify-center overflow-hidden bg-white/10 backdrop-blur-sm group-hover:border-[#FFA200] transition-colors duration-300">
+                                                     <div className="absolute inset-0 bg-[#FFA200] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                                                     <svg 
+                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                        fill="none" 
+                                                        viewBox="0 0 24 24" 
+                                                        strokeWidth={2} 
+                                                        stroke="currentColor" 
+                                                        className="w-4 h-4 relative z-10 text-white group-hover:text-black transition-colors duration-300 -rotate-45 group-hover:rotate-0 transform"
+                                                    >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                                    </svg>
+                                                </div>
+                                            </div>
                                         </div>
-                                        
-                                        {!isCompleted && (
-                                           <a 
-                                            href={event.registerLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="self-start text-xs font-bold text-white uppercase tracking-widest border-b border-[#FFA200] pb-0.5 hover:text-[#FFA200] transition-colors"
-                                           >
-                                            Register
-                                           </a> 
-                                        )}
                                     </div>
                                 </div>
                             );
@@ -141,6 +173,85 @@ const AllEvents = () => {
                     </div>
                 )}
             </div>
+
+            {/* Event Details Modal */}
+            {selectedEvent && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ zIndex: 100 }}>
+                    <div 
+                        className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                        onClick={closeModal}
+                    ></div>
+                    
+                    <div className="relative w-full max-w-4xl bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] animate-fadeIn">
+                        
+                        <button 
+                            onClick={closeModal}
+                            className="absolute top-4 right-4 z-20 p-2 bg-black/50 text-white hover:text-[#FFA200] rounded-full backdrop-blur-sm transition-colors"
+                        >
+                            <FaTimes />
+                        </button>
+
+                        {/* Modal Image */}
+                        <div className="w-full md:w-2/5 h-64 md:h-auto relative">
+                            <img 
+                                src={selectedEvent.image} 
+                                alt={selectedEvent.title} 
+                                className="w-full h-full object-cover grayscale opacity-80"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] md:bg-gradient-to-r md:from-transparent md:to-[#0a0a0a] opacity-90"></div>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="flex-1 p-8 overflow-y-auto custom-scrollbar">
+                            <div className="flex flex-col h-full">
+                                <span className="text-[#FFA200] font-mono text-sm uppercase tracking-widest mb-2">
+                                    {new Date(selectedEvent.date).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
+                                </span>
+                                
+                                <h2 className="text-3xl md:text-5xl font-zentry font-black text-white mb-6 leading-none">
+                                    {selectedEvent.title}
+                                </h2>
+
+                                <div className="space-y-6 mb-8 flex-grow">
+                                    <div className="flex items-start gap-3 text-white/70">
+                                        <FaCalendarAlt className="mt-1 text-[#FFA200]" />
+                                        <div>
+                                            <p className="text-sm font-bold text-white uppercase tracking-wider">Date & Time</p>
+                                            <p>{new Date(selectedEvent.date).toLocaleString()}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="flex items-start gap-3 text-white/70">
+                                        <FaMapMarkerAlt className="mt-1 text-[#FFA200]" />
+                                        <div>
+                                            <p className="text-sm font-bold text-white uppercase tracking-wider">Location</p>
+                                            <p>{selectedEvent.location}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-4 border-t border-white/10">
+                                        <p className="text-white/80 leading-relaxed whitespace-pre-wrap">
+                                            {selectedEvent.description}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Register Button */}
+                                {new Date(selectedEvent.date) >= new Date() && selectedEvent.registerLink && (
+                                    <a 
+                                        href={selectedEvent.registerLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center gap-2 bg-[#FFA200] text-black font-bold py-4 px-8 rounded hover:bg-white transition-colors uppercase tracking-widest w-full md:w-auto text-center"
+                                    >
+                                        Register Now <FaExternalLinkAlt className="text-sm" />
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

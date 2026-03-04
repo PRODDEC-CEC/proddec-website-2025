@@ -1,10 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import useEvents from "../hooks/useEvents";
 import { EventCard } from "./EventCard";
 
 const PastEvents = () => {
-    const { events, loading, error } = useEvents();
+    const { events: fetchedEvents, loading, error } = useEvents();
+    
+    // Sort events by date descending (latest first)
+    const events = useMemo(() => {
+        return [...fetchedEvents].sort((a, b) => new Date(b.date) - new Date(a.date));
+    }, [fetchedEvents]);
+
     const carouselRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const startX = useRef(0);
@@ -140,7 +146,7 @@ const PastEvents = () => {
                     onMouseDown={handleMouseDown}
                 >
                     {events.slice(0, 10).map((event) => (
-                        <div key={event.id} className="snap-center shrink-0 w-[70vw] sm:w-[350px] md:w-[300px] transform hover:z-10 transition-all duration-300">
+                        <div key={event.id} className="snap-center select-none shrink-0 w-[70vw] sm:w-[350px] md:w-[300px] transform hover:z-10 transition-all duration-300">
                             <EventCard event={event} />
                         </div>
                     ))}

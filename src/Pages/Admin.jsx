@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, query, where, updateDoc, deleteDoc, doc, writeBatch } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where, updateDoc, deleteDoc, doc, writeBatch, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 import uploadImage from '../utils/uploadImage';
 import { FaPlus, FaTrash, FaCheck, FaUsers, FaCalendarAlt, FaProjectDiagram, FaEdit, FaTimes } from 'react-icons/fa';
@@ -17,6 +17,14 @@ const Admin = () => {
     // --- State for Managing Members ---
     const [teamMembers, setTeamMembers] = useState([]);
     const [editingMember, setEditingMember] = useState(null);
+
+    // --- State for Managing Events ---
+    const [existingEvents, setExistingEvents] = useState([]);
+    const [editingEvent, setEditingEvent] = useState(null);
+
+    // --- State for Managing Projects ---
+    const [existingProjects, setExistingProjects] = useState([]);
+    const [editingProject, setEditingProject] = useState(null);
 
     // --- Bulk Forms State ---
     const [events, setEvents] = useState([{ title: '', date: '', description: '', location: '', registerLink: '', image: null }]);
@@ -36,6 +44,15 @@ const Admin = () => {
             setTeamMembers([]);
         }
     }, [selectedTeam, teams]);
+
+
+    useEffect(() => {
+        if (activeTab === 'events') {
+            fetchEvents();
+        } else if (activeTab === 'projects') {
+            fetchProjects();
+        }
+    }, [activeTab]);
 
     const fetchTeams = async () => {
         try {
@@ -67,6 +84,29 @@ const Admin = () => {
             setTeamMembers(membersData);
         } catch (error) {
             console.error("Error fetching members:", error);
+        }
+    };
+
+
+    const fetchEvents = async () => {
+        try {
+            const q = query(collection(db, 'events'), orderBy('createdAt', 'desc'));
+            const snapshot = await getDocs(q);
+            const eventData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setExistingEvents(eventData);
+        } catch (error) {
+            console.error("Error fetching events:", error);
+        }
+    };
+
+    const fetchProjects = async () => {
+        try {
+            const q = query(collection(db, 'projects'), orderBy('createdAt', 'desc'));
+            const snapshot = await getDocs(q);
+            const projectData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setExistingProjects(projectData);
+        } catch (error) {
+            console.error("Error fetching projects:", error);
         }
     };
 
@@ -139,6 +179,7 @@ const Admin = () => {
         setEditingMember({ ...member, newImage: null });
     };
 
+
     const handleUpdateMember = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -159,6 +200,100 @@ const Admin = () => {
             setMessage("Member updated successfully.");
             setEditingMember(null);
             fetchTeamMembers(selectedTeam);
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // --- Event Management Functions ---
+    const handleDeleteEvent = async (eventId) => {
+        if (!window.confirm("Are you sure you want to delete this event? This action cannot be undone.")) return;
+        setLoading(true);
+        try {
+            await deleteDoc(doc(db, 'events', eventId));
+            setMessage("Event deleted successfully.");
+            fetchEvents();
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleEditEventClick = (event) => {
+        setEditingEvent({ ...event, newImage: null });
+    };
+
+    const handleUpdateEvent = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            let imageUrl = editingEvent.image;
+            if (editingEvent.newImage) {
+                imageUrl = await uploadImage(editingEvent.newImage);
+            }
+
+            const eventRef = doc(db, 'events', editingEvent.id);
+            await updateDoc(eventRef, {
+                title: editingEvent.title,
+                date: editingEvent.date,
+                description: editingEvent.description,
+                location: editingEvent.location,
+                registerLink: editingEvent.registerLink,
+                image: imageUrl
+            });
+
+            setMessage("Event updated successfully.");
+            setEditingEvent(null);
+            fetchEvents();
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // --- Project Management Functions ---
+    const handleDeleteProject = async (projectId) => {
+        if (!window.confirm("Are you sure you want to delete this project? This action cannot be undone.")) return;
+        setLoading(true);
+        try {
+            await deleteDoc(doc(db, 'projects', projectId));
+            setMessage("Project deleted successfully.");
+            fetchProjects();
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleEditProjectClick = (project) => {
+        setEditingProject({ ...project, newImage: null });
+    };
+
+    const handleUpdateProject = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            let imageUrl = editingProject.image;
+            if (editingProject.newImage) {
+                imageUrl = await uploadImage(editingProject.newImage);
+            }
+
+            const projectRef = doc(db, 'projects', editingProject.id);
+            await updateDoc(projectRef, {
+                title: editingProject.title,
+                category: editingProject.category,
+                description: editingProject.description,
+                image: imageUrl
+            });
+
+            setMessage("Project updated successfully.");
+            setEditingProject(null);
+            fetchProjects();
         } catch (error) {
             setMessage(`Error: ${error.message}`);
         } finally {
@@ -317,7 +452,7 @@ const Admin = () => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="bg-[#FFA200] text-black font-bold py-3 px-6 rounded hover:bg-white transition-colors h-[50px]">
+                            <button type="submit" className="bg-[#FFA200] text-black font-bold py-3 px-6 rounded hover:bg-white transition-colors h-12.5">
                                 Create Team
                             </button>
                         </form>
@@ -347,6 +482,7 @@ const Admin = () => {
 
                 {/* --- Add Events --- */}
                 {activeTab === 'events' && (
+                    <>
                     <form onSubmit={(e) => handleBulkSubmit(e, 'events')} className="space-y-6">
                         <div className="flex justify-between items-center">
                             <h2 className="text-2xl font-bold">Add Events</h2>
@@ -374,10 +510,46 @@ const Admin = () => {
                         ))}
                         <button type="submit" className="w-full bg-[#FFA200] text-black font-bold py-3 rounded hover:bg-white transition-colors">Submit All Events</button>
                     </form>
+
+                    {/* Manage Existing Events */}
+                    <div className="border-t border-white/10 pt-8 mt-12">
+                        <h3 className="text-2xl font-bold mb-6 text-white/90">Existing Events</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {existingEvents.map(event => (
+                                <div key={event.id} className="bg-white/5 p-4 rounded-xl border border-white/10 flex flex-col gap-4">
+                                    <div className="flex items-start gap-4">
+                                        <img src={event.image || '/placeholder.jpg'} alt={event.title} className="w-20 h-20 rounded-lg object-cover border border-[#FFA200]/30" />
+                                        <div className="flex-1">
+                                            <h4 className="font-bold text-white text-lg">{event.title}</h4>
+                                            <p className="text-sm text-[#FFA200] mb-1">{new Date(event.date).toLocaleDateString()}</p>
+                                            <p className="text-xs text-white/60 line-clamp-2">{event.description}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-end gap-2 mt-auto pt-2 border-t border-white/5">
+                                        <button 
+                                            onClick={() => handleEditEventClick(event)} 
+                                            className="px-4 py-2 text-sm bg-white/10 hover:bg-[#FFA200] hover:text-black rounded transition-colors flex items-center gap-2"
+                                        >
+                                            <FaEdit /> Edit
+                                        </button>
+                                        <button 
+                                            onClick={() => handleDeleteEvent(event.id)} 
+                                            className="px-4 py-2 text-sm bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white rounded transition-colors flex items-center gap-2"
+                                        >
+                                            <FaTrash /> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            {existingEvents.length === 0 && <p className="text-white/40 col-span-2 text-center py-4">No events found.</p>}
+                        </div>
+                    </div>
+                    </>
                 )}
 
                 {/* --- Add Projects --- */}
                 {activeTab === 'projects' && (
+                    <>
                     <form onSubmit={(e) => handleBulkSubmit(e, 'projects')} className="space-y-6">
                         <div className="flex justify-between items-center">
                             <h2 className="text-2xl font-bold">Add Projects</h2>
@@ -403,6 +575,41 @@ const Admin = () => {
                         ))}
                         <button type="submit" className="w-full bg-[#FFA200] text-black font-bold py-3 rounded hover:bg-white transition-colors">Submit All Projects</button>
                     </form>
+
+                    {/* Manage Existing Projects */}
+                    <div className="border-t border-white/10 pt-8 mt-12">
+                        <h3 className="text-2xl font-bold mb-6 text-white/90">Existing Projects</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {existingProjects.map(project => (
+                                <div key={project.id} className="bg-white/5 p-4 rounded-xl border border-white/10 flex flex-col gap-4">
+                                    <div className="flex items-start gap-4">
+                                        <img src={project.image || '/placeholder.jpg'} alt={project.title} className="w-20 h-20 rounded-lg object-cover border border-[#FFA200]/30" />
+                                        <div className="flex-1">
+                                            <h4 className="font-bold text-white text-lg">{project.title}</h4>
+                                            <p className="text-sm text-[#FFA200] mb-1">{project.category}</p>
+                                            <p className="text-xs text-white/60 line-clamp-2">{project.description}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-end gap-2 mt-auto pt-2 border-t border-white/5">
+                                        <button 
+                                            onClick={() => handleEditProjectClick(project)} 
+                                            className="px-4 py-2 text-sm bg-white/10 hover:bg-[#FFA200] hover:text-black rounded transition-colors flex items-center gap-2"
+                                        >
+                                            <FaEdit /> Edit
+                                        </button>
+                                        <button 
+                                            onClick={() => handleDeleteProject(project.id)} 
+                                            className="px-4 py-2 text-sm bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white rounded transition-colors flex items-center gap-2"
+                                        >
+                                            <FaTrash /> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            {existingProjects.length === 0 && <p className="text-white/40 col-span-2 text-center py-4">No projects found.</p>}
+                        </div>
+                    </div>
+                    </>
                 )}
 
                 {/* --- Add & Manage Execom --- */}
@@ -477,32 +684,104 @@ const Admin = () => {
                 )}
             </div>
 
-            {/* Edit Modal */}
+            {/* Edit Modal for Members */}
             {editingMember && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
-                    <div className="bg-[#111] p-8 rounded-2xl w-full max-w-lg border border-[#FFA200]/30 relative">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm overflow-y-auto">
+                    <div className="bg-[#111] p-8 rounded-2xl w-full max-w-lg border border-[#FFA200]/30 relative my-8">
                         <button onClick={() => setEditingMember(null)} className="absolute top-4 right-4 text-white/50 hover:text-white"><FaTimes /></button>
                         <h2 className="text-2xl font-bold mb-6 text-[#FFA200]">Edit Member</h2>
 
                         <form onSubmit={handleUpdateMember} className="space-y-4">
                             <div>
                                 <label className="block text-sm text-white/60 mb-1">Name</label>
-                                <input value={editingMember.name} onChange={e => setEditingMember({ ...editingMember, name: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white" required />
+                                <input value={editingMember.name || ''} onChange={e => setEditingMember({ ...editingMember, name: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
                             </div>
                             <div>
                                 <label className="block text-sm text-white/60 mb-1">Title</label>
-                                <input value={editingMember.title} onChange={e => setEditingMember({ ...editingMember, title: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white" required />
+                                <input value={editingMember.title || ''} onChange={e => setEditingMember({ ...editingMember, title: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
                             </div>
                             <div>
                                 <label className="block text-sm text-white/60 mb-1">Handle</label>
-                                <input value={editingMember.handle} onChange={e => setEditingMember({ ...editingMember, handle: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white" />
+                                <input value={editingMember.handle || ''} onChange={e => setEditingMember({ ...editingMember, handle: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" />
                             </div>
                             <div>
                                 <label className="block text-sm text-white/60 mb-1">Change Image (Optional)</label>
-                                <input type="file" accept="image/*" onChange={(e) => setEditingMember({ ...editingMember, newImage: e.target.files[0] })} className="w-full bg-black border border-white/10 p-3 rounded text-white" />
+                                <input type="file" accept="image/*" onChange={(e) => setEditingMember({ ...editingMember, newImage: e.target.files[0] })} className="w-full bg-black border border-white/10 p-3 rounded text-white file:bg-[#FFA200] file:text-black file:border-0 file:rounded file:px-2 file:mr-2 cursor-pointer" />
                             </div>
 
                             <button type="submit" className="w-full bg-[#FFA200] text-black font-bold py-3 rounded mt-4 hover:bg-white transition-colors">Update Member</button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Modal for Projects */}
+            {editingProject && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm overflow-y-auto">
+                    <div className="bg-[#111] p-8 rounded-2xl w-full max-w-lg border border-[#FFA200]/30 relative my-8">
+                        <button onClick={() => setEditingProject(null)} className="absolute top-4 right-4 text-white/50 hover:text-white"><FaTimes /></button>
+                        <h2 className="text-2xl font-bold mb-6 text-[#FFA200]">Edit Project</h2>
+
+                        <form onSubmit={handleUpdateProject} className="space-y-4">
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Title</label>
+                                <input value={editingProject.title || ''} onChange={e => setEditingProject({ ...editingProject, title: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
+                            </div>
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Category</label>
+                                <input value={editingProject.category || ''} onChange={e => setEditingProject({ ...editingProject, category: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
+                            </div>
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Description</label>
+                                <textarea value={editingProject.description || ''} onChange={e => setEditingProject({ ...editingProject, description: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white h-32 focus:border-[#FFA200] outline-none" required />
+                            </div>
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Change Image (Optional)</label>
+                                <input type="file" accept="image/*" onChange={(e) => setEditingProject({ ...editingProject, newImage: e.target.files[0] })} className="w-full bg-black border border-white/10 p-3 rounded text-white file:bg-[#FFA200] file:text-black file:border-0 file:rounded file:px-2 file:mr-2 cursor-pointer" />
+                            </div>
+
+                            <button type="submit" className="w-full bg-[#FFA200] text-black font-bold py-3 rounded mt-4 hover:bg-white transition-colors">Update Project</button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Edit Modal for Events */}
+            {editingEvent && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm overflow-y-auto">
+                    <div className="bg-[#111] p-8 rounded-2xl w-full max-w-lg border border-[#FFA200]/30 relative my-8">
+                        <button onClick={() => setEditingEvent(null)} className="absolute top-4 right-4 text-white/50 hover:text-white"><FaTimes /></button>
+                        <h2 className="text-2xl font-bold mb-6 text-[#FFA200]">Edit Event</h2>
+
+                        <form onSubmit={handleUpdateEvent} className="space-y-4">
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Title</label>
+                                <input value={editingEvent.title || ''} onChange={e => setEditingEvent({ ...editingEvent, title: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm text-white/60 mb-1">Date</label>
+                                    <input type="datetime-local" value={editingEvent.date || ''} onChange={e => setEditingEvent({ ...editingEvent, date: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
+                                </div>
+                                <div>
+                                    <label className="block text-sm text-white/60 mb-1">Location</label>
+                                    <input value={editingEvent.location || ''} onChange={e => setEditingEvent({ ...editingEvent, location: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" required />
+                                </div>
+                            </div>
+                             <div>
+                                <label className="block text-sm text-white/60 mb-1">Register Link</label>
+                                <input value={editingEvent.registerLink || ''} onChange={e => setEditingEvent({ ...editingEvent, registerLink: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white focus:border-[#FFA200] outline-none" />
+                            </div>
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Description</label>
+                                <textarea value={editingEvent.description || ''} onChange={e => setEditingEvent({ ...editingEvent, description: e.target.value })} className="w-full bg-black border border-white/10 p-3 rounded text-white h-32 focus:border-[#FFA200] outline-none" required />
+                            </div>
+                            <div>
+                                <label className="block text-sm text-white/60 mb-1">Change Image (Optional)</label>
+                                <input type="file" accept="image/*" onChange={(e) => setEditingEvent({ ...editingEvent, newImage: e.target.files[0] })} className="w-full bg-black border border-white/10 p-3 rounded text-white file:bg-[#FFA200] file:text-black file:border-0 file:rounded file:px-2 file:mr-2 cursor-pointer" />
+                            </div>
+
+                            <button type="submit" className="w-full bg-[#FFA200] text-black font-bold py-3 rounded mt-4 hover:bg-white transition-colors">Update Event</button>
                         </form>
                     </div>
                 </div>

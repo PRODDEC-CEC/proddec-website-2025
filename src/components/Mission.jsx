@@ -21,11 +21,13 @@ const Mission = () => {
                     scrollTrigger: {
                         trigger: missionSectionRef.current,
                         start: "top top",
-                        end: "+=1500", // Increase scroll distance for staggering
+                        end: "+=1200", // Adjusted scroll distance
                         scrub: 1,
                         pin: true,
                         pinSpacing: true,
                         anticipatePin: 1,
+                        preventOverlaps: true,
+                        fastScrollEnd: true,
                     }
                 });
 
@@ -78,6 +80,8 @@ const Mission = () => {
                         pin: true,
                         pinSpacing: true,
                         anticipatePin: 1,
+                        preventOverlaps: true,
+                        fastScrollEnd: true,
                     }
                 });
 

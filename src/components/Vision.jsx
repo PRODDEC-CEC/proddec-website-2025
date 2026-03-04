@@ -9,24 +9,23 @@ const Vision = () => {
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            // --- VISION SEQUENCE ---
-            const visionTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: visionSectionRef.current,
-                    start: "top top",
-                    end: "+=1400",
-                    scrub: 1,
-                    pin: true,
-                    pinSpacing: true,
-                    anticipatePin: 1,
-                }
-            });
-
-            // Use matchMedia to handle different starting Y values for mobile vs desktop
             let mm = gsap.matchMedia();
 
             mm.add("(max-width: 767px)", () => {
                 // Mobile animations
+                const visionTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: visionSectionRef.current,
+                        start: "top top",
+                        end: "+=1200", // Slightly reduced duration for mobile
+                        scrub: 1,
+                        pin: true,
+                        pinSpacing: true,
+                        anticipatePin: 1,
+                        preventOverlaps: true,
+                        fastScrollEnd: true,
+                    }
+                });
                 
                 // VISION
                 visionTl.fromTo(".vision-eyebrow", {
@@ -71,6 +70,20 @@ const Vision = () => {
 
             mm.add("(min-width: 768px)", () => {
                 // Desktop animations
+                const visionTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: visionSectionRef.current,
+                        start: "top top",
+                        end: "+=1400",
+                        scrub: 1,
+                        pin: true,
+                        pinSpacing: true,
+                        anticipatePin: 1,
+                        preventOverlaps: true,
+                        fastScrollEnd: true,
+                    }
+                });
+
                 visionTl.fromTo(".vision-eyebrow", {
                     scale: 13,
                     y: "30vh",
