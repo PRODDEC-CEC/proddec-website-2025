@@ -1,16 +1,16 @@
 export const testimonials = [
   {
     id: 1,
-    name: "Alex Johnson",
-    role: "Former Chairperson",
-    quote: "PRODDEC provided me with the platform to explore my technical interests and leadership skills. It's more than just a club; it's a community of innovators.",
+    name: "Abhijith J Nair",
+    role: "Former President",
+    quote: "This Forum has a Legacy of 30 years, and I believe the new Dawn of PRODDEC will foster its Legacy for Future.",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"
   },
   {
     id: 2,
-    name: "Sarah Williams",
-    role: "Project Lead",
-    quote: "Working on real-world projects with such a talented team was an eye-opening experience. The mentorship and support here are unmatched.",
+    name: "Jithu Girish",
+    role: "Former R & D Software Lead",
+    quote: "Being a part of Proddec has been a great experience in my life. The forum helped me work on real-world projects and participate in future-ready workshops. Proddec is truly one of the best platforms to learn, innovate, and gain skills that prepare you for the future as an engineer.",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
   },
   {
