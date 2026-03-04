@@ -66,7 +66,7 @@ const Testimonials = () => {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className="flex flex-col items-center w-full"
                 >
                     <p className="text-2xl md:text-4xl font-light text-neutral-200 leading-tight tracking-tight mb-12 max-w-4xl">

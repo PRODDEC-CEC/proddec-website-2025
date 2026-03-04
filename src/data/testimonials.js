@@ -10,7 +10,7 @@ export const testimonials = [
     id: 2,
     name: "Jithu Girish",
     role: "R & D Software Lead 25-26",
-    quote: "Being a part of Proddec has been a great experience in my life. The forum helped me work on real-world projects and participate in future-ready workshops. Proddec is truly one of the best platforms to learn, innovate, and gain skills that prepare you for the future as an engineer.",
+    quote: "Proddec is truly one of the best platforms to learn, innovate, and gain skills that prepare you for the future as an engineer.",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
   },
   {
