@@ -88,7 +88,7 @@ At PRODDEC, we foster a culture of innovation, product development, and entrepre
                         {/* Visual/Image Content */}
                         <div className="relative">
                             <div className="relative z-10 w-full h-[300px] md:h-[500px] bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden group">
-                                <img src="/images/idea1.png" alt="About PRODDEC" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                <img src="/images/about.jpeg" alt="About PRODDEC" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 <div className="absolute inset-0 pointer-events-none"></div>
                             </div>
 

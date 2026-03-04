@@ -188,7 +188,7 @@ const Idea = () => {
                         <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-8">
                             <div className="order-2 md:order-1 text-gray-500 text-sm font-medium max-w-xs text-center md:text-left leading-relaxed">
                                 Need to discuss in person? <br/>
-                                <a href="mailto:contact@proddec.com" className="text-[#FFA200] hover:text-white transition-colors">Contact the team</a>
+                                <a href="mailto:president@proddec.org" className="text-[#FFA200] hover:text-white transition-colors">Contact the team</a>
                             </div>
 
                             <button

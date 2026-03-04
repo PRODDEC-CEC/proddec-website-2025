@@ -70,8 +70,13 @@ const Footer = () => {
                             Product Design and Development Centre. Fostering innovation, creativity, and engineering excellence in the heart of CEC.
                         </p>
                         <div className="flex space-x-4">
-                            {[FaFacebook, FaInstagram, FaLinkedin, FaTwitter].map((Icon, idx) => (
-                                <a key={idx} href="#" ref={el => iconRefs.current[idx] = el}
+                            {[
+                                { Icon: FaFacebook, link: "https://www.facebook.com/PRODDEC/" },
+                                { Icon: FaInstagram, link: "https://www.instagram.com/proddec?igsh=anBtaHJudzB3NHZq" },
+                                { Icon: FaLinkedin, link: "https://www.linkedin.com/company/proddec-cec/" },
+                                // { Icon: FaTwitter, link: "#" }
+                            ].map(({ Icon, link }, idx) => (
+                                <a key={idx} href={link} target="_blank" rel="noopener noreferrer" ref={el => iconRefs.current[idx] = el}
                                    className="text-xl text-white hover:text-[#FFA200] transition-colors p-2 bg-white/5 rounded-full hover:bg-black border border-white/10 hover:border-[#FFA200]">
                                     <Icon />
                                 </a>
@@ -110,8 +115,8 @@ const Footer = () => {
                                 </div>
                                 
                                 <div className="flex flex-col space-y-3 pt-2">
-                                    <a href="mailto:contact@proddec.org" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3 break-all">
-                                        <FaEnvelope className="shrink-0" /> contact@proddec.org
+                                    <a href="mailto:president@proddec.org" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3 break-all">
+                                        <FaEnvelope className="shrink-0" /> president@proddec.org
                                     </a>
                                     <a href="tel:+919876543210" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3">
                                         <FaPhone className="rotate-90 shrink-0" /> +91 98765 43210

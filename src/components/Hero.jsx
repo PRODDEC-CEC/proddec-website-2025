@@ -10,6 +10,7 @@ const Hero = () => {
     const component = useRef(null);
     const { events, loading: eventsLoading } = useEvents();
     const { projects, loading: projectsLoading } = useProjects();
+    const latestProjects = projects.slice(0, 3);
 
     // Auto-Scroll State
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -18,12 +19,12 @@ const Hero = () => {
 
     // Auto-Scroll Effect
     React.useEffect(() => {
-        if (projects.length === 0 || isPaused) return;
+        if (latestProjects.length === 0 || isPaused) return;
         const interval = setInterval(() => {
-            setCurrentProjectIndex(prev => (prev + 1) % projects.length);
+            setCurrentProjectIndex(prev => (prev + 1) % latestProjects.length);
         }, 3000);
         return () => clearInterval(interval);
-    }, [projects.length, isPaused]);
+    }, [latestProjects.length, isPaused]);
 
     // Scroll Command Effect
     React.useEffect(() => {
@@ -146,7 +147,7 @@ const Hero = () => {
                                         ref={projectCarouselRef}
                                         className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                                     >
-                                        {projects.map((p, i) => (
+                                        {latestProjects.map((p, i) => (
                                             <div key={i} className="min-w-full h-full snap-center relative flex-shrink-0">
                                                 <img
                                                     src={getOptimizedImageUrl(p.image, 600)}
@@ -166,7 +167,7 @@ const Hero = () => {
 
                                     {/* Simple Dots Indicator */}
                                     <div className="absolute bottom-3 right-4 flex gap-1.5">
-                                        {projects.map((_, i) => (
+                                        {latestProjects.map((_, i) => (
                                             <div
                                                 key={i}
                                                 className={`w-1.5 h-1.5 rounded-full transition-colors ${i === currentProjectIndex ? 'bg-[#FFA200]' : 'bg-white/50'}`}
@@ -181,7 +182,7 @@ const Hero = () => {
                         <div className="flex justify-end px-2">
                             <button
                                 onClick={() => {
-                                    const projectsSection = document.getElementById('project-gallery');
+                                    const projectsSection = document.getElementById('projects');
                                     if (projectsSection) projectsSection.scrollIntoView({ behavior: 'smooth' });
                                 }}
                                 className="text-xs uppercase font-bold tracking-widest text-[#FFA200] hover:text-white transition-colors border-b border-transparent hover:border-white"
