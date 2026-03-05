@@ -202,8 +202,8 @@ export const EventCard = ({ event }) => {
                             </svg>
                         </button>
 
-                        <div className="h-48 sm:h-56 w-full relative">
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent z-10" />
+                        <div className="h-[30vh] w-full relative">
+                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent z-10 opacity-60" />
                             <img
                                 src={event.image}
                                 alt={event.title}

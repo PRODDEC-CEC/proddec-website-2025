@@ -118,9 +118,9 @@ const Footer = () => {
                                     <a href="mailto:president@proddec.org" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3 break-all">
                                         <FaEnvelope className="shrink-0" /> president@proddec.org
                                     </a>
-                                    <a href="tel:+919876543210" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3">
+                                    {/* <a href="tel:+919876543210" className="text-gray-400 hover:text-[#FFA200] transition-colors text-xs sm:text-sm flex items-center gap-2 sm:gap-3">
                                         <FaPhone className="rotate-90 shrink-0" /> +91 98765 43210
-                                    </a>
+                                    </a> */}
                                 </div>
                             </div>
                         </div>

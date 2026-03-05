@@ -183,48 +183,79 @@ export const Card = ({ card, index, layout = false }) => {
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 h-screen z-50 overflow-auto">
+         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
+              onClick={handleClose}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
             />
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="w-[90%] max-w-6xl h-[85vh] md:h-[600px] bg-[#1a1a1a] rounded-[24px] overflow-hidden flex flex-col-reverse md:flex-row relative shadow-[0_0_40px_rgba(0,0,0,0.5)] z-50 ring-1 ring-white/10"
             >
-              <button
-                className="sticky top-4 right-4 h-8 w-8 bg-black dark:bg-white rounded-full flex items-center justify-center ml-auto"
-                onClick={handleClose}
-              >
-                <FaTimes className="h-5 w-5 text-white dark:text-black" />
-              </button>
-              
-              <motion.p
-                layoutId={layout ? `category-${card.title}` : undefined}
-                className="text-base font-medium text-black dark:text-white"
-              >
-                {card.category}
-              </motion.p>
-              
-              <motion.h2
-                layoutId={layout ? `title-${card.title}` : undefined}
-                className="text-2xl md:text-5xl font-bold text-proddec-yellow mt-4 font-zentry uppercase tracking-wide"
-              >
-                {card.title}
-              </motion.h2>
+               {/* Left Side (Desktop) / Bottom (Mobile) - Content */}
+               <div className="w-full md:w-[45%] p-8 md:p-12 flex flex-col justify-center bg-[#18181b] relative z-20 shadow-xl">
+                  {/* Category Pill */}
+                  <motion.div 
+                    layoutId={layout ? `category-${card.title}` : undefined}
+                    className="self-start px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6"
+                  >
+                     <p className="text-[10px] font-bold text-proddec-yellow uppercase tracking-widest">{card.category}</p>
+                  </motion.div>
 
-              <div className="py-10">
-                 {/* Content goes here. We can use description */}
-                 <p className="text-proddec-yellow text-base md:text-lg">
-                    {card.content || card.description}
-                 </p>
-              </div>
+                  {/* Title */}
+                  <motion.h2
+                    layoutId={layout ? `title-${card.title}` : undefined}
+                    className="text-3xl md:text-5xl font-black text-white font-sans tracking-tight mb-6 leading-[1.1]"
+                  >
+                    {card.title}
+                  </motion.h2>
+
+                  {/* Description - Scrollable area */}
+                  <div className="prose prose-invert prose-sm max-w-none mb-8 overflow-y-auto custom-scrollbar pr-2 flex-grow md:max-h-[200px]">
+                      <p className="text-gray-400 font-normal leading-relaxed text-sm md:text-base">{card.content || card.description}</p>
+                  </div>
+
+                  {/* Meta / Footer */}
+                   <div className="flex items-center gap-8 pt-6 border-t border-white/5 mt-auto w-full">
+                        <div className="flex flex-col">
+                            <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">Status</span>
+                            <div className="flex items-center gap-2">
+                                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                <span className="text-sm text-gray-300 font-medium">Completed</span>
+                            </div>
+                        </div>
+                        <div className="w-[1px] h-8 bg-white/10"></div>
+                        <div className="flex flex-col">
+                            <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">Year</span>
+                            <span className="text-sm text-gray-300 font-medium">2024</span>
+                        </div>
+                   </div>
+               </div>
+
+                {/* Right Side (Desktop) / Top (Mobile) - Image */}
+               <div className="w-full md:w-[55%] h-64 md:h-full relative overflow-hidden group bg-black">
+                  <div className="absolute inset-0 bg-[#18181b]/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+                  <BlurImage
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                  />
+                  
+                  {/* Close Button - Absolute on Image */}
+                  <button
+                    className="absolute top-6 right-6 z-50 bg-black/40 hover:bg-black/60 hover:scale-110 backdrop-blur-md p-3 rounded-full text-white transition-all border border-white/10 shadow-lg"
+                    onClick={handleClose}
+                  >
+                    <FaTimes className="h-5 w-5" />
+                  </button>
+               </div>
             </motion.div>
           </div>
         )}

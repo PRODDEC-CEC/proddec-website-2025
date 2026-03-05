@@ -16,13 +16,20 @@ const HomeExecom = () => {
         const interval = setInterval(() => {
             if (carouselRef.current && !isDragging) {
                 const { scrollLeft: currentScrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+                
+                // Calculate scroll amount (one card + gap)
+                const firstCard = carouselRef.current.firstElementChild;
+                const cardWidth = firstCard ? firstCard.offsetWidth : 0;
+                const gap = 24; // gap-6 is 24px
+                const scrollAmount = cardWidth + gap;
+
                 // Only scroll if there is overflow (mobile view or desktop if many items)
                 if (scrollWidth > clientWidth) {
                     if (currentScrollLeft + clientWidth >= scrollWidth - 20) {
                         carouselRef.current.scrollTo({ left: 0, behavior: "smooth" });
                     } else {
-                        // Scroll by card width + gap approx
-                        carouselRef.current.scrollBy({ left: window.innerWidth * 0.7 + 24, behavior: "smooth" });
+                        // Scroll by one card at a time
+                        carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
                     }
                 }
             }

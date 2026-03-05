@@ -98,7 +98,7 @@ const AllEvents = () => {
                                 <div 
                                     key={event.id} 
                                     onClick={() => openModal(event)}
-                                    className="event-card group relative h-[500px] w-full rounded-3xl overflow-hidden cursor-pointer border-1 border-transparent hover:border-proddec-yellow bg-neutral-900"
+                                    className="event-card group relative h-[500px] w-[85vw] md:w-full mx-auto rounded-3xl overflow-hidden cursor-pointer border-1 border-transparent hover:border-proddec-yellow bg-neutral-900"
                                 >
                                     {/* Full Background Image */}
                                     <div className="absolute inset-0 z-0">
@@ -108,7 +108,7 @@ const AllEvents = () => {
                                             src={event.image} 
                                             alt={event.title} 
                                             loading="lazy"
-                                            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                            className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0"
                                         />
                                     </div>
 
@@ -197,8 +197,8 @@ const AllEvents = () => {
                         </button>
 
                         {/* Image Section */}
-                        <div className="w-full md:w-1/2 h-64 md:h-auto relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent z-10 opacity-80 md:hidden"></div>
+                        <div className="w-full md:w-1/2 h-[30vh] md:h-auto relative overflow-hidden group flex-shrink-0">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent z-10 opacity-30 md:hidden"></div>
                             <img 
                                 src={selectedEvent.image} 
                                 alt={selectedEvent.title} 
@@ -214,7 +214,7 @@ const AllEvents = () => {
                         </div>
 
                         {/* Content Section */}
-                        <div className="w-full md:w-1/2 flex flex-col bg-[#0f0f0f]">
+                        <div className="w-full md:w-1/2 flex flex-col bg-[#0f0f0f] overflow-hidden">
                             <div className="flex-1 p-6 md:p-10 overflow-y-auto custom-scrollbar">
                                 
                                 {/* Header Info */}
@@ -244,17 +244,17 @@ const AllEvents = () => {
                                 )}
 
                                 {/* Details Grid */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 p-5 bg-white/5 rounded-2xl border border-white/5">
+                                <div className="grid grid-cols-2 gap-6 mb-8 p-5 bg-white/5 rounded-2xl border border-white/5">
                                     <div className="flex items-start gap-4">
                                         <div className="p-2 bg-white/5 rounded-lg text-[#FFA200]">
                                             <FaCalendarAlt />
                                         </div>
                                         <div>
-                                            <p className="text-xs font-bold text-white/40 uppercase tracking-wider mb-1">Date & Time</p>
-                                            <p className="text-white font-medium text-sm">
+                                            <p className="text-[10px] font-bold text-white/40 uppercase tracking-wider mb-1">Date & Time</p>
+                                            <p className="text-white font-medium text-[12px]">
                                                 {new Date(selectedEvent.date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
                                             </p>
-                                            <p className="text-white/60 text-xs mt-0.5">
+                                            <p className="text-white/60 text-[10px] mt-0.5">
                                                 {new Date(selectedEvent.date).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                                             </p>
                                         </div>
@@ -275,7 +275,7 @@ const AllEvents = () => {
 
                                 {/* Description */}
                                 <div className="prose prose-invert prose-sm max-w-none">
-                                    <p className="text-white/70 font-light leading-relaxed whitespace-pre-line">
+                                    <p className="text-white/70 text-sm font-light leading-relaxed whitespace-pre-line">
                                         {selectedEvent.description}
                                     </p>
                                 </div>
