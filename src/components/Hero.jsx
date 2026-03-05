@@ -105,7 +105,7 @@ const Hero = () => {
                             to="/idea"
                             className="group relative md:px-8 md:py-4 px-4 py-2 bg-transparent border border-[#FFA200] rounded-full overflow-hidden transition-all hover:bg-[#FFA200] hover:text-black hover:shadow-[0_0_20px_rgba(255,162,0,0.6)] inline-flex items-center"
                         >
-                             
+
                             <span className="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-2">
                                 Have an IDEA ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
