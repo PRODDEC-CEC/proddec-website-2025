@@ -12,26 +12,5 @@ export const testimonials = [
     role: "R & D Software Lead 25-26",
     quote: "Proddec is truly one of the best platforms to learn, innovate, and gain skills that prepare you for the future as an engineer.",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-  },
-  {
-    id: 3,
-    name: "David Chen",
-    role: "Technical Head",
-    quote: "The workshops and hackathons organized by PRODDEC are top-notch. They truly help in bridging the gap between academic learning and industry standards.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    role: "Alumni",
-    quote: "I owe a lot of my career success to the foundation laid during my time at PRODDEC. The network I built here is still my strongest professional asset.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily"
-  },
-  {
-    id: 5,
-    name: "Michael Brown",
-    role: "Active Member",
-    quote: "Joining PRODDEC was the best decision of my college life. The collaborative environment encourages you to push your boundaries and create something amazing.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
   }
 ];

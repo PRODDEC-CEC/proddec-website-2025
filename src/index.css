@@ -78,3 +78,13 @@ button:focus-visible {
 
 .animate-spin-reverse { animation: spin-reverse 3s linear infinite; }
 @keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+
+
+/* Glass Component Borders */
+.glass-border {
+border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.dark .glass-border {
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
