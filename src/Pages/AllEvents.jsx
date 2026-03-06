@@ -46,12 +46,14 @@ const AllEvents = () => {
 
     const openModal = (event) => {
         setSelectedEvent(event);
-        document.body.style.overflow = 'hidden';
+        if (window.__lenis) window.__lenis.stop();
+        else document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
         setSelectedEvent(null);
-        document.body.style.overflow = 'auto';
+        if (window.__lenis) window.__lenis.start();
+        else document.body.style.overflow = 'auto';
     };
 
     return (
@@ -265,7 +267,7 @@ const AllEvents = () => {
                                             <FaMapMarkerAlt />
                                         </div>
                                         <div>
-                                            <p className="text-xs font-bold text-white/40 uppercase tracking-wider mb-1">Location</p>
+                                            <p className="text-xs font-bold text-white/40 uppercase tracking-widest mb-1">Location</p>
                                             <p className="text-white font-medium text-sm text-balance">
                                                 {selectedEvent.location || 'TBA'}
                                             </p>

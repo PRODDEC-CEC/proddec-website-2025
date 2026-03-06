@@ -159,9 +159,11 @@ export const Card = ({ card, index, layout = false }) => {
     };
 
     if (open) {
-      document.body.style.overflow = "hidden";
+      if (window.__lenis) window.__lenis.stop();
+      else document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      if (window.__lenis) window.__lenis.start();
+      else document.body.style.overflow = "auto";
     }
 
     window.addEventListener("keydown", onKeyDown);

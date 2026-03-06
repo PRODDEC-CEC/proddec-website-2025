@@ -32,10 +32,10 @@ const MembershipRegistration = () => {
 
     // Membership Plans
     const plans = [
-        { name: 'First Year', price: '₹599', color: 'from-[#FFA200] to-yellow-600' },
-        { name: 'Second Year', price: '₹499', color: 'from-[#FFA200] to-orange-600' },
-        { name: 'Third Year', price: '₹399', color: 'from-yellow-500 to-[#FFA200]' },
-        { name: 'Fourth Year', price: '₹299', color: 'from-orange-500 to-[#FFA200]' },
+        { name: 'First Year',  price: '₹599', color: 'from-[#FFA200] to-yellow-600',  qr: './images/599.jpeg'  },
+        { name: 'Second Year', price: '₹499', color: 'from-[#FFA200] to-orange-600', qr: './images/499.jpeg' },
+        { name: 'Third Year',  price: '₹399', color: 'from-yellow-500 to-[#FFA200]', qr: './images/399.jpeg'  },
+        { name: 'Fourth Year', price: '₹299', color: 'from-orange-500 to-[#FFA200]', qr: './images/299.jpeg' },
     ];
 
     // Update price when tier changes
@@ -342,8 +342,9 @@ const MembershipRegistration = () => {
                                             <div className="absolute -inset-1 bg-gradient-to-br from-[#FFA200] to-yellow-600 rounded-3xl opacity-30 group-hover:opacity-50 blur-lg transition-all duration-500"></div>
                                             <div className="relative bg-white p-4 rounded-2xl">
                                                 <img 
-                                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=proddec@upi&pn=PRODDEC&am=${formData.price.replace('₹', '')}&cu=INR`} 
-                                                    alt="Payment QR" 
+                                                    key={formData.membershipTier}
+                                                    src={plans.find(p => p.name === formData.membershipTier)?.qr}
+                                                    alt={`Payment QR for ${formData.membershipTier}`}
                                                     className="w-64 h-64 object-contain" 
                                                 />
                                             </div>

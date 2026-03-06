@@ -23,6 +23,7 @@ const SmoothScroll = () => {
         });
 
         lenisRef.current = lenis;
+        window.__lenis = lenis;
 
         // Sync Lenis and ScrollTrigger
         lenis.on('scroll', ScrollTrigger.update);

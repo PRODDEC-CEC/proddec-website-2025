@@ -100,6 +100,20 @@ export const EventCard = ({ event }) => {
     const isEventCompleted = new Date(event.date) < new Date();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    useEffect(() => {
+        if (isModalOpen) {
+            if (window.__lenis) window.__lenis.stop();
+            else document.body.style.overflow = 'hidden';
+        } else {
+            if (window.__lenis) window.__lenis.start();
+            else document.body.style.overflow = 'auto';
+        }
+        return () => {
+            if (window.__lenis) window.__lenis.start();
+            else document.body.style.overflow = 'auto';
+        };
+    }, [isModalOpen]);
+
     const handleCardClick = () => {
         setIsModalOpen(true);
     };
@@ -254,4 +268,3 @@ export const EventCard = ({ event }) => {
         </>
     );
 };
-    
