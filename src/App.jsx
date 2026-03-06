@@ -9,7 +9,6 @@ const Home = lazy(() => import("./Pages/Home"));
 const Execom = lazy(() => import("./Pages/Execom"));
 const EventPage = lazy(() => import("./Pages/EventPage"));
 const AllEvents = lazy(() => import("./Pages/AllEvents"));
-const Admin = lazy(() => import("./Pages/Admin"));
 const MembershipRegistration = lazy(() => import("./Pages/MembershipRegistration"));
 const Idea = lazy(() => import("./Pages/Idea"));
 
@@ -43,7 +42,6 @@ function App() {
             <Route path="/event/:id" element={<EventPage />} />
             <Route path="/register-membership" element={<MembershipRegistration />} />
             <Route path="/idea" element={<Idea />} />
-            <Route path="/admin" element={<Admin />} />
           </Routes>
         </Suspense>
         <Footer />
