@@ -72,7 +72,7 @@ button:focus-visible {
 }
 /* Hero Component Styles */
 .text-outline-white {
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    -webkit-text-stroke: 3px rgba(255, 255, 255, 0.3);
     color: transparent;
 }
 
