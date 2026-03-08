@@ -41,7 +41,7 @@ const Projects = () => {
     const displayProjects = (projects && projects.length > 0) ? projects : dummyProjects;
 
     const cards = displayProjects.map((card, index) => (
-        <Card key={card.src || card.image || index} card={card} index={index} />
+        <Card key={card.src || card.image || index} card={card} index={index} year={card.year} status={card.status} />
     ));
 
     if (loading) {
