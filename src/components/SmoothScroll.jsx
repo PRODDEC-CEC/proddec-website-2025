@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const SmoothScroll = () => {
     const { pathname, hash } = useLocation();
     const lenisRef = useRef(null);
-    
+
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -23,7 +23,6 @@ const SmoothScroll = () => {
         });
 
         lenisRef.current = lenis;
-        window.__lenis = lenis;
 
         // Sync Lenis and ScrollTrigger
         lenis.on('scroll', ScrollTrigger.update);
@@ -36,10 +35,19 @@ const SmoothScroll = () => {
 
         gsap.ticker.lagSmoothing(0);
 
+        // Custom events for locking/unlocking scroll
+        const handleLock = () => lenis.stop();
+        const handleUnlock = () => lenis.start();
+
+        window.addEventListener('lock-scroll', handleLock);
+        window.addEventListener('unlock-scroll', handleUnlock);
+
         return () => {
             lenis.destroy();
             lenisRef.current = null;
             gsap.ticker.remove(raf);
+            window.removeEventListener('lock-scroll', handleLock);
+            window.removeEventListener('unlock-scroll', handleUnlock);
         };
     }, []);
 
@@ -59,7 +67,7 @@ const SmoothScroll = () => {
                 if (element) {
                     // element.scrollIntoView({ behavior: 'smooth' }); // Native
                     // Or let browser handle it?
-                   window.location.hash = hash; // Can trigger jump
+                    window.location.hash = hash; // Can trigger jump
                 }
             } else {
                 window.scrollTo(0, 0);

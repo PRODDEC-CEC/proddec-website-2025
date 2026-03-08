@@ -187,12 +187,21 @@ export const Card = ({ card, index, layout = false }) => {
 
     if (open) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden"; // Also lock html for some browsers
+      window.dispatchEvent(new CustomEvent('lock-scroll'));
     } else {
       document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+      window.dispatchEvent(new CustomEvent('unlock-scroll'));
     }
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+      window.dispatchEvent(new CustomEvent('unlock-scroll'));
+    };
   }, [open]);
 
   useOutsideClick(containerRef, () => handleClose());
@@ -245,7 +254,10 @@ export const Card = ({ card, index, layout = false }) => {
                 </motion.h2>
 
                 {/* Description - Scrollable area */}
-                <div className="prose prose-invert prose-sm max-w-none mb-8 overflow-y-auto custom-scrollbar pr-2 flex-grow md:max-h-[200px]">
+                <div
+                  className="prose prose-invert prose-sm max-w-none mb-8 overflow-y-auto custom-scrollbar pr-2 flex-grow md:max-h-[200px]"
+                  data-lenis-prevent
+                >
                   <p className="text-gray-400 font-normal leading-relaxed text-sm md:text-base">{card.content || card.description}</p>
                 </div>
 
@@ -255,7 +267,7 @@ export const Card = ({ card, index, layout = false }) => {
                     <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">Status</span>
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                      <span className="text-sm text-gray-300 font-medium">{card.status ||"Not provided"}</span>
+                      <span className="text-sm text-gray-300 font-medium">{card.status || "Not provided"}</span>
                     </div>
                   </div>
                   <div className="w-[1px] h-8 bg-white/10"></div>
@@ -277,7 +289,7 @@ export const Card = ({ card, index, layout = false }) => {
 
                 {/* Close Button - Absolute on Image */}
                 <button
-                  className="absolute top-6 right-6 z-50 bg-black/40 hover:bg-black/60 hover:scale-110 backdrop-blur-md p-3 rounded-full text-white transition-all border border-white/10 shadow-lg"
+                  className="absolute top-6 right-6 z-50 bg-white hover:bg-gray-200 hover:scale-110 backdrop-blur-md p-3 rounded-full text-black transition-all border border-white/10 shadow-lg cursor-pointer"
                   onClick={handleClose}
                 >
                   <FaTimes className="h-5 w-5" />

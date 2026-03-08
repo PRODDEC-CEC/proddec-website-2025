@@ -100,23 +100,27 @@ export const EventCard = ({ event }) => {
     const isEventCompleted = new Date(event.date) < new Date();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        if (isModalOpen) {
-            if (window.__lenis) window.__lenis.stop();
-            else document.body.style.overflow = 'hidden';
-        } else {
-            if (window.__lenis) window.__lenis.start();
-            else document.body.style.overflow = 'auto';
-        }
-        return () => {
-            if (window.__lenis) window.__lenis.start();
-            else document.body.style.overflow = 'auto';
-        };
-    }, [isModalOpen]);
-
     const handleCardClick = () => {
         setIsModalOpen(true);
     };
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+            window.dispatchEvent(new CustomEvent('lock-scroll'));
+        } else {
+            document.body.style.overflow = "auto";
+            document.documentElement.style.overflow = "auto";
+            window.dispatchEvent(new CustomEvent('unlock-scroll'));
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+            document.documentElement.style.overflow = "auto";
+            window.dispatchEvent(new CustomEvent('unlock-scroll'));
+        };
+    }, [isModalOpen]);
 
     return (
         <>
@@ -202,14 +206,15 @@ export const EventCard = ({ event }) => {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed cursor-default inset-0 z-[999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}>
+                <div className="fixed cursor-default inset-0 z-999 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}>
                     <div
                         className="bg-neutral-900 border border-white/10 rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto relative animate-in fade-in zoom-in duration-200"
                         onClick={e => e.stopPropagation()}
+                        data-lenis-prevent
                     >
                         <button
                             onClick={() => setIsModalOpen(false)}
-                            className="absolute top-3 right-3 z-50 p-1.5 rounded-full bg-black/50 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                            className="absolute top-3 right-3 z-50 p-1.5 rounded-full bg-white hover:bg-white/20 text-black transition-colors cursor-pointer"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -217,7 +222,7 @@ export const EventCard = ({ event }) => {
                         </button>
 
                         <div className="h-[30vh] w-full relative">
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent z-10 opacity-60" />
+                            <div className="absolute inset-0 bg-linear-to-t from-neutral-900 to-transparent z-10 opacity-60" />
                             <img
                                 src={event.image}
                                 alt={event.title}
