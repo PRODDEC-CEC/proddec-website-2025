@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, getDocs } from 'firebase/firestore';
 import uploadImage from '../utils/uploadImage';
+import emailjs from '@emailjs/browser';
 import { FaCheck, FaUser, FaEnvelope, FaPhone, FaGraduationCap, FaCrown, FaUpload, FaArrowLeft, FaArrowRight, FaQrcode, FaFileInvoiceDollar } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -14,6 +15,9 @@ const MembershipRegistration = () => {
     const [step, setStep] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    // QR Codes from Firestore
+    const [dynamicQRs, setDynamicQRs] = useState({});
 
     // Form Data
     const [formData, setFormData] = useState({
@@ -32,19 +36,68 @@ const MembershipRegistration = () => {
 
     // Membership Plans
     const plans = [
-        { name: 'First Year',  price: '₹599', color: 'from-[#FFA200] to-yellow-600',  qr: './images/599.jpeg'  },
-        { name: 'Second Year', price: '₹499', color: 'from-[#FFA200] to-orange-600', qr: './images/499.jpeg' },
-        { name: 'Third Year',  price: '₹399', color: 'from-yellow-500 to-[#FFA200]', qr: './images/399.jpeg'  },
-        { name: 'Fourth Year', price: '₹299', color: 'from-orange-500 to-[#FFA200]', qr: './images/299.jpeg' },
+        { name: 'First Year',  price: '₹499', color: 'from-[#FFA200] to-yellow-600',  qr: './images/599.jpeg'  },
+        { name: 'Second Year', price: '₹399', color: 'from-[#FFA200] to-orange-600', qr: './images/499.jpeg' },
+        { name: 'Third Year',  price: '₹199', color: 'from-yellow-500 to-[#FFA200]', qr: './images/399.jpeg'  },
+        { name: 'Fourth Year', price: '₹99', color: 'from-orange-500 to-[#FFA200]', qr: './images/299.jpeg' },
     ];
 
-    // Update price when tier changes
+    // Update year and price when membership tier changes
     useEffect(() => {
+        const tierToYearMap = {
+            'First Year': '1',
+            'Second Year': '2',
+            'Third Year': '3',
+            'Fourth Year': '4'
+        };
+        const newYear = tierToYearMap[formData.membershipTier];
         const selectedPlan = plans.find(p => p.name === formData.membershipTier);
+        
         if (selectedPlan) {
-            setFormData(prev => ({ ...prev, price: selectedPlan.price }));
+            setFormData(prev => ({ 
+                ...prev, 
+                year: newYear || prev.year,
+                price: selectedPlan.price 
+            }));
         }
     }, [formData.membershipTier]);
+
+    // Update membership tier and price when year changes
+    useEffect(() => {
+        const yearToTierMap = {
+            '1': 'First Year',
+            '2': 'Second Year',
+            '3': 'Third Year',
+            '4': 'Fourth Year'
+        };
+        const newTier = yearToTierMap[formData.year];
+        const selectedPlan = plans.find(p => p.name === newTier);
+        
+        if (selectedPlan) {
+            setFormData(prev => ({ 
+                ...prev, 
+                membershipTier: newTier,
+                price: selectedPlan.price 
+            }));
+        }
+    }, [formData.year]);
+
+    // Fetch dynamic QR codes from Firestore
+    useEffect(() => {
+        const fetchQRs = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'payment_settings'));
+                const qrData = {};
+                querySnapshot.forEach((doc) => {
+                    qrData[doc.id] = doc.data().qrUrl;
+                });
+                setDynamicQRs(qrData);
+            } catch (err) {
+                console.error("Error fetching dynamic QRs:", err);
+            }
+        };
+        fetchQRs();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -102,10 +155,43 @@ const MembershipRegistration = () => {
                 createdAt: serverTimestamp()
             });
 
+            // 3. Send Confirmation Email via EmailJS
+            const templateParams = {
+                name: formData.name, // Matches {{name}} in your new HTML template
+                email: formData.email, // Matches {{email}} in your template
+                membership_tier: formData.membershipTier,
+                price: formData.price,
+                reply_to: 'proddec@ceconline.edu',
+            };
+
+            await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                templateParams,
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            );
+
+            // 4. Send to Google Sheets (via Apps Script Webhook)
+            const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+            if (webhookUrl) {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors', // Common for Apps Script
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ...formData,
+                        proofUrl,
+                        submittedAt: new Date().toISOString()
+                    }),
+                }).catch(err => console.error('Google Sheets sync failed:', err));
+            }
+
             setStep(3); // Success Step
         } catch (err) {
-            console.error(err);
-            setError('Failed to submit. Please try again.');
+            console.error('Submission Error:', err);
+            // This will now show the actual message (e.g. "Public key is invalid")
+            const errorMsg = err?.text || err?.message || 'Failed to submit. Please try again.';
+            setError(errorMsg);
         } finally {
             setLoading(false);
         }
@@ -343,7 +429,7 @@ const MembershipRegistration = () => {
                                             <div className="relative bg-white p-4 rounded-2xl">
                                                 <img 
                                                     key={formData.membershipTier}
-                                                    src={plans.find(p => p.name === formData.membershipTier)?.qr}
+                                                    src={dynamicQRs[formData.membershipTier] || plans.find(p => p.name === formData.membershipTier)?.qr}
                                                     alt={`Payment QR for ${formData.membershipTier}`}
                                                     className="w-64 h-64 object-contain" 
                                                 />
