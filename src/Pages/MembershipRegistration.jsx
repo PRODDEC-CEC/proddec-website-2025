@@ -27,7 +27,7 @@ const MembershipRegistration = () => {
         year: '1',
         section: '',
         membershipTier: searchParams.get('plan') || 'First Year',
-        price: searchParams.get('price') || '₹599',
+        price: searchParams.get('price') || '₹499',
         proofUrl: ''
     });
 
@@ -42,45 +42,73 @@ const MembershipRegistration = () => {
         { name: 'Fourth Year', price: '₹99', color: 'from-orange-500 to-[#FFA200]', qr: './images/299.jpeg' },
     ];
 
-    // Update year and price when membership tier changes
-    useEffect(() => {
-        const tierToYearMap = {
-            'First Year': '1',
-            'Second Year': '2',
-            'Third Year': '3',
-            'Fourth Year': '4'
-        };
-        const newYear = tierToYearMap[formData.membershipTier];
-        const selectedPlan = plans.find(p => p.name === formData.membershipTier);
+    // Handle form field changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
         
-        if (selectedPlan) {
-            setFormData(prev => ({ 
-                ...prev, 
+        if (name === 'year') {
+            const yearToTierMap = {
+                '1': 'First Year',
+                '2': 'Second Year',
+                '3': 'Third Year',
+                '4': 'Fourth Year'
+            };
+            const newTier = yearToTierMap[value];
+            const selectedPlan = plans.find(p => p.name === newTier);
+            
+            setFormData(prev => ({
+                ...prev,
+                year: value,
+                membershipTier: newTier || prev.membershipTier,
+                price: selectedPlan ? selectedPlan.price : prev.price
+            }));
+        } else if (name === 'membershipTier') {
+            const tierToYearMap = {
+                'First Year': '1',
+                'Second Year': '2',
+                'Third Year': '3',
+                'Fourth Year': '4'
+            };
+            const newYear = tierToYearMap[value];
+            const selectedPlan = plans.find(p => p.name === value);
+            
+            setFormData(prev => ({
+                ...prev,
+                membershipTier: value,
                 year: newYear || prev.year,
-                price: selectedPlan.price 
+                price: selectedPlan ? selectedPlan.price : prev.price
+            }));
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
             }));
         }
-    }, [formData.membershipTier]);
+    };
 
-    // Update membership tier and price when year changes
+    // Auto-fill from URL parameters on mount
     useEffect(() => {
-        const yearToTierMap = {
-            '1': 'First Year',
-            '2': 'Second Year',
-            '3': 'Third Year',
-            '4': 'Fourth Year'
-        };
-        const newTier = yearToTierMap[formData.year];
-        const selectedPlan = plans.find(p => p.name === newTier);
-        
-        if (selectedPlan) {
-            setFormData(prev => ({ 
-                ...prev, 
-                membershipTier: newTier,
-                price: selectedPlan.price 
-            }));
+        const planParam = searchParams.get('plan');
+        if (planParam) {
+            const tierToYearMap = {
+                'First Year': '1',
+                'Second Year': '2',
+                'Third Year': '3',
+                'Fourth Year': '4'
+            };
+            const newYear = tierToYearMap[planParam];
+            const selectedPlan = plans.find(p => p.name === planParam);
+
+            if (selectedPlan) {
+                setFormData(prev => ({
+                    ...prev,
+                    membershipTier: planParam,
+                    year: newYear || prev.year,
+                    price: selectedPlan.price
+                }));
+            }
         }
-    }, [formData.year]);
+    }, [searchParams]);
 
     // Fetch dynamic QR codes from Firestore
     useEffect(() => {
@@ -388,7 +416,7 @@ const MembershipRegistration = () => {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
                                             <div className="space-y-1.5">
                                                 <label className="text-xs uppercase tracking-wider text-white/50 font-semibold ml-1">Academic Year</label>
-                                                <select name="year" value={formData.year} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-white focus:outline-none focus:border-[#FFA200] cursor-pointer appearance-none">
+                                                <select name="year" value={formData.year} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-white focus:outline-none focus:border-[#FFA200] cursor-pointer appearance-none">
                                                     <option className="bg-[#1a1a1a]" value="1">1st Year</option>
                                                     <option className="bg-[#1a1a1a]" value="2">2nd Year</option>
                                                     <option className="bg-[#1a1a1a]" value="3">3rd Year</option>
@@ -398,7 +426,7 @@ const MembershipRegistration = () => {
                                             
                                             <div className="space-y-1.5">
                                                 <label className="text-xs uppercase tracking-wider text-white/50 font-semibold ml-1">Membership Plan</label>
-                                                <select name="membershipTier" value={formData.membershipTier} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-white focus:outline-none focus:border-[#FFA200] cursor-pointer appearance-none">
+                                                <select name="membershipTier" value={formData.membershipTier} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 rounded-xl p-3.5 text-white focus:outline-none focus:border-[#FFA200] cursor-pointer appearance-none">
                                                     {plans.map(p => (
                                                         <option className="bg-[#1a1a1a]" key={p.name} value={p.name}>{p.name} - {p.price}</option>
                                                     ))}
