@@ -36,9 +36,9 @@ const MembershipRegistration = () => {
 
     // Membership Plans
     const plans = [
-        { name: 'First Year',  price: '₹499', color: 'from-[#FFA200] to-yellow-600',  qr: './images/599.jpeg'  },
-        { name: 'Second Year', price: '₹399', color: 'from-[#FFA200] to-orange-600', qr: './images/499.jpeg' },
-        { name: 'Third Year',  price: '₹199', color: 'from-yellow-500 to-[#FFA200]', qr: './images/399.jpeg'  },
+        { name: 'First Year',  price: '₹599', color: 'from-[#FFA200] to-yellow-600',  qr: './images/599.jpeg'  },
+        { name: 'Second Year', price: '₹499', color: 'from-[#FFA200] to-orange-600', qr: './images/499.jpeg' },
+        { name: 'Third Year',  price: '₹299', color: 'from-yellow-500 to-[#FFA200]', qr: './images/399.jpeg'  },
         { name: 'Fourth Year', price: '₹99', color: 'from-orange-500 to-[#FFA200]', qr: './images/299.jpeg' },
     ];
 
