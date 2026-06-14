@@ -7,7 +7,9 @@ import Loader from '../components/Loader';
 const EventRedirect = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loadingFirebase, setLoadingFirebase] = useState(true);
+  const [iframeLoading, setIframeLoading] = useState(true);
+  const [embedUrl, setEmbedUrl] = useState(null);
 
   useEffect(() => {
     const checkRedirect = async () => {
@@ -23,12 +25,16 @@ const EventRedirect = () => {
           const eventData = querySnapshot.docs[0].data();
           
           if (eventData.registerLink) {
-            // If it has a registerLink, redirect to it immediately
-            window.location.href = eventData.registerLink;
+            let url = eventData.registerLink;
+            // Extract src if user pasted a full <iframe ...> snippet
+            if (url.includes('<iframe') && url.includes('src=')) {
+              const match = url.match(/src="([^"]+)"/);
+              if (match && match[1]) {
+                url = match[1];
+              }
+            }
+            setEmbedUrl(url);
           } else {
-            // Optional: If it doesn't have a register link but has an event page, redirect there
-            // navigate(`/event/${querySnapshot.docs[0].id}`);
-            
             // Otherwise, just go home
             navigate('/', { replace: true });
           }
@@ -40,18 +46,35 @@ const EventRedirect = () => {
         console.error("Error fetching redirect link:", error);
         navigate('/', { replace: true });
       } finally {
-        setLoading(false);
+        setLoadingFirebase(false);
       }
     };
 
     checkRedirect();
   }, [slug, navigate]);
 
-  if (loading) {
-    return <Loader />;
-  }
+  const showLoader = loadingFirebase || (embedUrl && iframeLoading);
 
-  return null;
+  return (
+    <div className="fixed inset-0 z-40 bg-black w-full h-full flex flex-col">
+      {/* Show the loader over everything while Firebase fetches AND iframe loads */}
+      {showLoader && (
+        <div className="absolute inset-0 z-50">
+          <Loader />
+        </div>
+      )}
+      
+      {/* Hidden behind the loader until fully loaded */}
+      {embedUrl && (
+        <iframe 
+          src={embedUrl} 
+          className="w-full h-full border-0 flex-1"
+          onLoad={() => setIframeLoading(false)}
+          title="Event Registration"
+        />
+      )}
+    </div>
+  );
 };
 
 export default EventRedirect;
