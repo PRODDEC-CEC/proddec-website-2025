@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const plans = [
     {
         name: 'First Year',
-        price: '₹499',
+        price: '₹599',
         features: ['Access to Workshops', 'Mentorship Sessions', 'Basic Projects'],
         color: '#FDE047', // Yellow-300
         gradient: 'from-yellow-400 to-yellow-300',
@@ -16,7 +16,7 @@ const plans = [
     },
     {
         name: 'Second Year',
-        price: '₹399',
+        price: '₹499',
         features: ['Advanced Workshops', 'Hackathon Support', 'Core Projects'],
         color: '#FACC15', // Yellow-400
         gradient: 'from-yellow-500 to-yellow-400',
@@ -25,7 +25,7 @@ const plans = [
     },
     {
         name: 'Third Year',
-        price: '₹199',
+        price: '₹299',
         features: ['Leadership Roles', 'Industry Networking', 'Flagship Events'],
         color: '#FBBF24', // Yellow-500
         gradient: 'from-amber-500 to-amber-400',
